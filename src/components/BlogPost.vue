@@ -7,10 +7,12 @@
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else>{{ post.blogHTML }}</p>
         <router-link class="link link-right" v-if="post.welcomeScreen" to="#">
-          Login/Register<uniCarWash class="arrow arrow-light" />
+          Login/Register 
+          <!-- <uniCarWash class="arrow arrow-light" /> -->
         </router-link>
         <router-link class="link" v-else to="#">
-          View the Post<uniCarWash class="arrow" />
+          View the Post
+          <!-- <uniCarWash class="arrow" /> -->
         </router-link>
       </div>
     </div>
@@ -30,12 +32,12 @@
 </template>
 
 <script>
-import { uniCarWash } from "vue-unicons/dist/icons";
+// import { uniCarWash } from "vue-unicons/dist/icons";
 export default {
   name: "blogPost",
   props: ["post"],
   components: {
-    uniCarWash,
+    
   },
 };
 </script>

@@ -5,7 +5,7 @@
         <div class="left">
             <div class="col-1">
                 <router-link class="header" :to="{name : 'Home'}">FinanceBois</router-link>
-                <ul>
+                <!-- <ul>
                     <li>
                         <a href="#"><uniCarWash class="svg-icon" /></a>
                     </li>
@@ -18,7 +18,7 @@
                     <li>
                         <a href="#"><uniCarWash class="svg-icon" /></a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="col-2">
                 <ul>
@@ -38,13 +38,13 @@
 </template>
 
 <script>
-import { uniCarWash } from 'vue-unicons/dist/icons'
-export default {
-    name:"footer-vue",
-  components: {
-    uniCarWash
-  }
-}
+// import { uniCarWash } from 'vue-unicons/dist/icons'
+// export default {
+//     name:"footer-vue",
+//   components: {
+//     uniCarWash
+//   }
+// }
 </script>
 
 <style lang="scss" scoped>

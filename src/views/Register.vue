@@ -16,13 +16,13 @@
         <div class="input">
           <input type="password" placeholder="Password" v-model="password" />
         </div>
-        <p v-if="errMsg">{{ errMsg }}</p>
+        <div v-show="error" class="error">{{ this.errorMsg }}</div>
       </div>
       <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"
         >Forgot your password?</router-link
       >
-      <button @click="register">Submit</button>
-      <button @click="signInWithGoogle">Sign In with Google</button>
+      <button @click.prevent="register">Submit</button>
+      <button @click.prevent="signInWithGoogle">Sign In with Google</button>
       <div class="angle"></div>
     </form>
     <div class="background"></div>
@@ -30,40 +30,57 @@
 </template>
 
 <script>
-import { ref } from "vue";
+//import { ref } from "vue";
+import "firebase/auth";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { useRouter } from "vue-router";
-const email = ref("");
-const password = ref("");
-const router = useRouter();
+import { doc , setDoc } from "firebase/firestore";
+import {db, auth} from "../firebase/firebase";
+
+// import { useRouter } from "vue-router";
+// const router = useRouter();
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Register",
+  data() {
+    return {
+      email: "",
+      password: "",
+      error:null,
+      errorMsg :"",
+    }
+  },
   methods: {
     async register() {
-      createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-        // eslint-disable-next-line no-unused-vars
-        .then((data) => {
-          console.log("Successfully registered");
-          router.push("/feed");
+      if (
+        this.email !== "" &&
+        this.password !== "" 
+      ) {
+        this.error = false;
+        this.errorMsg = "";
+
+        const createUser = await createUserWithEmailAndPassword(auth, this.email, this.password);
+        const result = await createUser;
+        await setDoc(doc(db, "users", result.user.uid), {
+          email: this.email,
         })
-        .catch((error) => {
-          console.log(error.code);
-          alert(error.message);
-        });
+        this.$router.push({name: "Home"})
+        return;
+      }
+      this.error = true;
+      this.errorMsg = "Please fill out all the fields!";
+      return;
     },
 
-    signInWithGoogle() {
+    async signInWithGoogle() {
       const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider)
-        .then((result) => {
-          console.log(result.user);
-          router.push("/feed");
+      signInWithPopup(auth, provider)
+        .then(() => {
+          this.$router.push({name: "Home"})
         })
         // eslint-disable-next-line no-unused-vars
         .catch((error) => {});
@@ -71,3 +88,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.register {
+  h2 {
+    max-width: 350px;
+  }
+}
+</style>

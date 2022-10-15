@@ -15,12 +15,12 @@
         <div class="input">
           <input type="password" placeholder="Password" v-model="password" />
         </div>
-        <p v-if="errMsg">{{ errMsg }}</p>
+        <div v-show="error" class="error">{{ this.errorMsg }}</div>
       </div>
       <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"
         >Forgot your password?</router-link
       >
-      <button @click="register">Submit</button>
+      <button @click="signIn">Submit</button>
       <button @click="signInWithGoogle">Sign In with Google</button>
       <div class="angle"></div>
     </form>
@@ -29,47 +29,41 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+// import { ref } from "vue";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import "firebase/auth";
+import {
+  //createUserWithEmailAndPassword,
+  //GoogleAuthProvider,
+  //signInWithPopup,
+} from "firebase/auth";
+//import { doc , setDoc } from "firebase/firestore";
+import {auth} from "../firebase/firebase";
+
 // import { useRouter } from "vue-router";
-const email = ref("");
-const password = ref("");
-const errMsg = ref();
 // const router = useRouter();
 export default {
   name: "SignIn",
   components: {},
   data() {
-
+    return {
+      email:null,
+      password: null,
+      error: null,
+      errorMsg: "",
+    }
   },
   methods: {
-    async register() {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, email.value, password.value)
-        // eslint-disable-next-line no-unused-vars
-        .then((data) => {
-          console.log("Successfully registered");
-          console.log(auth.currentUser);
-          // router.push("/feed");
-        })
-        .catch((error) => {
-          console.log(error.code);
-          switch (error.code) {
-            case "auth/invalid-email":
-              errMsg.value = "Invalid Email";
-              break;
-            case "auth/user-not-found":
-              errMsg.value = "No account with that email was found";
-              break;
-            case "auth/wrong-password":
-              errMsg.value = "Incorrect Password";
-              break;
-            default:
-              errMsg.value = "Email or password was incorrect";
-              break;
-          }
-        });
-    },
+    signIn() {
+      signInWithEmailAndPassword(auth, this.email, this.password).then(() => {
+        this.$router.push({ name: "Home"});
+        this.error=false;
+        this.errorMsg ="";
+      }).catch(err =>{
+        this.error=true;
+        this.errorMsg= err.message;
+      })
+    }
   },
 };
 </script>
