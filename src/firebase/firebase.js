@@ -1,8 +1,16 @@
-//import { initializeApp } from "firebase/app";
-import firebase from "firebase/app";
-import "firebase/firestore";
+
+import {initializeApp} from "firebase/app";
+import {getFirestore} from 'firebase/firestore';
+import {getAuth} from "firebase/auth"
+// import "firebase/firestore";
+// import {getAuth} from "firebase/auth";
+// import {getDatabase} from "firebase/database";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
+// import firebase from "firebase";
+// import 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,8 +24,9 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
-const timestamp = firebase.firestore.FieldValue.serverTimestamp;
-export {timestamp};
-export default firebaseApp.firestore();
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+// const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+// export {timestamp};
+export {db, auth}
