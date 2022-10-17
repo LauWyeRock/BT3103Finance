@@ -20,8 +20,8 @@
       <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"
         >Forgot your password?</router-link
       >
-      <button @click="signIn">Submit</button>
-      <button @click="signInWithGoogle">Sign In with Google</button>
+      <button @click.prevent="signIn">Submit</button>
+      <button @click.prevent="signInWithGoogle">Sign In with Google</button>
       <div class="angle"></div>
     </form>
     <div class="background"></div>
@@ -39,7 +39,10 @@ import {
 } from "firebase/auth";
 //import { doc , setDoc } from "firebase/firestore";
 import {auth} from "../firebase/firebase";
-
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 // import { useRouter } from "vue-router";
 // const router = useRouter();
 export default {
@@ -63,7 +66,16 @@ export default {
         this.error=true;
         this.errorMsg= err.message;
       })
-    }
+    },
+    async signInWithGoogle() {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then(() => {
+          this.$router.push({name: "Home"})
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch((error) => {});
+    },
   },
 };
 </script>
