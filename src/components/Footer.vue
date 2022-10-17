@@ -22,11 +22,12 @@
             </div>
             <div class="col-2">
                 <ul>
-                    <router-link class="link" to="/">Home</router-link> <!-- what are the links here for?-->
+                    <router-link class="link" to="/">Home</router-link>
                     <router-link class="link" to="/feed">Feed</router-link>
                     <router-link class="link" to="/register"> Register </router-link>
                     <router-link class="link" to="/news"> News </router-link>
-                    <router-link class="link" to="/forum"> forum </router-link>
+                    <router-link class="link" to="/forum"> Forum </router-link>
+                    <router-link class="link" to="/chat"> Chat </router-link>
                 </ul>
             </div>
         </div>
@@ -38,7 +39,6 @@
 </template>
 
 <script>
-// import { uniCarWash } from 'vue-unicons/dist/icons'
 // export default {
 //     name:"footer-vue",
 //   components: {

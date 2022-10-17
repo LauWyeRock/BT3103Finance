@@ -32,7 +32,6 @@
 </template>
 
 <script>
-// import { uniCarWash } from "vue-unicons/dist/icons";
 export default {
   name: "blogPost",
   props: ["post"],

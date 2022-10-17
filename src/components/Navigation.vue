@@ -12,39 +12,21 @@
         <ul>
           <router-link class="link" to="/">Home</router-link>
           <router-link class="link" to="/feed">Feed</router-link>
-          <router-link class="link" v-if="!user" to="/sign-in">
+          <router-link class="link" v-if="!auth" to="/sign-in">
             Login
           </router-link>
-          <router-link class="link" v-if="!user" to="/register">
+          <router-link class="link" v-if="!auth" to="/register">
             Register
           </router-link>
           <router-link class="link" to="/news"> News </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
+          <router-link class="link" to="/chat"> Chat </router-link>
           <h3 @click.prevent="signOut" class="link">Sign Out</h3>
         </ul>
       </div>
     </nav>
   </header>
 </template>
-
-<!-- <template>
-  <header>
-  <nav class="container">
-    
-    <router-link to="/"> Home </router-link>
-    <router-link to="/feed"> Feed </router-link>
-    <router-link to="/register"> Register </router-link>
-    <router-link to="/sign-in"> Login </router-link>
-    <router-link to="/news"> News</router-link>
-    <router-link to="/forum"> Forum </router-link>
-    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
-
-  </nav>
-  
-</header>
-
-  <router-view />
-</template> -->
 
 <script>
 import { signOut } from "firebase/auth";
