@@ -1,4 +1,5 @@
-import { db } from '@/firebase/firebase';
+import { db, auth } from '@/firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import Vue from 'vue';
 import Vuex from "vuex"
 
@@ -7,7 +8,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        sampleBlogCards:[],
+        sampleBlogCards: [
+            { blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate: "May 1, 2022"},
+            { blogTitle: "Blog Card #2", blogCoverPhoto: "stock-2", blogDate: "May 1, 2022"},
+            { blogTitle: "Blog Card #3", blogCoverPhoto: "stock-3", blogDate: "May 1, 2022"},
+            { blogTitle: "Blog Card #4", blogCoverPhoto: "stock-4", blogDate: "May 1, 2022"},
+        ],
         editPost:null,
         user:null,
         profileEmail:null,
@@ -28,8 +34,8 @@ export default new Vuex.Store({
     },
     actions: {
         async getCurrentUser({commit}) {
-            const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid)
-            const dbResults = await dataBase.get();
+            const dbResults = await getDoc(doc(db, "users", auth.currentUser.uid))
+            //const dataBase = await db.collection("users").doc(auth.currentUser.uid)
             commit("setProfileInfo", dbResults)
         },
     },

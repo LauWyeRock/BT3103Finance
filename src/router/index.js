@@ -15,6 +15,8 @@ const router = createRouter({
         {path : "/news", component: () => import("../components/NewsAudrey.vue"),name:"News"},
         {path : "/forum", component: () => import("../views/Forum.vue"),name:"Forum"},
         {path : "/forgotPassword", component: () => import("../views/ForgotPassword.vue"),name:"ForgotPassword"},
+        {path : "/chat", component: () => import("../views/Chat.vue"),name:"Chat"},
+
     ]
 });
 
