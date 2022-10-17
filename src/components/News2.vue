@@ -29,6 +29,9 @@ import NewsDetails from './NewsDetails.vue';
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: "home",
+    components: {
+        NewsDetails
+    },
     data() {
         return {
             news: [],
@@ -39,9 +42,6 @@ export default {
             alreadyread : [],
         }
     },
-    components: {
-    NewsDetails
-},
     methods: {
         newsDetail(id) {
             this.newsdetail = id;
