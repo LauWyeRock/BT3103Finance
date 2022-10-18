@@ -1,17 +1,7 @@
 <template>
- 
-    <div class="container">
-     
-        <header>
-        <h1 class="heading-1">Finance News</h1>
-        <div class="sub-heading">
-            <p>Sunday, <span> 16 October, 2022</span></p>
-            <p class="important">Check out the latest financial updates around the globe.</p>
-        </div>
-        </header>
         
         <h4>{{newsdetail.title}}</h4>
-        <div class="row">
+        <div class="row m-3">
             <div class="col-md-12">
                 <span>By: </span> {{newsdetail.author}}
             </div>
@@ -33,7 +23,9 @@
                 <button class="btn-sm btn-primary" v-on:click="$emit('read-now', newsdetail.source.name)">Mark as read</button>
             </div>
         </div>
-    </div>
+
+
+
     </template>
      
     <script>
@@ -56,15 +48,5 @@
         text-align: center;
         vertical-align: middle;
     }
-    .niceformat {
-        color:blue;
-        font-size: medium;
-        font-weight: bold;
-    }
-     
-    .container {
-        background-color: lightblue;
-    }
-     
     </style>
     
