@@ -8,11 +8,11 @@
                 <h6>Placeholder</h6>    
             </div>
         </div>
-        <img :src="require(`../assets/blogCards/${post.blogCoverPhoto}.jpg`)" alt="" />
+        <img :src="post.blogCoverPhoto" alt="" />
         <div class="info">
             <h4>{{ post.blogTitle}}</h4>
-            <h6>Posted on: {{ post.blogDate }}</h6>
-            <router-link class="link" to="#">
+            <h6>Posted on: {{ new Date(post.blogDate).toLocaleString("en-us", {dataStyle: "long"}) }}</h6>
+            <router-link class="link" :to="{name: 'ViewPost'}">
                 <h6>Placeholder</h6>
             </router-link>
         </div>

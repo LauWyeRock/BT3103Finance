@@ -20,7 +20,7 @@
                     <vue-editor :editorOptions="editorSettings" v-model="blogHTML" useCustomImageHandler @image-added="imageHandler" />
                 </div>
                 <div class="blog-actions">
-                    <button>Publish Blog</button>
+                    <button @click="uploadBlog">Publish Blog</button>
                     <router-link class="router-button" to="#">Post preview</router-link>
                 </div>
             </div>
@@ -33,6 +33,9 @@ import Quill from "quill";
 import { VueEditor } from "vue3-editor";
 import BlogCoverPreview from "@/components/BlogCoverPreview.vue";
 import { ref, getStorage, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
+// eslint-disable-next-line no-unused-vars
+import { collection, doc, getDocs, getDoc, setDoc, addDoc } from "@firebase/firestore";
+import { db } from "@/firebase/firebase";
 window.Quill = Quill;
 const ImageResize = require("quill-image-resize-module").default;
 Quill.register("modules/imageResize", ImageResize);
@@ -73,6 +76,7 @@ export default {
                 const downloadURL = await getDownloadURL(docRef);
                 Editor.insertEmbed(cursorLocation, "image", downloadURL);
                 resetUploader;
+                console.log("Hi")
             }
             )
             // const storageRef = firebase.storage().ref();
@@ -90,6 +94,66 @@ export default {
             //         resetUploader;
             //     }
             // )
+        },
+        uploadBlog() {
+            if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
+                if (this.file) {
+                    const docRef = ref(getStorage(), `documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`)
+                    //const storageRef = firebase.storage().ref();
+                    //const docRef = storageRef.child(`documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`)
+                    const uploadTask = uploadBytesResumable(docRef, this.file)
+                    uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        console.log(snapshot)
+                    },
+                    (err) => {
+                        console.log(err)
+                    }, async () => {
+                        const downloadURL = await getDownloadURL(docRef);
+                        const timestamp = await Date.now();
+
+                        const dataBase = collection(db, "blogPosts")
+                        await addDoc(dataBase, {
+                            blogID: dataBase.id,
+                            blogHTML: this.blogHTML,
+                            blogCoverPhoto: downloadURL,
+                            blogCoverPhotoName: this.blogCoverPhotoName,
+                            blogTitle: this.blogTitle, 
+                            profileId: this.profileId,
+                            date:timestamp,
+                        });
+                        this.$router.push({name: "Forum"})
+                    })
+                    return;
+                    // docRef.put(this.file).on("state_changed", (snapshot) => {
+                    //     console.log(snapshot)
+                    // }, (err) => {
+                    //     console.log(err)
+                    // }, async () => {
+                    //     const downloadURL = await docRef.getDownloadURL();
+                    //     const timestamp = await Date.now();
+                    //     const dataBase = await db.collection("blogPosts").doc();
+
+                    //     await dataBase.set({
+                    //         blogID: dataBase.id,
+                    //         blogHTML: this.blogHTML,
+                    //         blogCoverPhoto: downloadURL,
+                    //         blogCoverPhotoName: this.blogCoverPhotoName,
+                    //         blogTitle: this.blogTitle,
+                    //         profileId: this.profileId,
+                    //         date:timestamp,
+                    //     });
+                    //     this.$router.push({name: "ViewPost"})
+                    // })
+                    // return;
+                }
+                this.error=true;
+                this.errorMsg = "Please ensure you uploaded a cover photo!";
+                setTimeout(()=> {
+                    this.error= false;
+                }, 5000);
+                return;
+            }
         }
     },
     components: {
