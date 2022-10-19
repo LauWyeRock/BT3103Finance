@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from "./router"
 import Unicon from 'vue-unicons'
+import store from './store'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -24,6 +25,6 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App)
 
-app.use(router).use(Unicon)
+app.use(router).use(Unicon).use(store)
 
 app.mount('#app')

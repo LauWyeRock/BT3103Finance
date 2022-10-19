@@ -15,6 +15,7 @@ const router = createRouter({
         {path : "/news", component: () => import("../components/News2.vue"),name:"News"},
         {path : "/forum", component: () => import("../views/Forum.vue"),name:"Forum"},
         {path : "/forgotPassword", component: () => import("../views/ForgotPassword.vue"),name:"ForgotPassword"},
+        {path : "/stocks/", component: () => import("../views/StockPage.vue"),name:"Stocks"}
     ]
 });
 
