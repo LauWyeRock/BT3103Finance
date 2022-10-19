@@ -3123,6 +3123,11 @@
   "resolved" "https://registry.npmmirror.com/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz"
   "version" "1.0.3"
 
+"chunk@^0.0.3":
+  "integrity" "sha512-oGfwvhjGRW3Ks4GTdGoJhZWKEO1eomjOC26001R+5H0TIlP7vBCO+/XcNcPCA6ayYC7RQSq1/NsN4679Odcm5A=="
+  "resolved" "https://registry.npmjs.org/chunk/-/chunk-0.0.3.tgz"
+  "version" "0.0.3"
+
 "ci-info@^1.5.0":
   "integrity" "sha512-vsGdkwSCDpWmP80ncATX7iea5DWQemg1UgCW5J8tqjU3lYw4FBYuj89J0CTVomA7BEfvSZd84GmHko+MxFQU2A=="
   "resolved" "https://registry.npmmirror.com/ci-info/-/ci-info-1.6.0.tgz"
