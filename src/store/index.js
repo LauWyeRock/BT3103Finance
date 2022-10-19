@@ -1,14 +1,13 @@
+
 import { db, auth } from '@/firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-// import Vue from 'vue';
-//import Vuex from "vuex"
+
 import { createStore } from 'vuex';
 
 
-//Vue.use(Vuex);
-
 // eslint-disable-next-line no-undef
 // export const store =  new Vuex.Store({ // export default new Vuex.Store
+
 export default createStore({
     state: {
         sampleBlogCards: [
@@ -21,6 +20,7 @@ export default createStore({
         user:null,
         profileEmail:null,
         profileId: null,
+        exchangeTicker: "NYSE:GME"
         blogHTML: "Write your blog here...",
         blogTitle: "",
         blogPhotoName: "",
@@ -51,16 +51,28 @@ export default createStore({
         },
         setProfileInfo(state, doc) {
             state.profileId = doc.id;
-            state.profileEmail = doc.data().email;
-            
+            state.profileEmail = doc.data().email
         },
+        updateExchangeTicker(state, exchangeTicker) {
+            state.exchangeTicker = exchangeTicker
+        }
     },
     actions: {
         async getCurrentUser({commit}) {
+            //const dataBase = await db.collection("users").doc(db.auth().currentUser.uid)
+            const dbResults = await dataBase.get();
             const dbResults = await getDoc(doc(db, "users", auth.currentUser.uid))
             //const dataBase = await db.collection("users").doc(auth.currentUser.uid)
             commit("setProfileInfo", dbResults)
-        },
+        }
     },
+    getters: {
+        getStock: (state) => {
+            return `${state.exchangeTicker[state.exchangeTicker.length - 1]}`
+        }
+    },
+    //computed: {
+    //    stockTicker: storeKey.state.stockTicker
+    //},
     modules: {},
 })

@@ -20,9 +20,16 @@
           </router-link>
           <router-link class="link" to="/news"> News </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
+          <router-link class = "link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
           <router-link class="link" to="/chat"> Chat </router-link>
           <router-link class="link" to="/createpost"> CreatePost </router-link>
           <h3 @click.prevent="signOut" class="link">Sign Out</h3>
+          <div class="formli">
+            <input type="text" id="stock" required="" placeholder="Search Stock..."/><br /><br />
+            <div class="save">
+              <button id="savebutton" type="button" v-on:click="savetofs()"> Search </button>
+            </div>
+          </div>
         </ul>
       </div>
     </nav>
@@ -47,6 +54,11 @@ export default {
                 console.log(err.message)
             });
         },
+        savetofs() {
+          let a = document.getElementById("stock").value
+          this.$store.commit('updateExchangeTicker',a)
+          this.$router.push("/stocks/")
+        }
     },
 };
 </script>
