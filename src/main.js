@@ -7,7 +7,7 @@ import store from './store'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import store from './store/index';
+//import store from './store/index';
 // import { onAuthStateChanged } from "firebase/auth";
 // import {auth} from "./firebase/firebase";
 // TODO: Add SDKs for Firebase products that you want to use

@@ -3,14 +3,14 @@
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
-        <h2 v-else>{{ post.title }}</h2>
+        <h2 v-else>{{ post.blogTitle }}</h2>
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
-        <p class="content-preview" v-else>{{ post.blogHTML }}</p>
+        <p class="content-preview" v-else v-html="post.blogHTML"></p>
         <router-link class="link link-right" v-if="post.welcomeScreen" to="#">
           Login/Register 
           <!-- <uniCarWash class="arrow arrow-light" /> -->
         </router-link>
-        <router-link class="link" v-else to="#">
+        <router-link class="link" v-else :to="{name: 'ViewPost'}">
           View the Post
           <!-- <uniCarWash class="arrow" /> -->
         </router-link>
@@ -24,7 +24,7 @@
       />
       <img
         v-else
-        :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)"
+        :src="post.blogCoverPhoto"
         alt=""
       />
     </div>

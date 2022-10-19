@@ -2,12 +2,12 @@
 <template>
     <div class="forum">
         <BlogPost :post="welcomeScreen"/>
-        <BlogPost :post="post" v-for="(post,index) in sampleBlogPost" :key="index" />
+        <BlogPost :post="post" v-for="(post,index) in blogPostsFeed" :key="index" />
         <div class="blog-card-wrap">
             <div class="container">
                 <h3>View More Recent Posts</h3>
                 <div class="blog-cards">
-                    <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
+                    <BlogCard :post="post" v-for="(post, index) in blogPostsCards" :key="index" />
                 </div> 
             </div>
         </div>
@@ -32,24 +32,23 @@ export default {
                 welcomeScreen:true,
                 photo:"coding",
             },
-            sampleBlogPost: [
-                {
-                    title:"This is a title",
-                    blogHTML:"This is a",
-                    blogCoverPhoto:"beautiful-stories",
-                },
-                {
-                    title:"This is a2 title",
-                    blogHTML:"This is2 a",
-                    blogCoverPhoto:"beautiful-stories",
-                }
-            ],
             sampleBlogCards: [
                 { blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate: "May 1, 2022"},
                 { blogTitle: "Blog Card #2", blogCoverPhoto: "stock-2", blogDate: "May 1, 2022"},
                 { blogTitle: "Blog Card #3", blogCoverPhoto: "stock-3", blogDate: "May 1, 2022"},
                 { blogTitle: "Blog Card #4", blogCoverPhoto: "stock-4", blogDate: "May 1, 2022"},
             ],
+        }
+    },
+    computed: {
+        blogPostsFeed() {
+            return this.$store.getters.blogPostsFeed;
+        },
+        blogPostsCards() {
+            return this.$store.getters.blogPostsCards;
+        },
+        user() {
+            return this.$store.state.user;
         }
     }
 }

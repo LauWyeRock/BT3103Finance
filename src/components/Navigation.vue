@@ -43,6 +43,11 @@ import { auth } from "../firebase/firebase";
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name:'navigation',
+    data() {
+      return {
+        
+      }
+    },
     commponents: {
 
     },
