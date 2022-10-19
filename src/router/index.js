@@ -16,6 +16,8 @@ const router = createRouter({
         {path : "/forum", component: () => import("../views/Forum.vue"),name:"Forum"},
         {path : "/forgotPassword", component: () => import("../views/ForgotPassword.vue"),name:"ForgotPassword"},
         {path : "/chat", component: () => import("../views/Chat.vue"),name:"Chat"},
+        {path : "/createpost", component: () => import("../views/CreatePost.vue"),name:"CreatePost"},
+
 
     ]
 });

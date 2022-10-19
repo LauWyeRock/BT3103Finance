@@ -21,6 +21,7 @@
           <router-link class="link" to="/news"> News </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
           <router-link class="link" to="/chat"> Chat </router-link>
+          <router-link class="link" to="/createpost"> CreatePost </router-link>
           <h3 @click.prevent="signOut" class="link">Sign Out</h3>
         </ul>
       </div>
