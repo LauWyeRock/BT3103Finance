@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from "./router"
-// import Vuex from "vuex"
-// import { Store } from 'vuex'
+
+import store from './store'
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -28,7 +29,8 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App)
 
-app.use(router).use(store) //.use(new Store);
+
+app.use(router).use(store)
 
 app.mount('#app')
 
