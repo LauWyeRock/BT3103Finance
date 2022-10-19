@@ -1,12 +1,15 @@
 import { db, auth } from '@/firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import Vue from 'vue';
-import Vuex from "vuex"
+// import Vue from 'vue';
+//import Vuex from "vuex"
+import { createStore } from 'vuex';
 
 
-Vue.use(Vuex);
+//Vue.use(Vuex);
 
-export default new Vuex.Store({
+// eslint-disable-next-line no-undef
+// export const store =  new Vuex.Store({ // export default new Vuex.Store
+export default createStore({
     state: {
         sampleBlogCards: [
             { blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate: "May 1, 2022"},
@@ -18,8 +21,28 @@ export default new Vuex.Store({
         user:null,
         profileEmail:null,
         profileId: null,
+        blogHTML: "Write your blog here...",
+        blogTitle: "",
+        blogPhotoName: "",
+        blogPhotoFileURL: null,
+        blogPhotoPreview: null,
     },
     mutations: {
+        newBlogPost(state, payload) {
+            state.blogHTML = payload;
+        },
+        updateBlogTitle(state,payload) {
+            state.blogTitle = payload;
+        },
+        fileNameChange(state,payload) {
+            state.blogPhotoName = payload;
+        },
+        createFileURL(state,payload) {
+            state.blogPhotoFileURL = payload;
+        },
+        openPhotoPreview(state) {
+            state.blogPhotoPreview = !state.blogPhotoPreview
+        },
         toggleEditPost(state, payload) {
             state.editPost = payload;
         },
