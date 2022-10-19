@@ -1,70 +1,92 @@
 <template>
- 
+
     <div class="container">
-     
-        <header>
-        <h1 class="heading-1">Finance News</h1>
-        <div class="sub-heading">
-            <p>Sunday, <span> 16 October, 2022</span></p>
-            <p class="important">Check out the latest financial updates around the globe.</p>
-        </div>
-        </header>
-        
-        <h4>{{newsdetail.title}}</h4>
-        <div class="row">
-            <div class="col-md-12">
-                <span>By: </span> {{newsdetail.author}}
-            </div>
-            <div class="col-md-12">
-                <span>Published: </span>{{newsdetail.publishedAt}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <img class="img-container" alt="" v-bind:src="newsdetail.urlToImage" />
+        <div class="square">
+            <div class="col-sm-6">
+                <img class="img" alt="click on an article!" v-bind:src="newsdetail.urlToImage" />
+                <h1 class="title">{{newsdetail.title}}</h1>
+                <div>
+                    <button class="readmore" @click="gotoURL()">Read More</button>
+                    <!-- <br><a href="newsdetail.url">{{newsdetail.url}}</a> -->
+                    <button class="markasread" v-on:click="$emit('read-now', newsdetail.source.name)">Mark as read</button>
                 </div>
-                {{newsdetail.content}}
-                <br>
-                <br>
-                <span>Read More: </span> <a href="newsdetail.url">{{newsdetail.url}}</a>
-                <br>
-                <br>
-                <button class="btn-sm btn-primary" v-on:click="$emit('read-now', newsdetail.source.name)">Mark as read</button>
             </div>
         </div>
     </div>
-    </template>
-     
-    <script>
-     
-    export default {
-        name: "newsDetail",
-        props: {
-            newsdetail: Object,
-        }
-    }
-     
-    </script>
-     
-    <style scoped>
-    .img-container {
-        margin:20px;
-        margin-left:50px;
-        width: 30em;
-        line-height: 115px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .niceformat {
-        color:blue;
-        font-size: medium;
-        font-weight: bold;
-    }
-     
-    .container {
-        background-color: lightblue;
-    }
-     
-    </style>
+
+</template>
     
+<script>
+    
+export default {
+    name: "newsDetail",
+
+    props: {
+        newsdetail: Object,
+    },
+
+    methods: {
+        gotoURL () {
+            this.$router.push(this.newsdetail.url);
+        }
+        
+    }
+
+}
+    
+</script>
+    
+<style scoped>
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+}
+
+.square{
+    width: 1500px;
+    height: 310px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0px 20px 50px #D9DBDF;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease; 
+}
+
+.square:hover {
+    /* -webkit-transform: translate(20px, -10px);
+    -ms-transform: translate(10px, -10px);
+    transform: translate(10px, -10px);
+    -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); */
+    box-shadow: 0 40px 40px rgba(0, 0, 0, 0.08);
+}
+
+.img {
+    width: 500px;
+    height: 300px;
+    padding: 10px 10px 0px 0px;
+    float: right;
+}
+
+.title {
+    font-size: 40px;
+    font-family: serif;
+    padding:10px;
+}
+.readmore {
+    font-size: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.markasread {
+    font-size: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+</style>

@@ -12,8 +12,9 @@
 import Navigation from './components/Navigation.vue'
 import { onMounted, ref} from "vue";
 // eslint-disable-next-line no-unused-vars
-import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Footer from './components/Footer.vue';
+//import { store } from './store';
 //import { useRouter } from "vue-router"
 //const router = useRouter();
 const isLoggedIn = ref(false);
@@ -26,13 +27,15 @@ export default {
         };
     },
     created() { 
-      // // firebase.auth().onAuthStateChanged((user) => {
-      //     this.$store.commit("updateUser", user);
-      //     if (user) {
-      //       this.$store.dispatch("getCurrentUser");
-      //     }
+      // onAuthStateChanged(auth, (user) => {
+      //   this.$store.commit("updateUser", user);
+      //   if (user) {
+      //     this.$store.dispatch("getCurrentUser");
+      //     console.log(this.$store.state.profileEmail);
+      //   }
       // })
       this.checkRoute();
+      
     },
     mounted() { },
     methods: {

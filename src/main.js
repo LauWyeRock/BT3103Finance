@@ -1,11 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from "./router"
-import Unicon from 'vue-unicons'
+
 import store from './store'
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import store from './store/index';
+// import { onAuthStateChanged } from "firebase/auth";
+// import {auth} from "./firebase/firebase";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +29,17 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App)
 
-app.use(router).use(Unicon).use(store)
+
+app.use(router).use(store)
 
 app.mount('#app')
+
+
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     initializeApp(firebaseConfig);
+//     const app = createApp(App)
+//     app.use(router).use(Unicon)
+//     app.mount('#app')
+//   } 
+// })

@@ -2,10 +2,10 @@
     <div class="blog-card">
         <div class="icons">
             <div class="icon">
-                <!-- <uniCarWash class="edit"/> -->
+                <h6>Placeholder</h6>
             </div>
             <div class="icon">
-                <!-- <uniCarWash class="delete"/> -->
+                <h6>Placeholder</h6>    
             </div>
         </div>
         <img :src="require(`../assets/blogCards/${post.blogCoverPhoto}.jpg`)" alt="" />
@@ -13,14 +13,13 @@
             <h4>{{ post.blogTitle}}</h4>
             <h6>Posted on: {{ post.blogDate }}</h6>
             <router-link class="link" to="#">
-                <!-- View the Post <uniCarWash class="arrow" /> -->
+                <h6>Placeholder</h6>
             </router-link>
         </div>
     </div>
 </template>
 
 <script>
-// import { uniCarWash } from "vue-unicons/dist/icons";
 export default {
     name: "blogCard",
     props: ["post"],
