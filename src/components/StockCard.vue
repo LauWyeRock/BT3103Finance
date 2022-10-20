@@ -1,11 +1,11 @@
 <template>
   <div class="stock-card-box">
     <div class="stock-logo-box">
-      <img :src="stock.data.logo_url" alt="stock_logo" class="stock-logo" />
+      <img :src="stock.logo_url" alt="stock_logo" class="stock-logo" />
     </div>
     <div class="stock-info">
-      <h2>{{ stock.data.symbol }}</h2>
-      <h3>{{ stock.data.currentPrice }} USD</h3>
+      <h2>{{ stock.symbol }}</h2>
+      <h3>${{ stock.price }} USD</h3>
     </div>
   </div>
 </template>
@@ -35,8 +35,10 @@ export default {
 
 .stock-logo {
   /* height: 40px; */
-  height: 5vh;
-  width: 5vh;
+  /* height: 5vh; */
+  /* width: 5vh; */
+  height: 3rem;
+  width: 3rem;
   object-fit: contain;
 }
 

@@ -20,12 +20,12 @@
           <th>Market Cap</th>
           <th>Recommendation</th>
         </tr>
-        <tr v-for="stock in stocksInfo" v-bind:key="stock.data.symbol">
-          <td>{{ stock.data.symbol }}</td>
-          <td>{{ stock.data.shortName }}</td>
-          <td>${{ stock.data.currentPrice }}</td>
-          <td>${{ numberWithCommas(stock.data.marketCap) }}</td>
-          <td>{{ stock.data.recommendationKey }}</td>
+        <tr v-for="stock in stocksInfo" v-bind:key="stock.symbol">
+          <td>{{ stock.symbol }}</td>
+          <td>{{ stock.name }}</td>
+          <td>${{ stock.price }}</td>
+          <td>${{ numberWithCommas(stock.market_cap) }}</td>
+          <td>{{ recommendationConvert(stock.recommendation) }}</td>
         </tr>
       </table>
     </div>
@@ -44,93 +44,77 @@ export default {
 
   data() {
     return {
-      stocks: [
-        {
-          symbol: "AAPL",
-          name: "Apple Inc",
-          price: "143.86",
-          pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/976px-Apple_logo_black.svg.png?20220821121934",
-          market: "2.312T",
-        },
-        {
-          symbol: "MSFT",
-          name: "Microsoft Corp.",
-          price: "236.48",
-          pic: "https://companieslogo.com/img/orig/MSFT-a203b22d.png?t=1633073277",
-          market: "1.764T",
-        },
-        {
-          symbol: "GOOG",
-          name: "Alphabet Inc (Google) Class C",
-          price: "100.29",
-          pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png",
-          market: "1.304T",
-        },
-        {
-          symbol: "AMZN",
-          name: "Amazon.com, Inc",
-          price: "115.07",
-          pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Amazon_icon.svg/2500px-Amazon_icon.svg.png",
-          market: "1.172T",
-        },
-        {
-          symbol: "AMZN",
-          name: "Amazon.com, Inc",
-          price: "115.07",
-          pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Amazon_icon.svg/2500px-Amazon_icon.svg.png",
-          market: "1.172T",
-        },
-      ],
       stocksInfo: [],
     };
   },
 
   mounted() {
-    const symbols = [
-      "AAPL",
-      "MSFT",
-      "GOOG",
-      "AMZN",
-      "TSLA",
-      "BRK-B",
-      "JNJ",
-      "XOM",
-      "V",
-      "META",
-    ];
-    // let stocksInfo = [];
+    // const symbols = [
+    //   "AAPL",
+    //   "MSFT",
+    //   "GOOG",
+    //   "AMZN",
+    //   "TSLA",
+    //   "BRK-B",
+    //   "JNJ",
+    //   "XOM",
+    //   "V",
+    //   "META",
+    // ];
 
-    for (let i = 0; i < symbols.length; i++) {
-      const encodedParams = new URLSearchParams();
-      encodedParams.append("symbol", symbols[i]);
+    // for (let i = 0; i < symbols.length; i++) {
+    //   const encodedParams = new URLSearchParams();
+    //   encodedParams.append("symbol", symbols[i]);
 
-      const options = {
-        method: "POST",
-        url: "https://yahoo-finance97.p.rapidapi.com/stock-info",
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-          "X-RapidAPI-Key":
-            "9e5086a482msh9ed634f178722c5p160495jsna9d40bbc9f31",
-          "X-RapidAPI-Host": "yahoo-finance97.p.rapidapi.com",
-        },
-        data: encodedParams,
-      };
+    //   const options = {
+    //     method: "POST",
+    //     url: "https://yahoo-finance97.p.rapidapi.com/stock-info",
+    //     headers: {
+    //       "content-type": "application/x-www-form-urlencoded",
+    //       "X-RapidAPI-Key":
+    //         "9e5086a482msh9ed634f178722c5p160495jsna9d40bbc9f31",
+    //       "X-RapidAPI-Host": "yahoo-finance97.p.rapidapi.com",
+    //     },
+    //     data: encodedParams,
+    //   };
 
-      axios
-        .request(options)
-        .then((response) => {
-          this.stocksInfo.push(response.data);
-          console.log(this.stocksInfo[0].data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
+    //   axios
+    //     .request(options)
+    //     .then((response) => {
+    //       this.stocksInfo.push(response.data);
+    //       this.stocksInfo.sort(function (a, b) {
+    //         return b.data.marketCap - a.data.marketCap;
+    //       });
+    //       console.log(this.stocksInfo[0].data);
+    //     })
+    //     .catch(function (error) {
+    //       console.error(error);
+    //     });
+    // }
+    axios.get(`http://127.0.0.1:5000/stocks`).then((response) => {
+      this.stocksInfo = response.data.Stocks;
+      console.log(this.stocksInfo);
+    });
   },
 
   methods: {
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    recommendationConvert(x) {
+      let converted = "";
+      let fields = x.split("_");
+      for (let i = 0; i < fields.length; i++) {
+        // console.log(fields);
+        // converted += fields[i].charAt(0).toUppercase() + fields[i].slice(1);
+        if (i !== fields.length - 1) {
+          converted +=
+            fields[i].charAt(0).toUpperCase() + fields[i].slice(1) + " ";
+        } else {
+          converted += fields[i].charAt(0).toUpperCase() + fields[i].slice(1);
+        }
+      }
+      return converted;
     },
   },
 };
@@ -185,7 +169,7 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 812px) {
   .list-box {
     display: grid;
     grid-template-columns: auto auto;
