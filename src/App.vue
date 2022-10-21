@@ -14,6 +14,7 @@ import { onMounted, ref} from "vue";
 // eslint-disable-next-line no-unused-vars
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Footer from './components/Footer.vue';
+//import { store } from './store';
 //import { useRouter } from "vue-router"
 //const router = useRouter();
 const isLoggedIn = ref(false);
@@ -34,7 +35,7 @@ export default {
       //   }
       // })
       this.checkRoute();
-      
+      this.$store.dispatch("getPost")
     },
     mounted() { },
     methods: {
