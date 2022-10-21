@@ -49,51 +49,13 @@ export default {
   },
 
   mounted() {
-    // const symbols = [
-    //   "AAPL",
-    //   "MSFT",
-    //   "GOOG",
-    //   "AMZN",
-    //   "TSLA",
-    //   "BRK-B",
-    //   "JNJ",
-    //   "XOM",
-    //   "V",
-    //   "META",
-    // ];
-
-    // for (let i = 0; i < symbols.length; i++) {
-    //   const encodedParams = new URLSearchParams();
-    //   encodedParams.append("symbol", symbols[i]);
-
-    //   const options = {
-    //     method: "POST",
-    //     url: "https://yahoo-finance97.p.rapidapi.com/stock-info",
-    //     headers: {
-    //       "content-type": "application/x-www-form-urlencoded",
-    //       "X-RapidAPI-Key":
-    //         "9e5086a482msh9ed634f178722c5p160495jsna9d40bbc9f31",
-    //       "X-RapidAPI-Host": "yahoo-finance97.p.rapidapi.com",
-    //     },
-    //     data: encodedParams,
-    //   };
-
-    //   axios
-    //     .request(options)
-    //     .then((response) => {
-    //       this.stocksInfo.push(response.data);
-    //       this.stocksInfo.sort(function (a, b) {
-    //         return b.data.marketCap - a.data.marketCap;
-    //       });
-    //       console.log(this.stocksInfo[0].data);
-    //     })
-    //     .catch(function (error) {
-    //       console.error(error);
-    //     });
-    // }
+    if (localStorage.getItem("stocksInfo")) {
+      this.stocksInfo = localStorage.getItem("stocksInfo");
+    }
     axios.get(`http://127.0.0.1:5000/stocks`).then((response) => {
       this.stocksInfo = response.data.Stocks;
-      console.log(this.stocksInfo);
+      localStorage.setItem("stocksInfo", this.stocksInfo);
+      // console.log(this.stocksInfo);
     });
   },
 
