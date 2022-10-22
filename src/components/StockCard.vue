@@ -5,7 +5,23 @@
     </div>
     <div class="stock-info">
       <h2>{{ stock.symbol }}</h2>
-      <h3>${{ stock.price }} USD</h3>
+      <h3>
+        {{ stock.volume && numberWithCommas(stock.volume) + "\nshares traded" }}
+      </h3>
+      <h3>
+        {{
+          stock.reddit_total_mentions || stock.reddit_total_mentions >= 0
+            ? numberWithCommas(stock.reddit_total_mentions) + " reddit"
+            : ""
+        }}
+      </h3>
+      <h3>
+        {{
+          stock.twitter_total_mentions || stock.twitter_total_mentions >= 0
+            ? numberWithCommas(stock.twitter_total_mentions) + " twitter"
+            : ""
+        }}
+      </h3>
     </div>
   </div>
 </template>
@@ -15,6 +31,12 @@ export default {
   name: "StockCard",
   props: ["stock"],
   components: {},
+
+  methods: {
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
 };
 </script>
 
