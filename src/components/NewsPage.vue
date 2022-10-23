@@ -209,7 +209,7 @@
 
     .header {
         font-family: serif;
-        font-size: 500%;
+        font-size: 480%;
         font-weight: bold;
         text-align: center; 
         padding-top:30px;
