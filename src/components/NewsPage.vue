@@ -2,16 +2,8 @@
 
     <div class="container">
 
-        <!-- navbar -->
-        <div class="topnav">
-            <a class="active" href="">all</a>
-            <a href="#marketnews" @click="fetchMarketNews">market news</a>
-            <a href="#companynews" @click="fetchCompanyNews">company news</a>
-            <a href="#cryptonews" @click="fetchCryptoNews">cryptocurrency news</a>
-        </div>
-
         <!-- header + search bar -->
-        <div class="header">News</div>
+        <div class="header">news</div>
 
         <div class="search">
             <form @submit.prevent="fetchSearchNews">
@@ -36,6 +28,17 @@
                 </div>
             </div>
         </div>   -->
+
+        
+        <!-- navbar -->
+        <div class="navheader">explore news</div>
+        <div class="topnav">
+            <a href="#all">all</a>
+            <a href="#marketnews" @click="fetchMarketNews">market news</a>
+            <a href="#companynews" @click="fetchCompanyNews">company news</a>
+            <a href="#cryptonews" @click="fetchCryptoNews">cryptocurrency news</a>
+        </div>
+
         
         <!-- news list -->
         <div class="result-list">
@@ -210,7 +213,7 @@
         font-weight: bold;
         text-align: center; 
         padding-top:30px;
-        padding-bottom:10px;
+        letter-spacing: -1px;
     }
     .search {
         text-align: center;
@@ -220,7 +223,8 @@
         text-align: center;
         border-radius: 5px;
         width: 300px;
-        height: 40px;
+        height: 50px;
+        font-size: 15px;
         input {
             padding: 0 100px 0 20px;
             margin: 0;
@@ -246,10 +250,26 @@
         }
     }
 
-    .topnav {
-        background-color: #ebdcfc;
-        overflow: hidden;
+    .navheader {
+        padding-left: 140px;
+        font-family: serif;
+        letter-spacing: -1px;
+        color: black;
+        font-size: 25px;
+        font-weight: bold;
+        padding-bottom: 10px;
     }
+
+    .topnav {
+        background-color: white;
+        overflow: hidden;
+        width: 1000px;
+        height: 50px;
+        margin: auto;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 3px 3px 5px #888888;
+        }
 
         /* Style the links inside the navigation bar */
     .topnav a {
@@ -267,9 +287,9 @@
         color: black;
     }
 
-        /* Add a color to the active/current link */
-    .topnav a.active {
-        //   background-color: white;
+    /* Add a color to the active/current link */
+    .topnav a:focus {
+        background-color: rgba(161, 195, 209, 0.75);
         color: black;
         text-decoration: underline;
     }
