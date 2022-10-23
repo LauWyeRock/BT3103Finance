@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@iconscout/vue-unicons": "^0.0.3",
     "axios": "^0.27.2",
     "bootstrap-vue": "^2.22.0",
     "bootstrap-vue-3": "^0.3.5",
@@ -24,7 +23,7 @@
     "vue-lazytube": "^1.1.1",
     "vue-loader": "^17.0.0",
     "vue-router": "^4.1.5",
-    "vue-svg-loader": "^0.10.0",
+    "vue-svg-loader": "^0.16.0",
     "vue-trading-view": "^1.0.1",
     "vue-tradingview-widgets": "^1.2.0",
     "vue-unicons": "^2.1.0",
