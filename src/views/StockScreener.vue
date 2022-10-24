@@ -8,7 +8,9 @@
         <template #default>
           <StockCardsAndTable :isByVolume="true" />
         </template>
-        <template #fallback>Loading...</template>
+        <template #fallback>
+          <StockCardsAndTableSkeleton :isByVolume="true" />
+        </template>
       </Suspense>
     </div>
     <div class="trending-stocks-box">
@@ -18,7 +20,9 @@
         <template #default>
           <StockCardsAndTable :isByVolume="false" />
         </template>
-        <template #fallback>Loading...</template>
+        <template #fallback>
+          <StockCardsAndTableSkeleton :isByVolume="false" />
+        </template>
       </Suspense>
     </div>
     <!-- <div>
@@ -34,12 +38,14 @@
 </template>
 
 <script>
+import StockCardsAndTableSkeleton from "@/components/StockCardsAndTableSkeleton.vue";
 import StockCardsAndTable from "../components/StockCardsAndTable.vue";
 
 export default {
   name: "StockScreener",
   components: {
     StockCardsAndTable,
+    StockCardsAndTableSkeleton,
   },
 
   data() {

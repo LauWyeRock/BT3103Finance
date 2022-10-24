@@ -1,11 +1,13 @@
 <template>
-  <div class="list-box">
-    <li v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
-      <StockCard class="stock-item" v-bind:stock="stock" />
-    </li>
-  </div>
-  <div class="table-box">
-    <StockTable :isByVolume="isByVolume" :stocksInfo="stocksInfo" />
+  <div>
+    <div class="list-box">
+      <li v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
+        <StockCard class="stock-item" v-bind:stock="stock" />
+      </li>
+    </div>
+    <div class="table-box">
+      <StockTable :isByVolume="isByVolume" :stocksInfo="stocksInfo" />
+    </div>
   </div>
 </template>
 
