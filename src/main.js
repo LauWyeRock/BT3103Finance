@@ -1,9 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from "./router"
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-import store from './store'
-
+import store from "./store";
+import VueChartkick from "vue-chartkick";
+import "chartkick/chart.js";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -20,20 +21,18 @@ const firebaseConfig = {
   projectId: "bt3103-finance",
   storageBucket: "bt3103-finance.appspot.com",
   messagingSenderId: "490406958114",
-  appId: "1:490406958114:web:088cfd71d19c0b739e667b"
+  appId: "1:490406958114:web:088cfd71d19c0b739e667b",
 };
-
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-const app = createApp(App)
+const app = createApp(App);
 
+app.use(router).use(store);
+app.use(VueChartkick);
 
-app.use(router).use(store)
-
-app.mount('#app')
-
+app.mount("#app");
 
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
@@ -41,5 +40,5 @@ app.mount('#app')
 //     const app = createApp(App)
 //     app.use(router).use(Unicon)
 //     app.mount('#app')
-//   } 
+//   }
 // })
