@@ -3,11 +3,10 @@
     <div class="container">
         <div class="square">
             <div class="col-sm-6">
-                <img class="img" alt="click on an article!" v-bind:src="newsdetail.urlToImage" />
+                <img class="img" alt=" " v-bind:src="newsdetail.urlToImage" />
                 <h1 class="title">{{newsdetail.title}}</h1>
                 <div>
                     <button class="readmore" @click="gotoURL()">Read More</button>
-                    <!-- <br><a href="newsdetail.url">{{newsdetail.url}}</a> -->
                     <button class="markasread" v-on:click="$emit('read-now', newsdetail.source.name)">Mark as read</button>
                 </div>
             </div>
@@ -27,7 +26,7 @@ export default {
 
     methods: {
         gotoURL () {
-            this.$router.push(this.newsdetail.url);
+            window.open(this.newsdetail.url, '_blank');
         }
         
     }

@@ -4,7 +4,7 @@
     <nav class="container">
       <div class="branding">
         <router-link class="header" :to="{ name: 'Home' }">
-          FinanceBois
+          tradebros
         </router-link>
         <!-- this path name is referenced to index.js in router -->
       </div>
@@ -22,13 +22,15 @@
           <router-link class="link" to="/forum"> forum </router-link>
           <router-link class = "link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
           <router-link class="link" to="/chat"> Chat </router-link>
-          <router-link class="link" to="/createpost"> CreatePost </router-link>
-          <h3 @click.prevent="signOut" class="link">Sign Out</h3>
-          <div class="formli">
-            <input type="text" id="stock" required="" placeholder="Search Stock..."/><br /><br />
-            <div class="save">
-              <button id="savebutton" type="button" v-on:click="savetofs()"> Search </button>
+          <router-link class="link" to="/createpost"> Create Post </router-link>
+          <br /> <br />
+          <h4 @click.prevent="signOut" class="link">Sign Out</h4>
+          <br />
+          <div class="searchbar">
+            <input type="text" id="stock" required="" placeholder="Search Stock..."/>
             </div>
+            <div class="save">
+              <button id="searchbutton" type="button" v-on:click="savetofs()"> Search </button>
           </div>
         </ul>
       </div>
@@ -69,11 +71,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 header {
-  background-color: #fff;
+  background-color:#f0ebf4;
   padding: 0 25px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  // box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    // 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
   .link {
     font-weight: 500;
@@ -93,8 +96,10 @@ header {
       display: flex;
       align-items: center;
       .header {
-        font-weight: 600;
-        font-size: 24px;
+        font-weight: bold;
+        font-size: 40px;
+        font-family: serif;
+        letter-spacing: -2px;
         color: #000;
         text-decoration: none;
       }
@@ -106,6 +111,7 @@ header {
       flex: 1;
       align-items: center;
       justify-content: flex-end;
+      font-size: 15px;
 
       ul {
         margin-right: 32px;
@@ -138,4 +144,23 @@ header {
     }
   }
 }
+
+.searchbar {
+  background-color: white;
+        width: 20px;
+        height: 10px;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 10px 3px 5px #888888
+}
+
+#searchbutton {
+  height: 25px;
+  width: 70px;
+  background-color: rgba(198, 241, 247, 0.804);
+  border-radius: 5px;
+  padding:0px;
+  color: black;
+}
+
 </style>

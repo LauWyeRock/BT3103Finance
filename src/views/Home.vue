@@ -40,3 +40,15 @@
 	}
 }
   </script>
+
+  <style scoped>
+
+.hello {
+  background: linear-gradient(
+            180deg,
+            rgba(161, 195, 209, 0.75) 46.38%,
+            rgba(241, 114, 161, 0.5) 100%
+        );
+}
+
+</style>

@@ -26,7 +26,7 @@ const router = createRouter({
     },
     {
       path: "/news",
-      component: () => import("../components/News2.vue"),
+      component: () => import("../components/NewsPage.vue"),
       name: "News",
     },
     {
