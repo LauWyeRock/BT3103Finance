@@ -3,6 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 
 import store from "./store";
+import VueChartkick from "vue-chartkick";
+import "chartkick/chart.js";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -37,6 +40,7 @@ initializeApp(firebaseConfig);
 const app = createApp(App);
 
 app.use(router).use(store);
+app.use(VueChartkick);
 
 app.mount("#app");
 
