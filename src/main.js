@@ -1,8 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from "./router"
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-import store from './store'
+import store from "./store";
+import VueChartkick from "vue-chartkick";
+import "chartkick/chart.js";
 
 
 // Import the functions you need from the SDKs you need
@@ -15,25 +17,24 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDANSueccFusPny1Ww_P-a7faS45Ce6Eck",
-  authDomain: "bt3103-aaa9f.firebaseapp.com",
-  databaseURL: "https://bt3103-aaa9f-default-rtdb.firebaseio.com",
-  projectId: "bt3103-aaa9f",
-  storageBucket: "bt3103-aaa9f.appspot.com",
-  messagingSenderId: "390166546946",
-  appId: "1:390166546946:web:8afd4d8f476b47c452b51b"
+  apiKey: "AIzaSyALUiX766EdSTWEFqQHkApnn33HViOvLbQ",
+  authDomain: "bt3103test-7fb96.firebaseapp.com",
+  projectId: "bt3103test-7fb96",
+  storageBucket: "bt3103test-7fb96.appspot.com",
+  messagingSenderId: "100176478338",
+  appId: "1:100176478338:web:1001b82079a72035fd749b"
 };
+
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-const app = createApp(App)
+const app = createApp(App);
 
+app.use(router).use(store);
+app.use(VueChartkick);
 
-app.use(router).use(store)
-
-app.mount('#app')
-
+app.mount("#app");
 
 // onAuthStateChanged(auth, (user) => {
 //   if (user) {
@@ -41,5 +42,5 @@ app.mount('#app')
 //     const app = createApp(App)
 //     app.use(router).use(Unicon)
 //     app.mount('#app')
-//   } 
+//   }
 // })
