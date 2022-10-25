@@ -86,6 +86,10 @@ header {
     &:hover {
       color: #1eb8b8;
     }
+
+    &:focus {
+      text-decoration: underline;
+    }
   }
 
   nav {
