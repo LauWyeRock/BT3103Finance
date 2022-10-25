@@ -10,13 +10,15 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyALUiX766EdSTWEFqQHkApnn33HViOvLbQ",
-  authDomain: "bt3103test-7fb96.firebaseapp.com",
-  projectId: "bt3103test-7fb96",
-  storageBucket: "bt3103test-7fb96.appspot.com",
-  messagingSenderId: "100176478338",
-  appId: "1:100176478338:web:1001b82079a72035fd749b"
+  apiKey: "AIzaSyDANSueccFusPny1Ww_P-a7faS45Ce6Eck",
+  authDomain: "bt3103-aaa9f.firebaseapp.com",
+  databaseURL: "https://bt3103-aaa9f-default-rtdb.firebaseio.com",
+  projectId: "bt3103-aaa9f",
+  storageBucket: "bt3103-aaa9f.appspot.com",
+  messagingSenderId: "390166546946",
+  appId: "1:390166546946:web:8afd4d8f476b47c452b51b"
 };
+
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);

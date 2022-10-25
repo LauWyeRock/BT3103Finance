@@ -12,7 +12,7 @@
         <div class="info">
             <h4>{{ post.blogTitle}}</h4>
             <h6>Posted on: {{ new Date(post.blogDate).toLocaleString("en-us", {dataStyle: "long"}) }}</h6>
-            <router-link class="link" :to="{name: 'ViewPost'}">
+            <router-link class="link" :to="{name: 'ViewPost', params: {blogid: this.post.blogID}}">
                 <h6>Placeholder</h6>
             </router-link>
         </div>

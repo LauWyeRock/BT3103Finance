@@ -33,6 +33,7 @@
       ></column-chart>
     </div> -->
   </div>
+  </div>
 </template>
 
 <script>

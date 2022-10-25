@@ -10,7 +10,7 @@
           Login/Register 
           <!-- <uniCarWash class="arrow arrow-light" /> -->
         </router-link>
-        <router-link class="link" v-else :to="{name: 'ViewPost'}">
+        <router-link class="link" v-else :to="{name: 'ViewPost', params: {blogid: this.post.blogID}}">
           View the Post
           <!-- <uniCarWash class="arrow" /> -->
         </router-link>
