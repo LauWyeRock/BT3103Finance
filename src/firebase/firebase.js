@@ -11,14 +11,14 @@ import { getFirestore} from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCRGkLJBhWbK8nr0t_dGdptebe6BPiKP90",
-  authDomain: "bt3103-finance.firebaseapp.com",
-  projectId: "bt3103-finance",
-  storageBucket: "bt3103-finance.appspot.com",
-  messagingSenderId: "490406958114",
-  appId: "1:490406958114:web:088cfd71d19c0b739e667b"
+  apiKey: "AIzaSyDANSueccFusPny1Ww_P-a7faS45Ce6Eck",
+  authDomain: "bt3103-aaa9f.firebaseapp.com",
+  databaseURL: "https://bt3103-aaa9f-default-rtdb.firebaseio.com",
+  projectId: "bt3103-aaa9f",
+  storageBucket: "bt3103-aaa9f.appspot.com",
+  messagingSenderId: "390166546946",
+  appId: "1:390166546946:web:8afd4d8f476b47c452b51b"
 };
-
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
