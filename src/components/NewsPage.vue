@@ -65,7 +65,6 @@
   </template>
   
   <script>
-
     export default {
       props: [
         'apiKey'
@@ -96,7 +95,6 @@
           this.currentPage = 1;
           this.articles = [];
         },
-
         
         fetchTopNews() {
             this.apiUrl = 'https://newsapi.org/v2/everything?q=finance' +
@@ -108,7 +106,6 @@
             this.resetData();
             this.fetchData();
         },
-
         fetchMarketNews() {
             this.apiUrl = 'https://newsapi.org/v2/everything?q=stockmarket' +
                         '&pageSize=' + this.maxPerPage +
@@ -116,9 +113,7 @@
             this.isBusy = true;
             this.resetData();
             this.fetchData();
-
         },
-
         fetchCompanyNews() {
             this.apiUrl = 'https://newsapi.org/v2/everything?q=company' +
                         '&pageSize=' + this.maxPerPage +
@@ -126,9 +121,7 @@
             this.isBusy = true;
             this.resetData();
             this.fetchData();
-
         },
-
         fetchCryptoNews() {
             this.apiUrl = 'https://newsapi.org/v2/everything?q=crypto' +
                         '&pageSize=' + this.maxPerPage +
@@ -136,10 +129,7 @@
             this.isBusy = true;
             this.resetData();
             this.fetchData();
-
         },
-
-
         fetchSearchNews() {
             if(this.searchword !== '') {
                 this.apiUrl = 'https://newsapi.org/v2/everything?q=' + this.searchword +
@@ -153,7 +143,6 @@
                 this.fetchTopNews();
             }
         },
-
         fetchData() {
           let req  = new Request(this.apiUrl + '&page=' + this.currentPage);
           fetch(req)
@@ -190,23 +179,19 @@
         this.scrollTrigger();
       }
     }
-
   </script>
 
 
   
   <style lang="scss" scoped>
-
     .container {
         position: relative;
         width: 100%;
         background-color: #f0ebf4;
     }
-
     // .newstitle {
     //     height: 100px;
     // }
-
     .header {
         font-family: serif;
         font-size: 480%;
@@ -249,7 +234,6 @@
             }
         }
     }
-
     .navheader {
         padding-left: 140px;
         font-family: serif;
@@ -259,7 +243,6 @@
         font-weight: bold;
         padding-bottom: 10px;
     }
-
     .topnav {
         background-color: white;
         overflow: hidden;
@@ -270,7 +253,6 @@
         font-weight: bold;
         box-shadow: 3px 3px 5px #888888;
         }
-
         /* Style the links inside the navigation bar */
     .topnav a {
         float: left;
@@ -280,20 +262,17 @@
         text-decoration: none;
         font-size: 17px;
     }
-
         /* Change the color of links on hover */
     .topnav a:hover {
         background-color: #ddd;
         color: black;
     }
-
     /* Add a color to the active/current link */
     .topnav a:focus {
         background-color: rgba(161, 195, 209, 0.75);
         color: black;
         text-decoration: underline;
     }
-
     // .featurednewscontainer{
     //     display: flex;
     //     justify-content: center;
@@ -309,7 +288,6 @@
     //     -o-transition: all 0.3s ease;
     //     transition: all 0.3s ease; 
     // }
-
     .result-list {
         padding-top: 60px;
         display: grid;
@@ -319,7 +297,6 @@
         width:1000px; /*  use your width here */
         grid-template-columns: repeat(auto-fill, minmax(200px, 5fr));
     }
-
     article {
         display: grid;
         grid-template-rows: 200px;
@@ -338,14 +315,12 @@
             }
         }
     }
-
     .newstitle {
         font-family:Arial;
         font-weight:bold;
         font-size:22px;
         text-align:center;
     }
-
     .readmorebtn {
         margin-left:0%;
         font-size: 13px;
@@ -355,11 +330,9 @@
         color: black;
         cursor: pointer;
     }
-
     .readmorebtn:hover {
         background-color: lightgrey;
     }
-
     
         // footer {
         //     display: flex;
@@ -368,7 +341,6 @@
         //     font-size: 1.6rem;
         //     color: #888;
         // }
-
     #scroll-trigger {
         display: flex;
         justify-content: center;
@@ -377,5 +349,4 @@
         height: 100px;
         font-size: 1.6rem;
     }
-
   </style>
