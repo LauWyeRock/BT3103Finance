@@ -26,7 +26,7 @@ const router = createRouter({
     },
     {
       path: "/news",
-      component: () => import("../components/News2.vue"),
+      component: () => import("../components/NewsPage.vue"),
       name: "News",
     },
     {
@@ -63,6 +63,11 @@ const router = createRouter({
       path: "/pfp",
       component: () => import("../views/Profile.vue"),
       name: "ProfilePage",
+    },
+    {
+      path: "/stock-screener",
+      component: () => import("../views/StockScreener.vue"),
+      name: "StockScreener",
     },
   ],
 });

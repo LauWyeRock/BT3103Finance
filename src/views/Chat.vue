@@ -129,7 +129,11 @@ export default {
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  background-color: #ea526f;
+  background: linear-gradient(
+            180deg,
+            rgba(161, 195, 209, 0.75) 46.38%,
+            rgba(241, 114, 161, 0.5) 100%
+        );
 
   &.login {
     align-items: center;
@@ -145,15 +149,15 @@ export default {
         border-radius: 16px;
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
         h1 {
-          color: #aaa;
+          color: #ea526f;
           font-size: 28px;
           margin-bottom: 30px;
         }
         label {
           display: block;
           margin-bottom: 5px;
-          color: #aaa;
-          font-size: 16px;
+          color: black;
+          font-size: 20px;
           transition: 0.4s;
         }
         input[type="text"] {
@@ -175,6 +179,7 @@ export default {
           &::placeholder {
             color: #888;
             transition: 0.4s;
+            font-size: 15px;
           }
         }
         input[type="submit"] {

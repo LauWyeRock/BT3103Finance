@@ -12,6 +12,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyALUiX766EdSTWEFqQHkApnn33HViOvLbQ",
   authDomain: "bt3103test-7fb96.firebaseapp.com",
+  databaseURL: "https://bt3103test-7fb96-default-rtdb.firebaseio.com",
   projectId: "bt3103test-7fb96",
   storageBucket: "bt3103test-7fb96.appspot.com",
   messagingSenderId: "100176478338",
@@ -25,7 +26,6 @@ const firebaseConfig = {
   // appId: "1:202869791104:web:ed32318f491a5fee084965",
   // measurementId: "G-WC4L7ZV58C",
 };
-
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
