@@ -6,6 +6,7 @@ import store from "./store";
 import VueChartkick from "vue-chartkick";
 import "chartkick/chart.js";
 
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 //import store from './store/index';
@@ -16,12 +17,21 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCRGkLJBhWbK8nr0t_dGdptebe6BPiKP90",
-  authDomain: "bt3103-finance.firebaseapp.com",
-  projectId: "bt3103-finance",
-  storageBucket: "bt3103-finance.appspot.com",
-  messagingSenderId: "490406958114",
-  appId: "1:490406958114:web:088cfd71d19c0b739e667b",
+  apiKey: "AIzaSyALUiX766EdSTWEFqQHkApnn33HViOvLbQ",
+  authDomain: "bt3103test-7fb96.firebaseapp.com",
+  databaseURL: "https://bt3103test-7fb96-default-rtdb.firebaseio.com",
+  projectId: "bt3103test-7fb96",
+  storageBucket: "bt3103test-7fb96.appspot.com",
+  messagingSenderId: "100176478338",
+  appId: "1:100176478338:web:1001b82079a72035fd749b",
+
+  // apiKey: "AIzaSyCDNAoDLQZS_PVxUjDdXnXpSwUgMf0uSsI",
+  // authDomain: "financebois.firebaseapp.com",
+  // projectId: "financebois",
+  // storageBucket: "financebois.appspot.com",
+  // messagingSenderId: "202869791104",
+  // appId: "1:202869791104:web:ed32318f491a5fee084965",
+  // measurementId: "G-WC4L7ZV58C",
 };
 
 // Initialize Firebase
