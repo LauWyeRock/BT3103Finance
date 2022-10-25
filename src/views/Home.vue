@@ -1,32 +1,41 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="hello">
-        <Chart />
-        <TechnicalAnalysis />
-        <Screener />
-        <Snaps />
-        <MarketOverview />
-        <MarketData />
-        <StockMarket />
-        <EconomicCalendar />
-    </div>
-  </template>
-  
-  <script>
-  import { Chart,TechnicalAnalysis, Snaps, Screener, MarketOverview, MarketData, StockMarket, EconomicCalendar } from 'vue-tradingview-widgets';
+  <div class="hello">
+    <Chart />
+    <TechnicalAnalysis />
+    <Screener />
+    <Snaps />
+    <MarketOverview />
+    <MarketData />
+    <StockMarket />
+    <EconomicCalendar />
+  </div>
+</template>
 
-  export default {
-    name: 'HelloWorld',
-    components: {
-      Chart,
-      TechnicalAnalysis,
-      Screener,
-      Snaps,
-      MarketData,
-      MarketOverview,
-      StockMarket,
-      EconomicCalendar
-    },
+<script>
+import {
+  Chart,
+  TechnicalAnalysis,
+  Snaps,
+  Screener,
+  MarketOverview,
+  MarketData,
+  StockMarket,
+  EconomicCalendar,
+} from "vue-tradingview-widgets";
+
+export default {
+  name: "HelloWorld",
+  components: {
+    Chart,
+    TechnicalAnalysis,
+    Screener,
+    Snaps,
+    MarketData,
+    MarketOverview,
+    StockMarket,
+    EconomicCalendar,
+  },
   mounted() {
 		if (localStorage.getItem('reloaded')) {
 			// The page was just reloaded. Clear the value from local storage
@@ -39,17 +48,16 @@
 		}
 	}
 }
-  </script>
 
-  <style scoped>
+</script>
 
+<style scoped>
 .hello {
-  background: linear-gradient(
-            200deg,
-            rgba(240, 235, 244, 1) 10%,
-            /* rgba(161, 195, 209, 0.75) 10%, */
-            rgba(241, 114, 161, 0.5) 100%
-        );
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1), 
+    rgba(161, 195, 209, 0.75), 
+    rgba(241, 114, 161, 0.5)
+    );
 }
 
 </style>

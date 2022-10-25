@@ -11,7 +11,7 @@
       <div class="nav-links">
         <ul>
           <router-link class="link" to="/">Home</router-link>
-          <router-link class="link" to="/feed">Feed</router-link>
+          <router-link class="link" to="/videos">Videos</router-link>
           <router-link class="link" v-if="!auth" to="/sign-in">
             Login
           </router-link>

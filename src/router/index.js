@@ -16,9 +16,9 @@ const router = createRouter({
       name: "SignIn",
     },
     {
-      path: "/feed",
-      component: () => import("../views/Feed.vue"),
-      name: "Feed",
+      path: "/videos",
+      component: () => import("../views/Videos.vue"),
+      name: "Videos",
 
       meta: {
         requiresAuth: true,
@@ -58,6 +58,11 @@ const router = createRouter({
       path: "/view-post",
       component: () => import("../views/ViewPost.vue"),
       name: "ViewPost",
+    },
+    {
+      path: "/pfp",
+      component: () => import("../views/Profile.vue"),
+      name: "ProfilePage",
     },
     {
       path: "/stock-screener",

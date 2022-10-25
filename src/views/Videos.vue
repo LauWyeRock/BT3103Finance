@@ -72,11 +72,11 @@ export default {
 <style scoped>
 
 	.container {
-		background: linear-gradient(
-            180deg,
-            rgba(161, 195, 209, 0.75) 46.38%,
-            rgba(241, 114, 161, 0.5) 100%
-        );
+		background-image: repeating-linear-gradient(
+		rgba(240, 235, 244, 1), 
+		rgba(161, 195, 209, 0.5), 
+		rgba(241, 114, 161, 0.5)
+		);
 		border: 0;
 		height: 100%;
 		margin: 0;
