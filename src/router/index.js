@@ -19,7 +19,7 @@ const router = createRouter({
       path: "/videos",
       component: () => import("../views/Videos.vue"),
       name: "Videos",
-
+      // Right now I want to prevent access to some pages 
       meta: {
         requiresAuth: true,
       },
@@ -33,6 +33,9 @@ const router = createRouter({
       path: "/forum",
       component: () => import("../views/Forum.vue"),
       name: "Forum",
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/forgotPassword",
@@ -55,7 +58,7 @@ const router = createRouter({
       name: "CreatePost",
     },
     {
-      path: "/view-post",
+      path: "/view-post/:blogid", // Changed here
       component: () => import("../views/ViewPost.vue"),
       name: "ViewPost",
     },
@@ -68,6 +71,19 @@ const router = createRouter({
       path: "/stock-screener",
       component: () => import("../views/StockScreener.vue"),
       name: "StockScreener",
+    },
+    {
+      path: "/papertrading",
+      component: () => import("../views/PaperTrading.vue"),
+      name: "PaperTrading",
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/:catchAll(.*)",
+      component: () => import("../views/NotFound.vue"),
+      name: "NotFound",
     },
   ],
 });

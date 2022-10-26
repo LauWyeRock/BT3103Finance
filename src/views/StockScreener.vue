@@ -1,4 +1,6 @@
 <template>
+  <div class="tradingview-widget-container">
+    <div id="tradingview_4894e"></div>
   <div>
     <h1 class="stock-title">Stock Screener</h1>
     <div class="trending-stocks-box">
@@ -30,6 +32,7 @@
         ]"
       ></column-chart>
     </div> -->
+  </div>
   </div>
 </template>
 
