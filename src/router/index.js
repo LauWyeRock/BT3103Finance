@@ -43,9 +43,14 @@ const router = createRouter({
       name: "ForgotPassword",
     },
     {
-      path: "/stocks/",
+      path: "/stocks/:stock", 
       component: () => import("../views/StockPage.vue"),
       name: "Stocks",
+    },
+    {
+      path:"/stocks/undefined",
+      component: () => import("../views/NotFound.vue"),
+      name: "NotFound"
     },
     {
       path: "/chat",
