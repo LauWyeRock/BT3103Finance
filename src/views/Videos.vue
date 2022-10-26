@@ -7,7 +7,7 @@
 		<div class="description"> TradeBros has carefully curated a list of investing educational videos below,
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
-		<!-- <SearchBar @searchTermChange="onSearchTermChange"></SearchBar> -->
+		<SearchBar @searchTermChange="onSearchTermChange"></SearchBar>
 
 		<!-- Intro -->
 		<div class="vidheader">An Introduction to the Stock Market</div>
@@ -35,6 +35,7 @@ import axios from 'axios';
 import VideoList from '../components/VideoList';
 import VideoDetail from '../components/VideoDetail';
 const API_KEY = 'AIzaSyBUSaxahFCy25CYIrSkopFfEzk0g7rhWZQ';
+// const nextPageToken = '';
 export default {
 	name: 'App',
 	components: {
@@ -65,8 +66,29 @@ export default {
 		onVideoSelect(video) {
 			this.selectedVideo = video;
 		}
+
+		// getVideos() {
+		// 	let req  = new Request(https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=AIzaSyBUSaxahFCy25CYIrSkopFfEzk0g7rhWZQ);
+		// 	fetch(req)
+		// 		.then((resp) => resp.json())
+		// 		.then((data) => {
+		// 			console.log(data)	
+		// 			let videos = data.items;
+		// 			nextPageToken = data.nextPageToken;
+		// 			let videoContainer = document.querySelector(".youtube-container")
+		// 			for(video of videos) {
+		// 				videoContainer.innerHTML ="";
+
+		// 			}
+		// 			data.articles.forEach(element => {
+        //         this.articles.push(element);
+        //       });
+
+				
+        // }
 	}
-};
+}
+
 </script>
 
 <style scoped>
