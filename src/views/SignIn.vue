@@ -30,7 +30,7 @@
 
 <script>
 // import { ref } from "vue";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
 import "firebase/auth";
 import {
   //createUserWithEmailAndPassword,
@@ -48,6 +48,14 @@ import {
 export default {
   name: "SignIn",
   components: {},
+  mounted() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.user = user;
+      }
+    })
+  },
   data() {
     return {
       email:null,
