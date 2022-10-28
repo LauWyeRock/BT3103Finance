@@ -1,9 +1,10 @@
 <template>
     <div class="tradingview-widget-container">
     <div id="tradingview_4894e"></div>
-	<p>{{ getStock }}</p>
     <div class="tradingview-widget-copyright">
-		<div class = Hello>
+		<div class = "Hello" style = "float: left">
+				<SymbolInfo
+				:options = "{symbol: getStock, theme: 'dark'}"/>
 				<Chart
 				:options = "{
 					autosize: false,
@@ -12,22 +13,29 @@
 					style: 1,
 					allow_symbol_change: false
 				}"/>
+				<div class = "new" style = "float:right">
 				<TechnicalAnalysis
-				:options = "{symbol: getStock}" />
+				:options = "{symbol: getStock, theme: 'dark'}" />
+
+				<CompanyProfile
+				:options = "{symbol: getStock, theme: 'dark'}" />
+				</div>
+				<FundamentalData
+				:options = "{symbol: getStock, theme: 'dark'}" />
 		</div>
-    </div>
+	</div>
 	</div>
 
 </template>
 
 <script>
 //import {src} from "https://s3.tradingview.com/tv.js"
-import { Chart, TechnicalAnalysis } from 'vue-tradingview-widgets';
+import { Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData } from 'vue-tradingview-widgets';
 
 export default {
     name: 'HelloWorld',
     components: {
-		Chart, TechnicalAnalysis
+		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData
     },
 	mounted() {
 		if (localStorage.getItem('reloaded')) {
@@ -39,7 +47,7 @@ export default {
 			localStorage.setItem('reloaded', '1');
 			//localStorage.setItem('stock', this.$store.state.exchangeTicker)
 			localStorage.setItem('stock', this.$route.params.stock)
-			location.reload();
+			location.reload()
 		}
 	},
 	computed: {
@@ -62,5 +70,8 @@ export default {
 
 }
 
+.Hello {
+	flex-grow: 1
+}
 
 </style>
