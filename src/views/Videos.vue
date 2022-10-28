@@ -62,7 +62,8 @@ export default {
 					key: API_KEY,
 					type: 'video', // type of search
 					part: 'snippet', // the type of info we want to get back, 'snippet' is small piece of info
-					q: newSearch // query
+					q: newSearch, // query
+					maxResults: 9
 				}
 			}).then(response => {
 				this.videosList = response.data.items;
