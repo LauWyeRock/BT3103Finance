@@ -10,6 +10,7 @@
 </template>
 
 <script>
+//STOCK API KEY = YYDJ5HRF9K8DOGJE
 import StockCard from "../components/StockCard.vue";
 import StockTable from "../components/StockTable.vue";
 
@@ -28,7 +29,6 @@ export default {
         (res) => res.json()
       );
     }
-    console.log(stocksInfo);
     return { stocksInfo };
   },
 

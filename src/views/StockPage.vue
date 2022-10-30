@@ -23,6 +23,9 @@
 				<FundamentalData
 				:options = "{symbol: getStock, theme: 'dark'}" />
 		</div>
+		<div> 
+			<StockInDepthData :title = getStock />
+		</div>
 	</div>
 	</div>
 
@@ -31,11 +34,12 @@
 <script>
 //import {src} from "https://s3.tradingview.com/tv.js"
 import { Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData } from 'vue-tradingview-widgets';
+import StockInDepthData from '@/components/StockInDepthData'
 
 export default {
     name: 'HelloWorld',
     components: {
-		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData
+		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData, StockInDepthData
     },
 	mounted() {
 		if (localStorage.getItem('reloaded')) {
@@ -48,6 +52,7 @@ export default {
 			//localStorage.setItem('stock', this.$store.state.exchangeTicker)
 			localStorage.setItem('stock', this.$route.params.stock)
 			location.reload()
+			console.log(Chart)
 		}
 	},
 	computed: {
