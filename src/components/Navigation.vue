@@ -12,15 +12,12 @@
         <ul>
           <router-link class="link" to="/">Home</router-link>
           <router-link class="link" to="/feed">Feed</router-link>
-          <router-link class="link" v-if="!user" to="/sign-in">
-            Login
-          </router-link>
-          <router-link class="link" v-if="!user" to="/register">
-            Register
-          </router-link>
+          <router-link class="link" v-if="!user" to="/sign-in">Login</router-link>
+          <router-link class="link" v-if="!user" to="/register">Register</router-link>
           <router-link class="link" to="/news"> News </router-link>
+          <router-link class="link" to="/videos"> Videos </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
-          <router-link class = "link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
+          <router-link class="link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
           <router-link class="link" to="/chat" v-if="user"> Chat </router-link>
           <router-link class="link" to="/createpost" v-if="user"> Create Post </router-link>
           <router-link class="link" to="/papertrading" v-if="user"> Paper Trading</router-link>
@@ -95,6 +92,10 @@ header {
 
     &:hover {
       color: #1eb8b8;
+    }
+
+    &:focus {
+      text-decoration: underline;
     }
   }
 
