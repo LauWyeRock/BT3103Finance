@@ -19,6 +19,7 @@
             Register
           </router-link>
           <router-link class="link" to="/news"> News </router-link>
+          <router-link class="link" to="/videos"> Videos </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
           <router-link class = "link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
           <router-link class="link" to="/chat" v-if="user"> Chat </router-link>
@@ -95,6 +96,10 @@ header {
 
     &:hover {
       color: #1eb8b8;
+    }
+
+    &:focus {
+      text-decoration: underline;
     }
   }
 

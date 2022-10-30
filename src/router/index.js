@@ -16,9 +16,9 @@ const router = createRouter({
       name: "SignIn",
     },
     {
-      path: "/feed",
-      component: () => import("../views/Feed.vue"),
-      name: "Feed",
+      path: "/videos",
+      component: () => import("../views/Videos.vue"),
+      name: "Videos",
       // Right now I want to prevent access to some pages 
       meta: {
         requiresAuth: true,

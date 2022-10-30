@@ -6,7 +6,6 @@ import store from "./store";
 import VueChartkick from "vue-chartkick";
 import "chartkick/chart.js";
 
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 //import store from './store/index';

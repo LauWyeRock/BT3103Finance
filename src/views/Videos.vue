@@ -2,24 +2,28 @@
 	<div class="container">
 
 		<!-- header + search bar -->
-        <div class="header">education</div>
+        <div class="header">videos</div>
 		<div class="subheader">Not sure where to start?</div>
 		<div class="description"> TradeBros has carefully curated a list of investing educational videos below,
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
-		<!-- <SearchBar @searchTermChange="onSearchTermChange"></SearchBar> -->
 
 		<!-- Intro -->
-		<div class="vidheader">An Introduction to the Stock Market</div>
+		<div class="vidheader">
+			<button v-on:click="onSearchTermChange('Investing')">An Introduction to the Stock Market</button>
+		</div>
 
-		<!-- Medium -->
-		<div class="vidheader">Cryptocurrencies and What They Do</div>
+		<!-- Crypto -->
+		<div class="vidheader">
+			<button v-on:click="onSearchTermChange('Cryptocurrencies')">Cryptocurrencies and What They Do</button>
+		</div>
 
-		<!-- Difficult -->
-		<div class="vidheader">Solidifying your Investing Foundations</div>
+		<!-- Stocks -->
+		<div class="vidheader">
+			<button v-on:click="onSearchTermChange('Stocks')">Solidifying your Investing Foundations</button>
+		</div>
 
-
-		<div class="row">
+		<div class="vidresults">
 			<VideoDetail :video="selectedVideo" />
 			<VideoList @videoSelect="onVideoSelect" :videos="videosList"></VideoList>
 		</div>
@@ -34,7 +38,8 @@ import axios from 'axios';
 // import SearchBar from '../components/SearchBar';
 import VideoList from '../components/VideoList';
 import VideoDetail from '../components/VideoDetail';
-const API_KEY = 'AIzaSyBUSaxahFCy25CYIrSkopFfEzk0g7rhWZQ';
+const API_KEY = 'AIzaSyDPMbn8BAn5ccYEh6wknEGAGWaVtj7Begw';
+
 export default {
 	name: 'App',
 	components: {
@@ -49,6 +54,7 @@ export default {
 		};
 	},
 	methods: {
+
 		onSearchTermChange(newSearch) {
 			// axios returns a promise
 			axios.get('https://www.googleapis.com/youtube/v3/search', {
@@ -56,27 +62,40 @@ export default {
 					key: API_KEY,
 					type: 'video', // type of search
 					part: 'snippet', // the type of info we want to get back, 'snippet' is small piece of info
-					q: newSearch // query
+					q: newSearch, // query
+					maxResults: 9
 				}
 			}).then(response => {
 				this.videosList = response.data.items;
 			});
 		},
+
 		onVideoSelect(video) {
 			this.selectedVideo = video;
 		}
+
 	}
-};
+}
+
 </script>
 
 <style scoped>
 
+	button {
+		font-size: 20px;
+		font-weight: bold;
+		border-radius: 4px;
+		color:black;
+		background-color: rgba(240, 235, 244, 1);
+		padding: 10px 10px 10px 10px;
+		/* text-transform: lowercase;  */
+	}
 	.container {
-		background: linear-gradient(
-            180deg,
-            rgba(161, 195, 209, 0.75) 46.38%,
-            rgba(241, 114, 161, 0.5) 100%
-        );
+		background-image: repeating-linear-gradient(
+		rgba(240, 235, 244, 1), 
+		rgba(161, 195, 209, 0.5), 
+		rgba(241, 114, 161, 0.5)
+		);
 		border: 0;
 		height: 100%;
 		margin: 0;
@@ -114,7 +133,7 @@ export default {
 	}
 
 	.vidheader {
-		padding-top: 50px;
+		padding-top: 0px;
 		width: 100px;
 		text-align:left;
 		margin: auto;
@@ -123,6 +142,17 @@ export default {
 		letter-spacing: -1px;
 		font-weight: bold;
 		text-decoration: underline;
+	}
+
+	.vidresults {
+		padding-top: 50px;
+		width: 100px;
+		text-align:left;
+		margin: auto;
+		width: 80%;
+		font-size: 20px;
+		letter-spacing: -1px;
+		font-weight: bold;
 	}
 
 </style>
