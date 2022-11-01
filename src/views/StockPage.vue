@@ -14,18 +14,27 @@
 					allow_symbol_change: false
 				}"/>
 				<div class = "new" style = "float:right">
-				<TechnicalAnalysis
-				:options = "{symbol: getStock, theme: 'dark'}" />
 
 				<CompanyProfile
-				:options = "{symbol: getStock, theme: 'dark'}" />
+					:options = "{symbol: getStock, theme: 'dark'}" 
+				/>
 				</div>
 				<FundamentalData
-				:options = "{symbol: getStock, theme: 'dark'}" />
-		</div>
+					:options = "{symbol: getStock, theme: 'dark'}" />
+				<TechnicalAnalysis
+					:options = "{symbol: getStock}" 
+				/>
+				</div>
+			<TechnicalAnalysis
+				:options = "{symbol: getStock}" 
+			/>
 		<div> 
 			<StockInDepthData :title = getStock />
 		</div>
+
+		<FundamentalData
+			:options = "{symbol: getStock, theme: 'dark', width: 400}" 
+		/>
 	</div>
 	</div>
 

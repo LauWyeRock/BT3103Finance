@@ -10,10 +10,10 @@
                 <img src = "@/assets/stockPage/light-bulb.png">
                 <span class="tooltiptext">
                     <b>P/E Ratio stands for Price to earnings ratio.</b>
-                    The price to earnings ratio differs greatly from industry
-                    to industry. For example, stocks in the technology sector
-                    have a higher PE than normal, and commodity stocks such as
-                    energy-related stocks have a lower PE.
+                    This tells investors how much a company is worth. The P/E ratio 
+                    simply the stock price divided by the company's earnings per share for 
+                    a designated period like the past 12 months. The price/earnings 
+                    ratio conveys how much investors will pay per share for $1 of earnings.
                 </span>
             </div>
             <br>
@@ -40,7 +40,6 @@
             </div>
         </div>
         <div>
-
             Take a quiz here to access paper trading! <br>
             <button> Take the quiz </button> <br>
             *Caution: Data may not be updated in real time. For accuracy, do refer to tradingview
