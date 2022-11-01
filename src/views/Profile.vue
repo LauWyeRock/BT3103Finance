@@ -1,38 +1,20 @@
 <template>
-  <ProfileCard />
-  <div className="cards">
-    <AboutMeCard />
-    <SocialsCard />
-  </div>
-  <MyWatchList />
-  <AchievementListCard />
+  <Suspense>
+    <template #default>
+      <ViewProfile></ViewProfile>
+    </template>
+    <template #fallback>
+      <h1 style="font-size: 100px">loading...</h1>
+    </template>
+  </Suspense>
 </template>
 
 <script>
-import ProfileCard from "@/components/Profile/ProfileCard.vue";
-import AboutMeCard from "@/components/Profile/AboutMeCard.vue";
-import SocialsCard from "../components/Profile/SocialsCard.vue";
-import MyWatchList from "../components/Profile/MyWatchList.vue";
-import AchievementListCard from "../components/Profile/AchievementListCard.vue";
+import ViewProfile from "@/components/Profile/ViewProfile.vue";
 export default {
   name: "ProfilePage",
-  components: {
-    ProfileCard,
-    AboutMeCard,
-    SocialsCard,
-    MyWatchList,
-    AchievementListCard,
-  },
+  components: { ViewProfile },
 };
 </script>
 
-<style>
-.cards {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-}
-</style>
+<style></style>
