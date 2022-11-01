@@ -1,10 +1,13 @@
 <template>
-	<li class="list-group-item media" @click="onVideoSelect">
-		<img class="mr-3" :src="thumbnailUrl" />
-			<div class="media-body">
-			{{ video.snippet.title }}
-			</div>
-	</li>
+
+	<article class="videoresults" @click="onVideoSelect">
+		<img class="thumbnail" :src="thumbnailUrl" />
+		<div class="vidtitle">
+		{{ video.snippet.title }}
+		</div>
+	</article>
+
+	<!-- <div></div> -->
 </template>
 
 <script>
@@ -31,7 +34,21 @@ export default {
 		display: flex;
 		cursor: pointer;
 	}
-	li:hover {
-		background-color: #eee;
+
+	article:hover {
+		cursor: pointer;
+	}
+
+	img {
+		float: left;
+		width:  300px;
+		height: 200px;
+		object-fit: cover;
+		padding-bottom:30px;
+	}
+
+	.vidtitle {
+		text-align: center;
+		position:relative;
 	}
 </style>

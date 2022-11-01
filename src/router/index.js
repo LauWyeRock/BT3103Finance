@@ -16,10 +16,15 @@ const router = createRouter({
       name: "SignIn",
     },
     {
+      path: "/videos",
+      component: () => import("../views/Videos.vue"),
+      name: "Videos",
+    },
+    {
       path: "/feed",
       component: () => import("../views/Feed.vue"),
       name: "Feed",
-      // Right now I want to prevent access to some pages 
+      // Right now I want to prevent access to some pages
       meta: {
         requiresAuth: true,
       },
@@ -68,9 +73,27 @@ const router = createRouter({
       name: "ViewPost",
     },
     {
-      path: "/pfp",
-      component: () => import("../views/Profile.vue"),
+      //your own profile page
       name: "ProfilePage",
+      path: "/profile",
+      component: () => import("../views/Profile.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      name: "ProfilePageAll",
+      path: "/profile/:uid",
+      component: () => import("../views/Profile.vue"),
+    },
+    {
+      //edit profile page.
+      path: "/editpfp",
+      component: () => import("../views/EditProfile.vue"),
+      name: "EditProfilePage",
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/stock-screener",
