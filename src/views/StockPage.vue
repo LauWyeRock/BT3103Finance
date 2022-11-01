@@ -1,9 +1,10 @@
 <template>
     <div class="tradingview-widget-container">
     <div id="tradingview_4894e"></div>
-	<p>{{ getStock }}</p>
     <div class="tradingview-widget-copyright">
-		<div class = Hello>
+		<div class = "Hello" style = "float: left">
+				<SymbolInfo
+				:options = "{symbol: getStock, theme: 'dark'}"/>
 				<Chart
 				:options = "{
 					autosize: false,
@@ -12,33 +13,55 @@
 					style: 1,
 					allow_symbol_change: false
 				}"/>
+				<div class = "new" style = "float:right">
+
+				<CompanyProfile
+					:options = "{symbol: getStock, theme: 'dark'}" 
+				/>
+				</div>
+				<FundamentalData
+					:options = "{symbol: getStock, theme: 'dark'}" />
 				<TechnicalAnalysis
-				:options = "{symbol: getStock}" />
+					:options = "{symbol: getStock}" 
+				/>
+				</div>
+			<TechnicalAnalysis
+				:options = "{symbol: getStock}" 
+			/>
+		<div> 
+			<StockInDepthData :title = getStock />
 		</div>
-    </div>
+
+		<FundamentalData
+			:options = "{symbol: getStock, theme: 'dark', width: 400}" 
+		/>
+	</div>
 	</div>
 
 </template>
 
 <script>
 //import {src} from "https://s3.tradingview.com/tv.js"
-import { Chart, TechnicalAnalysis } from 'vue-tradingview-widgets';
+import { Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData } from 'vue-tradingview-widgets';
+import StockInDepthData from '@/components/StockInDepthData'
 
 export default {
     name: 'HelloWorld',
     components: {
-		Chart, TechnicalAnalysis
+		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData, StockInDepthData
     },
 	mounted() {
 		if (localStorage.getItem('reloaded')) {
 			// The page was just reloaded. Clear the value from local storage
-			// so that it will reload the next time this page is visited.
+			// so that it will reload the next time this page is visited
 			localStorage.removeItem('reloaded');
 		} else {
 			// Set a flag so that we know not to reload the page twice.
 			localStorage.setItem('reloaded', '1');
-			localStorage.setItem('stock', this.$store.state.exchangeTicker)
-			location.reload();
+			//localStorage.setItem('stock', this.$store.state.exchangeTicker)
+			localStorage.setItem('stock', this.$route.params.stock)
+			location.reload()
+			console.log(Chart)
 		}
 	},
 	computed: {
@@ -61,5 +84,8 @@ export default {
 
 }
 
+.Hello {
+	flex-grow: 1
+}
 
 </style>

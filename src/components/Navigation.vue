@@ -71,7 +71,7 @@ export default {
         savetofs() {
           let a = document.getElementById("stock").value
           this.$store.commit('updateExchangeTicker',a)
-          this.$router.push("/stocks/")
+          this.$router.push("/stocks/" + a)
         }
     },
 };

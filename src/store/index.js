@@ -90,7 +90,7 @@ export default createStore({
     },
     getters: {
         getStock: (state) => {
-            return `${state.exchangeTicker[state.exchangeTicker.length - 1]}`
+            return `${state.exchangeTicker}`
         },
         blogPostsFeed(state) {
             return state.blogPosts.slice(0,2)
