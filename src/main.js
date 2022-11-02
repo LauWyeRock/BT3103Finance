@@ -35,12 +35,3 @@ app.use(router).use(store);
 app.use(VueChartkick);
 
 app.mount("#app");
-
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     initializeApp(firebaseConfig);
-//     const app = createApp(App)
-//     app.use(router).use(Unicon)
-//     app.mount('#app')
-//   }
-// })

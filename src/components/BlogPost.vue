@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-wrapper no-user">
+  <div class="blog-wrapper" :class="{'no-user': !user}">
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
@@ -8,11 +8,9 @@
         <p class="content-preview" v-else v-html="post.blogHTML"></p>
         <router-link class="link link-right" v-if="post.welcomeScreen" to="#">
           Login/Register 
-          <!-- <uniCarWash class="arrow arrow-light" /> -->
         </router-link>
         <router-link class="link" v-else :to="{name: 'ViewPost', params: {blogid: this.post.blogID}}">
           View the Post
-          <!-- <uniCarWash class="arrow" /> -->
         </router-link>
       </div>
     </div>
@@ -38,6 +36,11 @@ export default {
   components: {
     
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  }
 };
 </script>
 

@@ -35,16 +35,28 @@ import BlogCoverPreview from "@/components/BlogCoverPreview.vue";
 import { ref, getStorage, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 // eslint-disable-next-line no-unused-vars
 import { collection, doc, getDocs, getDoc, setDoc, addDoc } from "@firebase/firestore";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "@/firebase/firebase";
 window.Quill = Quill;
 const ImageResize = require("quill-image-resize-module").default;
 Quill.register("modules/imageResize", ImageResize);
 export default {
     name: "CreatePost",
+    mounted() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            this.user = user;
+          }
+        })
+      },
+ 
     data() {
         return {
             file:null,
             error: null,
+            user: false,
             errorMsg: null,
             editorSettings: {
                 modules: {
@@ -79,21 +91,6 @@ export default {
                 console.log("Hi")
             }
             )
-            // const storageRef = firebase.storage().ref();
-            // const docRef = storageRef.child(`documents/blogPostPhotos/${file.name}`);
-            // docRef.put(file).on(
-            //     "state_changed",
-            //     (snapshot) => {
-            //         console.log(snapshot);
-            //     },
-            //     (err) => {
-            //         console.log(err)
-            //     }, async () => {
-            //         const downloadURL = await docRef.getDownloadURL();
-            //         Editor.insertEmbed(cursorLocation,"image",downloadURL);
-            //         resetUploader;
-            //     }
-            // )
         },
         uploadBlog() {
             if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
@@ -114,38 +111,18 @@ export default {
 
                         const dataBase = collection(db, "blogPosts")
                         await addDoc(dataBase, {
-                            blogID: dataBase.id,
+                            blogID: doc(dataBase).id,
                             blogHTML: this.blogHTML,
                             blogCoverPhoto: downloadURL,
                             blogCoverPhotoName: this.blogCoverPhotoName,
                             blogTitle: this.blogTitle, 
-                            profileId: this.profileId,
+                            profileId: this.user.uid,
                             date:timestamp,
                         });
+                        await this.$store.dispatch("getPost")
                         this.$router.push({name: "Forum"})
                     })
                     return;
-                    // docRef.put(this.file).on("state_changed", (snapshot) => {
-                    //     console.log(snapshot)
-                    // }, (err) => {
-                    //     console.log(err)
-                    // }, async () => {
-                    //     const downloadURL = await docRef.getDownloadURL();
-                    //     const timestamp = await Date.now();
-                    //     const dataBase = await db.collection("blogPosts").doc();
-
-                    //     await dataBase.set({
-                    //         blogID: dataBase.id,
-                    //         blogHTML: this.blogHTML,
-                    //         blogCoverPhoto: downloadURL,
-                    //         blogCoverPhotoName: this.blogCoverPhotoName,
-                    //         blogTitle: this.blogTitle,
-                    //         profileId: this.profileId,
-                    //         date:timestamp,
-                    //     });
-                    //     this.$router.push({name: "ViewPost"})
-                    // })
-                    // return;
                 }
                 this.error=true;
                 this.errorMsg = "Please ensure you uploaded a cover photo!";
