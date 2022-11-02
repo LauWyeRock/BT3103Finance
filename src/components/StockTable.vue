@@ -1,12 +1,44 @@
 <template>
   <table v-if="isByVolume">
     <tr>
-      <th>Asset</th>
-      <th>Name</th>
-      <th>Volume</th>
-      <th>Price</th>
-      <th>Market Cap</th>
-      <th>Recommendation</th>
+      <th>
+        <ToolTip
+          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
+        >
+          <span>Asset</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip text="Company's Full Name">
+          <span>Name</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="The amount of an asset or security that changes hands over some period of time, often over the course of a day"
+        >
+          <span>Volume</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="The current price that a share of stock is trading for on the market"
+        >
+          <span>Price</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Market capitalization refers to how much a company is worth as determined by the stock market"
+        >
+          <span>Market Cap</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip text="Analyst buy, hold and sell ratings">
+          <span>Recommendation</span>
+        </ToolTip>
+      </th>
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
       <td>{{ stock.symbol }}</td>
@@ -19,32 +51,91 @@
   </table>
   <table v-else>
     <tr>
-      <th>Asset</th>
-      <th>Reddit Total Mentions</th>
-      <th>Reddit Total Negative Score</th>
-      <th>Reddit Total Positive Score</th>
-      <th>Reddit Total Score</th>
-      <th>Twitter Total Mentions</th>
-      <th>Twitter Total Negative Score</th>
-      <th>Twitter Total Positive Score</th>
-      <th>Twitter Total Score</th>
+      <th>
+        <ToolTip
+          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
+        >
+          <span>Asset</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been mentioned on Reddit"
+        >
+          <span>Reddit Total Mentions</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been negatively mentioned on Reddit"
+        >
+          <span>Reddit Total Negative Score</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been positively mentioned on Reddit"
+        >
+          <span>Reddit Total Positive Score</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Final score based on positive and negative mentions on Reddit"
+        >
+          <span>Reddit Total Score</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been mentioned on Twitter"
+        >
+          <span>Twitter Total Mentions</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been negatively mentioned on Twitter"
+        >
+          <span>Twitter Total Negative Score</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Total number of times asset has been positively mentioned on Twitter"
+        >
+          <span>Twitter Total Positive Score</span>
+        </ToolTip>
+      </th>
+      <th>
+        <ToolTip
+          text="Final score based on positive and negative mentions on Twitter"
+        >
+          <span>Twitter Total Score</span>
+        </ToolTip>
+      </th>
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
       <td>{{ stock.symbol }}</td>
       <td>{{ numberWithCommas(stock.reddit_total_mentions) }}</td>
-      <td>{{ stock.reddit_total_negative_score }}</td>
-      <td>{{ stock.reddit_total_positive_score }}</td>
-      <td>{{ stock.reddit_total_score }}</td>
+      <td>{{ percentageConvert(stock.reddit_total_negative_score) }}%</td>
+      <td>{{ percentageConvert(stock.reddit_total_positive_score) }}%</td>
+      <td>{{ percentageConvert(stock.reddit_total_score) }}%</td>
       <td>{{ numberWithCommas(stock.twitter_total_mentions) }}</td>
-      <td>{{ stock.twitter_total_negative_score }}</td>
-      <td>{{ stock.twitter_total_positive_score }}</td>
-      <td>{{ stock.twitter_total_score }}</td>
+      <td>{{ percentageConvert(stock.twitter_total_negative_score) }}%</td>
+      <td>{{ percentageConvert(stock.twitter_total_positive_score) }}%</td>
+      <td>{{ percentageConvert(stock.twitter_total_score) }}%</td>
     </tr>
   </table>
 </template>
 
 <script>
+import ToolTip from "@/components/ToolTip";
+
 export default {
+  components: {
+    ToolTip,
+  },
   props: ["isByVolume", "stocksInfo"],
   methods: {
     numberWithCommas(x) {
@@ -64,6 +155,11 @@ export default {
         }
       }
       return converted;
+    },
+    percentageConvert(x) {
+      // let y = Number.parseFloat(x).toFixed(3);
+      return Math.round(x.toPrecision(3) * 100);
+      // return Math.round(x.toFixed(3) * 100);
     },
   },
 };
