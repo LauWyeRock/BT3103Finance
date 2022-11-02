@@ -1,4 +1,5 @@
 <template>
+	<div class="hello">
 	<ul class="result-list">
 		<VideoListItem
 			v-for="video in videos"
@@ -8,6 +9,7 @@
 		>
 		</VideoListItem>
 	</ul>
+</div>
 </template>
 
 <script>
@@ -29,6 +31,13 @@ export default {
 </script>
 
 <style>
+.hello {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1), 
+    rgba(161, 195, 209, 0.75), 
+    rgba(241, 114, 161, 0.5)
+    );
+}
 	.result-list {
 			padding-top: 60px;
 			display: grid;
