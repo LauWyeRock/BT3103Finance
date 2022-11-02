@@ -1,19 +1,28 @@
 <template>
   <div className="Socials-Card-Outer">
     <h1 className="Sub-Card-Title">Socials</h1>
-    <div className="Socials-Links">
+    <div className="Socials-Links" v-if="profile.links.linkedin">
       <h2>LinkedIn:</h2>
-      <a href="#">www.linkedin.com/bobby</a>
+      <a href="#">{{ profile.links.linkedin }}</a>
     </div>
-    <div className="Socials-Links">
+    <div className="Socials-Links" v-if="profile.links.github">
+      <h2>Github:</h2>
+      <a href="#">{{ profile.links.github }}</a>
+    </div>
+    <div className="Socials-Links" v-if="profile.links.personalSite">
       <h2>Personal Page:</h2>
-      <a href="#">www.hidethisifnotapplicable.com</a>
+      <a href="#">{{ profile.links.personalSite }}</a>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    profile: Object,
+  },
+  mounted() {},
+};
 </script>
 
 <style>

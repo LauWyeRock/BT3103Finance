@@ -29,9 +29,9 @@
           >
             <!-- Thomathus Reginald Swift -->
             <!-- Shashank Shekhar Tripathi -->
-            Ma Yi Long
+            {{ profile.displayName }}
           </h1>
-          <h2
+          <!-- <h2
             style="
               margin-top: 0px;
               margin-bottom: 10px;
@@ -42,7 +42,7 @@
             "
           >
             @RealElonMask
-          </h2>
+          </h2> -->
           <h3 style="font-style: normal; font-weight: 400; font-size: 22px">
             Junior Trader
           </h3>
@@ -61,6 +61,7 @@
               margin-right: 1px;
               margin-left: 1px;
             "
+            v-if="!ownPage"
           >
             Add as friend
           </button>
@@ -73,8 +74,10 @@
               margin-right: 1px;
               margin-left: 1px;
             "
+            v-if="ownPage"
           >
-            View Post History
+            <!-- route to edit pfp page -->
+            Edit Profile
           </button>
         </div>
       </div>
@@ -84,7 +87,12 @@
 
 <script>
 // needs 2 views, one with own user one where someone else views your page
-// export default {};
+export default {
+  props: {
+    profile: Object,
+    ownPage: Boolean,
+  },
+};
 </script>
 
 <style>
