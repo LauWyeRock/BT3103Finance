@@ -1,4 +1,5 @@
 <template>
+	<div>
 	<div class="container">
 
 		<!-- header + search bar -->
@@ -31,6 +32,7 @@
 
 
 	</div>
+</div>
 </template>
 
 <script>
@@ -80,7 +82,13 @@ export default {
 </script>
 
 <style scoped>
-
+.hello {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1), 
+    rgba(161, 195, 209, 0.75), 
+    rgba(241, 114, 161, 0.5)
+    );
+}
 	button {
 		font-size: 20px;
 		font-weight: bold;
@@ -91,11 +99,11 @@ export default {
 		/* text-transform: lowercase;  */
 	}
 	.container {
-		background-image: repeating-linear-gradient(
+		/* background-image: repeating-linear-gradient(
 		rgba(240, 235, 244, 1), 
 		rgba(161, 195, 209, 0.5), 
 		rgba(241, 114, 161, 0.5)
-		);
+		); */
 		border: 0;
 		height: 100%;
 		margin: 0;

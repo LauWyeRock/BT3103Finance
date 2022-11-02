@@ -1,21 +1,28 @@
 
-import { db, auth } from '@/firebase/firebase';
-import { doc, getDoc, orderBy, collection, getDocs } from 'firebase/firestore';
+import { db } from '@/firebase/firebase';
+//import { doc, getDoc, orderBy, collection, getDocs } from 'firebase/firestore';
+import {  orderBy, collection, getDocs } from 'firebase/firestore';
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { createStore } from 'vuex';
 
 
-// eslint-disable-next-line no-undef
-// export const store =  new Vuex.Store({ // export default new Vuex.Store
-
 export default createStore({
+    mounted() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            this.user = user;
+          }
+        })
+      },
+      data() {
+        return {
+          user:false,
+        }
+      },
     state: {
-        // sampleBlogCards: [
-        //     { blogTitle: "Blog Card #1", blogCoverPhoto: "stock-1", blogDate: "May 1, 2022"},
-        //     { blogTitle: "Blog Card #2", blogCoverPhoto: "stock-2", blogDate: "May 1, 2022"},
-        //     { blogTitle: "Blog Card #3", blogCoverPhoto: "stock-3", blogDate: "May 1, 2022"},
-        //     { blogTitle: "Blog Card #4", blogCoverPhoto: "stock-4", blogDate: "May 1, 2022"},
-        // ],
         blogPosts: [],
         postLoaded:null,
         editPost:null,
@@ -56,17 +63,22 @@ export default createStore({
             state.profileId = doc.id;
             state.profileEmail = doc.data().email
         },
+        setProfileInfo1(state,payload) {
+            state.profileEmail = payload;
+        },
+        setProfileInfo2(state,payload) {
+            state.profileId = payload;
+        },
         updateExchangeTicker(state, exchangeTicker) {
             state.exchangeTicker = exchangeTicker
         }
     },
     actions: {
         async getCurrentUser({commit}) {
-            //const dataBase = await db.collection("users").doc(db.auth().currentUser.uid)
-            //const dbResults = await dataBase.get();
-            const dbResults = await getDoc(doc(db, "users", auth.currentUser.uid))
-            //const dataBase = await db.collection("users").doc(auth.currentUser.uid)
-            commit("setProfileInfo", dbResults)
+            // const dbResults = await getDoc(doc(db, "users", this.user.uid))
+            // commit("setProfileInfo", dbResults)
+            commit("setProfileInfo1", this.user.uid)
+            commit("setProfileInfo2", this.user.email)
         },
         async getPost({ state }) {
             const dataBase = await getDocs(collection(db, "blogPosts"), orderBy("date", "desc"))
@@ -97,6 +109,9 @@ export default createStore({
         },
         blogPostsCards(state) {
             return state.blogPosts.slice(2,6)
+        },
+        blogPosts(state) {
+            return state.blogPosts
         }
     },
     //computed: {
