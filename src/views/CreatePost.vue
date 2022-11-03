@@ -3,14 +3,15 @@
         <blog-cover-preview v-show="this.$store.state.blogPhotoPreview"/>
         <div class="container">
             <div :class="{invisible : !error}" class="err-message">
-            <p><span>Error:</span>{{ this.errorMsg}}</p>
+                <p><span>Error:</span>{{ this.errorMsg}}</p>
             </div>
             <div class="blog-info">
-                <input type="text" placeholder="Enter Blog Title" v-model="blogTitle" />
+                <div class="titleplaceholder">Blog Title</div>
+                <input class="titlebox" type="text" v-model="blogTitle" />
                 <div class="upload-file">
-                    <label for="blog-photo">Upload Cover photo</label>
+                    <label class='uploadbtn' for="blog-photo">Upload Cover photo</label>
                     <input type="file" ref="blogPhoto" id="blog-photo" @change="fileChange" accept=".png, .jpg, .jpeg" />
-                    <button @click="openPreview" class="preview" :class="{ 'button-inactive': !this.$store.state.blogPhotoFileURL }">Preview Photo</button>
+                    <button @click="openPreview" class="previewbtn" :class="{ 'button-inactive': !this.$store.state.blogPhotoFileURL }">Preview Photo</button>
                     <!-- <button class="preview" :class="{ 'button-inactive': !store.state.blogPhotoFileURL }">Preview Photo</button> -->
 
                     <span>File chosen: {{ this.$store.state.blogPhotoName}}</span>
@@ -20,7 +21,7 @@
                     <vue-editor :editorOptions="editorSettings" v-model="blogHTML" useCustomImageHandler @image-added="imageHandler" />
                 </div>
                 <div class="blog-actions">
-                    <button @click="uploadBlog">Publish Blog</button>
+                    <button class="publishbtn" @click="uploadBlog">Publish Blog</button>
                     <router-link class="router-button" to="#">Post preview</router-link>
                 </div>
             </div>
@@ -164,14 +165,15 @@ export default {
 }
 </script>
 
-<!-- <style lang="scss">
+<style lang="scss">
 .create-post {
     position:relative;
     height: 100%;
-
-    button {
-        margin-top: 0;
-    }
+    background-image: repeating-linear-gradient(
+		rgba(240, 235, 244, 1), 
+		rgba(161, 195, 209, 0.5), 
+		rgba(241, 114, 161, 0.5)
+		);
 
     .router-button {
         text-decoration: none;
@@ -179,27 +181,37 @@ export default {
     }
 
     label,
-    button,
+    .previewbtn,
+    .publishbtn,
     .router-button {
-        transition: 0.5s ease-in-out all;
+        // transition: 0.5s ease-in-out all;
         align-self: center;
         font-size: 14px;
+        font-weight:bold;
         cursor: pointer;
-        border-radius: 20px;
+        border-radius: 5px;
         padding: 12px 24px;
-        color: #fff;
-        background-color: #303030;
-        text-decoration: none;
+        color: purple;
+        background-color: rgb(251, 243, 234);
 
         &:hover {
-            background-color: rgba(48,48,48,0.7);
+            background-color: rgba(48,48,48,0.4);
         }
+    }
+
+    .titlebox {
+        height: 60px;
+        font-size: 30px;
+    }
+
+    .titleplaceholder {
+        font-size: 30px;
     }
 
     .container {
         position: relative;
         height: 100%;
-        padding: 10px 25px 60px
+        // padding: 10px 25px 60px
     }
 
     .invisible {
@@ -225,64 +237,78 @@ export default {
     }
 
     .blog-info {
-        display:flex;
+
         margin-bottom: 32px;
+        // background-color: white;
 
-        input:nth-child(1) {
-            min-width: 300px;
-        }
-        input {
-            transition: 0.5s ease-in-out all;
-            padding: 10px 4px;
-            border: none;
-            border-bottom: 1px solid #303030;
+        // input:nth-child(1) {
+        //     min-width: 300px;
+        // }
+        // input {
+        //     transition: 0.5s ease-in-out all;
+        //     padding: 10px 4px;
+        //     border: none;
+        //     border-bottom: 1px solid #303030;
 
-            &:focus {
-                outline:none;
-                box-shadow: 0 1px 0 0 #303030;
-            }
-        }
+        //     &:focus {
+        //         outline:none;
+        //         box-shadow: 0 1px 0 0 #303030;
+        //     }
+        // }
 
         .upload-file {
-            flex:1;
-            margin-left: 16px;
             position: relative;
             display:flex;
+            margin-top: 30;
 
             input{
                 display: none;
             }
 
-            .preview {
+            .previewbtn {
                 margin-left: 16px;
+                // margin-top: 35;
+                margin-bottom: 30px;
                 text-transform: initial;
             }
 
+            .uploadbtn {
+                margin-left: 0px;
+            }   
+
             span {
-                font-size: 12px;
+                font-size: 15px;
                 margin-left: 16px;
                 align-self: center;   
             }
         }
     }
+
+    .button-inactive {
+        background-color: lightgrey;
+        color: white;
+        margin-top:30px;
+    }
+
     .editor {
         height:60vh;
         display:flex;
         flex-direction: column;
     }
-    .quillWrapper{ 
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
+    
+    // .quillWrapper{ 
+    //     position: relative;
+    //     display: flex;
+    //     flex-direction: column;
+    //     height: 100%;
+    // }
 
-    .ql-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        overflow: scroll;
-    }
+    // .ql-container {
+    //     display: flex;
+    //     flex-direction: column;
+    //     height: 100%;
+    //     overflow: scroll;
+    // }
 
     .ql-editor {
         padding: 20px 16px 30px;
@@ -297,4 +323,4 @@ export default {
     }
 }
 
-</style> -->
+</style>

@@ -1,7 +1,7 @@
 <template>
 <div class="modal" ref="modal">
     <div class="modal-content">
-        <button @click="closePreview" class="icon"></button>
+        <button class="closebtn" @click="closePreview">x</button>
         <img :src="this.blogCoverPhoto" alt="" />
     </div>
 </div>
@@ -37,31 +37,33 @@ export default {
     width:100%;
     height: 100%;
     top:0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: white;
 
     .modal-content {
         display: flex;
         justify-content: center;
         position: relative;
         border-radius: 12px;
-        width:600px;
+        width:900px;
         padding: 50px;
-        box-shadow: 0 4px 6px -2px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-        background-color: #fff;
         height: 400px;
 
 
-        .icon {
-            width: 24px;
+        .closebtn {
+            width: 28px;
             height: auto;
             cursor: pointer;
             font-size: 24px;
             position: absolute;
-            top:15px;
+            top:0px;
             right:15px;
-            color:#303030;
-
+            background-color: rgb(203, 191, 172);
+            color: white;
+            text-align: center;
+            padding: 0px;
+            border-radius: 8px;
         }
+
         img {
             margin-top: 16px;
             display: block;
@@ -71,4 +73,5 @@ export default {
         }
     }
 }
+
 </style>
