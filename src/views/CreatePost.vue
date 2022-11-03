@@ -206,11 +206,13 @@ export default {
 
     .titleplaceholder {
         font-size: 30px;
+        margin-bottom: 10px;
     }
 
     .container {
         position: relative;
         height: 100%;
+        width: 1000px;
         // padding: 10px 25px 60px
     }
 
