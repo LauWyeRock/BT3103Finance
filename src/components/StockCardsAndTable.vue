@@ -91,13 +91,19 @@ export default {
   async setup(props) {
     let stocksInfo;
     if (props.isByVolume) {
-      stocksInfo = await fetch(`http://127.0.0.1:5000/stocks`).then((res) =>
-        res.json()
-      );
+      // stocksInfo = await fetch(`http://127.0.0.1:5000/stocks`).then((res) =>
+      //   res.json()
+      // );
+      stocksInfo = await fetch(
+        `http://timcheng112.pythonanywhere.com/stocks`
+      ).then((res) => res.json());
     } else {
-      stocksInfo = await fetch(`http://127.0.0.1:5000/social-sentiments`).then(
-        (res) => res.json()
-      );
+      // stocksInfo = await fetch(`http://127.0.0.1:5000/social-sentiments`).then(
+      //   (res) => res.json()
+      // );
+      stocksInfo = await fetch(
+        `http://timcheng112.pythonanywhere.com/social-sentiments`
+      ).then((res) => res.json());
     }
     return { stocksInfo };
   },
