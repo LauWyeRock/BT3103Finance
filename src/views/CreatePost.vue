@@ -57,6 +57,7 @@ export default {
             file:null,
             error: null,
             user: false,
+            docRef: null,
             errorMsg: null,
             editorSettings: {
                 modules: {
@@ -110,7 +111,7 @@ export default {
                         const timestamp = await Date.now();
 
                         const dataBase = collection(db, "blogPosts")
-                        await addDoc(dataBase, {
+                        this.docRef = await addDoc(dataBase, {
                             blogID: doc(dataBase).id,
                             blogHTML: this.blogHTML,
                             blogCoverPhoto: downloadURL,
@@ -118,7 +119,20 @@ export default {
                             blogTitle: this.blogTitle, 
                             profileId: this.user.uid,
                             date:timestamp,
-                        });
+                        }).then(async docRef => {
+                            await setDoc(doc(db, "blogPosts", docRef.id), {
+                                //blogID: doc(dataBase).id,
+                                blogID: docRef.id,
+                                blogHTML: this.blogHTML,
+                                blogCoverPhoto: downloadURL,
+                                blogCoverPhotoName: this.blogCoverPhotoName,
+                                blogTitle: this.blogTitle, 
+                                profileId: this.user.uid,
+                                date:timestamp,
+                                ref: docRef.id
+                            })
+                        })
+                        
                         await this.$store.dispatch("getPost")
                         this.$router.push({name: "Forum"})
                     })
@@ -131,7 +145,7 @@ export default {
                 }, 5000);
                 return;
             }
-        }
+        },                                                                         
     },
     components: {
     VueEditor,
