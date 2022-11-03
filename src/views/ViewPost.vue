@@ -26,7 +26,6 @@ export default {
     async mounted() {
         const id = this.$route.params.blogid
         const docRef = doc(db, "blogPosts", id)
-        //const docRef = doc(db, "blogPosts", `${this.$route.params.blogid}`)
         const docSnap = await getDoc(docRef)
         this.currentBlog = docSnap;
         this.loading = false
