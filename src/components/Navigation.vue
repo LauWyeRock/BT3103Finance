@@ -11,17 +11,21 @@
       <div class="nav-links">
         <ul>
           <router-link class="link" to="/">Home</router-link>
-          <router-link class="link" to="/feed">Feed</router-link>
+          <router-link class="link" to="/feed">TestPageNotFound</router-link>
           <router-link class="link" v-if="!user" to="/sign-in">Login</router-link>
-          <router-link class="link" v-if="!user" to="/register">Register</router-link>
+          <router-link class="link" v-if="!user" to="/register"> Register </router-link>
           <router-link class="link" to="/news"> News </router-link>
           <router-link class="link" to="/videos"> Videos </router-link>
-          <router-link class="link" to="/forum"> forum </router-link>
-          <router-link class="link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
+          <router-link class="link" to="/forum"> Forum </router-link>
+          <router-link class="link" to="/blogs"> Blogs </router-link>
           <router-link class="link" to="/chat" v-if="user"> Chat </router-link>
           <router-link class="link" to="/createpost" v-if="user"> Create Post </router-link>
           <router-link class="link" to="/papertrading" v-if="user"> Paper Trading</router-link>
-          <router-link class="link" to="/pfp" v-if="user"> Profile Page</router-link>
+          <router-link class="link" to="/profile" v-if="user"> Profile Page</router-link>
+          <router-link class="link" to="/editpfp" v-if="user"> EditProfilePage</router-link>
+          <router-link class="link" to="/stock-screener" v-if="user"> StockScreener</router-link>
+
+
           <br /> <br />
           <h4 @click.prevent="signOut" class="link" v-if="user">Sign Out</h4>
           <br />
@@ -71,7 +75,7 @@ export default {
         savetofs() {
           let a = document.getElementById("stock").value
           this.$store.commit('updateExchangeTicker',a)
-          this.$router.push("/stocks/")
+          this.$router.push("/stocks/" + a)
         }
     },
 };

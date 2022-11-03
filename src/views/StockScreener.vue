@@ -1,6 +1,4 @@
 <template>
-  <div class="tradingview-widget-container">
-    <div id="tradingview_4894e"></div>
   <div>
     <h1 class="stock-title">Stock Screener</h1>
     <div class="trending-stocks-box">
@@ -10,7 +8,9 @@
         <template #default>
           <StockCardsAndTable :isByVolume="true" />
         </template>
-        <template #fallback>Loading...</template>
+        <template #fallback>
+          <StockCardsAndTableSkeleton :isByVolume="true" />
+        </template>
       </Suspense>
     </div>
     <div class="trending-stocks-box">
@@ -20,29 +20,23 @@
         <template #default>
           <StockCardsAndTable :isByVolume="false" />
         </template>
-        <template #fallback>Loading...</template>
+        <template #fallback>
+          <StockCardsAndTableSkeleton :isByVolume="false" />
+        </template>
       </Suspense>
     </div>
-    <!-- <div>
-      <column-chart
-        :data="[
-          ['Sun', 32],
-          ['Mon', 46],
-          ['Tue', 28],
-        ]"
-      ></column-chart>
-    </div> -->
-  </div>
   </div>
 </template>
 
 <script>
+import StockCardsAndTableSkeleton from "@/components/StockCardsAndTableSkeleton.vue";
 import StockCardsAndTable from "../components/StockCardsAndTable.vue";
 
 export default {
   name: "StockScreener",
   components: {
     StockCardsAndTable,
+    StockCardsAndTableSkeleton,
   },
 
   data() {

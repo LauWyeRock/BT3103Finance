@@ -7,7 +7,7 @@ import VueChartkick from "vue-chartkick";
 import "chartkick/chart.js";
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp} from "firebase/app";
 //import store from './store/index';
 // import { onAuthStateChanged } from "firebase/auth";
 // import {auth} from "./firebase/firebase";
@@ -35,12 +35,3 @@ app.use(router).use(store);
 app.use(VueChartkick);
 
 app.mount("#app");
-
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     initializeApp(firebaseConfig);
-//     const app = createApp(App)
-//     app.use(router).use(Unicon)
-//     app.mount('#app')
-//   }
-// })

@@ -2,15 +2,17 @@
   <div className="About-Card-Outer">
     <h1 className="Sub-Card-Title">About me</h1>
     <h3>
-      Hi Im Yi Long, an aspiring trader. Listening to the anecdotes of how
-      people succeeded in their trading journeys have inspired me to start my
-      own journey!
+      {{ profile.about }}
     </h3>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    profile: Object,
+  },
+};
 </script>
 
 <style>

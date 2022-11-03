@@ -1,5 +1,5 @@
 <template>
-
+    <div class="hello">
     <div class="container">
 
         <!-- header + search bar -->
@@ -62,6 +62,7 @@
         </div>
 
     </div>
+</div>
   </template>
   
   <script>
@@ -184,14 +185,21 @@
 
   
   <style lang="scss" scoped>
-    .container {
+.hello {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1), 
+    rgba(161, 195, 209, 0.75), 
+    rgba(241, 114, 161, 0.5)
+    );
+}
+.container {
         position: relative;
         width: 100%;
-        background-image: repeating-linear-gradient(
+        /* background-image: repeating-linear-gradient(
         rgba(240, 235, 244, 1), 
         rgba(161, 195, 209, 0.75), 
         rgba(241, 114, 161, 0.5)
-        );    
+        );     */
     }
     // .newstitle {
     //     height: 100px;
