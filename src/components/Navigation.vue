@@ -232,11 +232,16 @@ header {
   margin-left: 10px;
   height: 30px;
   width: 70px;
-  background-color: rgba(198, 241, 247, 0.804);
+  background-color: rgb(252, 248, 243);
   border-radius: 5px;
-  color: black;
+  color: rgb(192, 140, 205);
   font-weight: bold;
-  padding:0
+  padding:0;
+
+  &:hover {
+    background-color: rgb(192, 140, 205);
+    color: rgb(252, 248, 243)
+  }
 
 }
 
@@ -244,7 +249,7 @@ li {
   float: left;
 }
 li a:hover, .dropdown:hover .dropbtn {
-  color: purple;
+  color: rgb(192, 140, 205);
 }
 
 li.dropdown {
