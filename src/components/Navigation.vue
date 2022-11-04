@@ -69,7 +69,7 @@
               <a href="sign-in" v-if="!user">Login</a>
               <a href="register" v-if="!user"> Register </a>
               <a href="profile" v-if="user">Profile</a>
-              <a href="editpfp" v-if="user">Edit Profile</a>
+              <a href="editprofile" v-if="user">Edit Profile</a>
               <a @click.prevent="signOut" v-if="user">Sign Out</a>
             </div>
           </li>
