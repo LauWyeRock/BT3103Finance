@@ -12,24 +12,48 @@
         <ul>
           <router-link class="link" to="/">Home</router-link>
           <router-link class="link" to="/feed">Feed</router-link>
-          <router-link class="link" v-if="!user" to="/sign-in">Login</router-link>
-          <router-link class="link" v-if="!user" to="/register">Register</router-link>
+          <router-link class="link" v-if="!user" to="/sign-in"
+            >Login</router-link
+          >
+          <router-link class="link" v-if="!user" to="/register"
+            >Register</router-link
+          >
           <router-link class="link" to="/news"> News </router-link>
           <router-link class="link" to="/videos"> Videos </router-link>
           <router-link class="link" to="/forum"> forum </router-link>
-          <router-link class="link" to="/stocks/" @click="this.$store.commit('updateExchangeTicker','NYSE:GME')"> Stocks </router-link>
+          <router-link
+            class="link"
+            to="/stocks/"
+            @click="this.$store.commit('updateExchangeTicker', 'NYSE:GME')"
+          >
+            Stocks
+          </router-link>
           <router-link class="link" to="/chat" v-if="user"> Chat </router-link>
-          <router-link class="link" to="/createpost" v-if="user"> Create Post </router-link>
-          <router-link class="link" to="/papertrading" v-if="user"> Paper Trading</router-link>
-          <router-link class="link" to="/pfp" v-if="user"> Profile Page</router-link>
-          <br /> <br />
+          <router-link class="link" to="/createpost" v-if="user">
+            Create Post
+          </router-link>
+          <router-link class="link" to="/papertrading" v-if="user">
+            Paper Trading</router-link
+          >
+          <router-link class="link" to="/profile" v-if="user">
+            Profile Page</router-link
+          >
+          <br />
+          <br />
           <h4 @click.prevent="signOut" class="link" v-if="user">Sign Out</h4>
           <br />
           <div class="searchbar">
-            <input type="text" id="stock" required="" placeholder="Search Stock..."/>
-            </div>
-            <div class="save">
-              <button id="searchbutton" type="button" v-on:click="savetofs()"> Search </button>
+            <input
+              type="text"
+              id="stock"
+              required=""
+              placeholder="Search Stock..."
+            />
+          </div>
+          <div class="save">
+            <button id="searchbutton" type="button" v-on:click="savetofs()">
+              Search
+            </button>
           </div>
         </ul>
       </div>
@@ -42,48 +66,47 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
-    name:'navigation',
-    mounted() {
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          this.user = user;
-        }
-      })
-    },
-    data() {
-      return {
-        user:false,
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "navigation",
+  mounted() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.user = user;
       }
+    });
+  },
+  data() {
+    return {
+      user: false,
+    };
+  },
+  commponents: {},
+  methods: {
+    async signOut() {
+      await signOut(auth)
+        .then(() => {
+          this.$router.push({ name: "Home" });
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     },
-    commponents: {
-
+    savetofs() {
+      let a = document.getElementById("stock").value;
+      this.$store.commit("updateExchangeTicker", a);
+      this.$router.push("/stocks/");
     },
-    methods: {
-        async signOut() {
-            await signOut(auth).then(() => {
-                this.$router.push({name: "Home"})
-            }).catch((err) => {
-                console.log(err.message)
-            });
-        },
-        savetofs() {
-          let a = document.getElementById("stock").value
-          this.$store.commit('updateExchangeTicker',a)
-          this.$router.push("/stocks/")
-        }
-    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 header {
-  background-color:#f0ebf4;
+  background-color: #f0ebf4;
   padding: 0 25px;
   // box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    // 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  // 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
   .link {
     font-weight: 500;
@@ -158,11 +181,11 @@ header {
 
 .searchbar {
   background-color: white;
-        width: 20px;
-        height: 10px;
-        border-radius: 10px;
-        font-weight: bold;
-        box-shadow: 10px 3px 5px #888888
+  width: 20px;
+  height: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 10px 3px 5px #888888;
 }
 
 #searchbutton {
@@ -170,8 +193,7 @@ header {
   width: 70px;
   background-color: rgba(198, 241, 247, 0.804);
   border-radius: 5px;
-  padding:0px;
+  padding: 0px;
   color: black;
 }
-
 </style>

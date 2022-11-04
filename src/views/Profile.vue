@@ -4,7 +4,9 @@
       <ViewProfile></ViewProfile>
     </template>
     <template #fallback>
-      <h1 style="font-size: 100px">loading...</h1>
+      <div style="text-align: center; margin-top: 10px">
+        <h1 style="font-size: 50px">fetching profile...</h1>
+      </div>
     </template>
   </Suspense>
 </template>

@@ -20,15 +20,15 @@ const router = createRouter({
       component: () => import("../views/Videos.vue"),
       name: "Videos",
     },
-    {
-      path: "/feed",
-      component: () => import("../views/Feed.vue"),
-      name: "Feed",
-      // Right now I want to prevent access to some pages
-      meta: {
-        requiresAuth: true,
-      },
-    },
+    // {
+    //   path: "/feed",
+    //   component: () => import("../views/Feed.vue"),
+    //   name: "Feed",
+    //   // Right now I want to prevent access to some pages
+    //   meta: {
+    //     requiresAuth: true,
+    //   },
+    // },
     {
       path: "/news",
       component: () => import("../components/NewsPage.vue"),
@@ -80,10 +80,13 @@ const router = createRouter({
       name: "ProfilePageAll",
       path: "/profile/:uid",
       component: () => import("../views/Profile.vue"),
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       //edit profile page.
-      path: "/editpfp",
+      path: "/editprofile",
       component: () => import("../views/EditProfile.vue"),
       name: "EditProfilePage",
       meta: {
