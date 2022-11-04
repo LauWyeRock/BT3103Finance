@@ -1,4 +1,5 @@
 <template>
+	<div>
 	<div class="container">
 
 		<!-- header + search bar -->
@@ -31,6 +32,7 @@
 
 
 	</div>
+</div>
 </template>
 
 <script>
