@@ -37,9 +37,9 @@ const router = createRouter({
       path: "/blogs",
       component: () => import("../views/Blogs.vue"),
       name: "Blogs",
-      meta : {
+      meta: {
         requiresAuth: true,
-      }
+      },
     },
     {
       path: "/forgotPassword",
@@ -47,14 +47,14 @@ const router = createRouter({
       name: "ForgotPassword",
     },
     {
-      path: "/stocks/:stock", 
+      path: "/stocks/:stock",
       component: () => import("../views/StockPage.vue"),
       name: "Stocks",
     },
     {
-      path:"/stocks/undefined",
+      path: "/stocks/undefined",
       component: () => import("../views/NotFound.vue"),
-      name: "NotFound"
+      name: "NotFound",
     },
     {
       path: "/chat",
@@ -67,7 +67,7 @@ const router = createRouter({
       name: "CreatePost",
     },
     {
-      path: "/view-post/:blogid", 
+      path: "/view-post/:blogid",
       component: () => import("../views/ViewPost.vue"),
       name: "ViewPost",
     },
@@ -83,10 +83,13 @@ const router = createRouter({
       name: "ProfilePageAll",
       path: "/profile/:uid",
       component: () => import("../views/Profile.vue"),
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       //edit profile page.
-      path: "/editpfp",
+      path: "/editprofile",
       component: () => import("../views/EditProfile.vue"),
       name: "EditProfilePage",
       meta: {

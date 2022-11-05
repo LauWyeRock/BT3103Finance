@@ -5,7 +5,7 @@
  -->
 <template>
   <div v-if="userFound">
-    <ProfileCard :profile="profile" :ownPage="ownPage" />
+    <ProfileCard :profile="profile" :ownPage="ownPage" :uid="profileUid" />
     <div className="cards">
       <AboutMeCard :profile="profile" />
       <SocialsCard :profile="profile" :ownPage="ownPage" />
@@ -35,13 +35,14 @@ export default {
       var ownPage = false;
       var userFound = true;
       var uid = route.params.uid;
+      var myUid = "";
       if (uid == null) {
         uid = "";
       }
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          const myUid = auth.currentUser.uid;
+          myUid = auth.currentUser.uid;
           //this is users page
           if (myUid == uid) {
             //passed in UID of ur own profile
@@ -57,9 +58,12 @@ export default {
       });
 
       var profile = null;
+      var profileUid = null;
       if (uid == "") {
+        profileUid = myUid;
         profile = await getProfile();
       } else {
+        profileUid = uid;
         profile = await getProfileByUid(uid);
       }
       if (profile == null) {
@@ -69,6 +73,7 @@ export default {
       console.error("error in setup" + e);
     }
     return {
+      profileUid,
       profile,
       ownPage,
       userFound,
