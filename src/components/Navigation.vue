@@ -9,7 +9,7 @@
       </div>
 
       <div class="searchdiv">
-        <input type="text" class="searchbar" placeholder="Search Stock...">
+        <input type="text" id="stock" class="searchbar" placeholder="Search Stock...">
         <button class="searchbutton" type="button" v-on:click="savetofs()">Search</button>
       </div>
 

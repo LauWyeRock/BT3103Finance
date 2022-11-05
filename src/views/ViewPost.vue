@@ -6,13 +6,19 @@
         <img :src="this.currentBlog.data().blogCoverPhoto" alt="" />
         <div class="post-content ql-editor" v-html="this.currentBlog.data().blogHTML"></div>
     </div>
-</div>
 
+    <div class="commentformspace">
+      <input v-model="message" placeholder="Comment here" />
+    </div>
+</div>
+  
 </template>
 
 <script>
-import { doc, getDoc } from "firebase/firestore";
 import { db } from '@/firebase/firebase';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import {doc,  getDoc } from "@firebase/firestore";
 
 
 export default {
@@ -20,7 +26,9 @@ export default {
     data() {
         return {
             currentBlog: null,
-            loading: true
+            loading: true,
+            user: false,
+            comment: null,
         }
     },
     async mounted() {
@@ -29,14 +37,29 @@ export default {
         const docSnap = await getDoc(docRef)
         this.currentBlog = docSnap;
         this.loading = false
+
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            this.user = user;
+          }
+        })
     },
+    // methods: {
+    //     async commentSend() {
+    //         const timestamp = Date.now();
+    //         const dataBase = collection(db, "blogPosts", this.$router.params.blogid, "comments" )
+    //                     this.docRef = await addDoc(dataBase, {
+    //                         date:timestamp,
+    //                         comment: {{message}},
+    //                         username: this.user.username,
+    //                     })
+    //     }
+    // },
     computed: {
         blogPostsFeed() {
             return this.$store.getters.blogPostsFeed;
         },
-        user() {
-            return this.$store.state.user;
-        }
     }
 }
 </script>
