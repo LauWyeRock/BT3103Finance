@@ -227,7 +227,7 @@ header {
   width: 70px;
   background-color: rgb(252, 248, 243);
   border-radius: 5px;
-  color: rgb(252, 248, 243);
+  color: rgb(192, 140, 205);
   font-weight: bold;
   padding: 0;
 
