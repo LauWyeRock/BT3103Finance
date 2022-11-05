@@ -1,9 +1,9 @@
 <template>
   <form
     style="
-      margin: 2rem;
-      margin-left: 5rem;
-      margin-right: 5rem;
+      padding: 2rem;
+      padding-left: 5rem;
+      padding-right: 5rem;
       border-top-width: 1px;
       border-color: #e5e7eb;
     "
@@ -56,7 +56,7 @@
         </div>
 
         <!-- displayName -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">Display Name</label>
           <div class="profile-card">
             <div class="profile-info">
@@ -66,7 +66,7 @@
         </div>
 
         <!-- Profile Pic -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">Profile Picture</label>
           <div class="profile-card">
             <div class="profile-info">
@@ -79,7 +79,7 @@
           </div>
         </div>
         <!-- Cover Photo -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">Cover Photo</label>
           <div class="profile-card">
             <div class="profile-info">
@@ -95,7 +95,7 @@
           </div>
         </div>
         <!-- About -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">About</label>
           <div class="profile-card">
             <div class="profile-info">
@@ -108,7 +108,7 @@
           </div>
         </div>
         <!-- Social Links -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">Social Links</label>
           <div class="profile-card">
             <div class="profile-info">
@@ -130,13 +130,31 @@ export default {};
 </script>
 
 <style>
-.form-row-container {
-  margin-top: 1rem;
+form {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
+.edit-form-row-container {
+  /* margin-top: 1rem;
   margin-bottom: 1rem;
   padding-top: 1.25rem;
   border-top-style: solid;
   border-top-width: 2px;
   border-color: #e5e7eb;
+  gap: 1rem; */
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  padding-top: 1.25rem;
+  align-items: flex-start;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: #9ca3af;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 .form-row-label {
@@ -150,7 +168,6 @@ export default {};
 .profile-card {
   width: 100%;
   max-width: 700px;
-  background: white;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -175,7 +192,7 @@ export default {};
   0% {
     background-color: #eee;
   }
-  50% {
+  60% {
     background-color: #eaeaea;
   }
   100% {
