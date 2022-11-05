@@ -1,22 +1,25 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 
 <template>
-  <div class="hello">
-    <div class="vid">
 
-      <video-background 
-      :src="require(`../assets/Scientists4.mp4`)"
-    poster="/images/mainfoto.jpg"
-    
-    style="max-height: 400px; height: 100vh;"
-    overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
->
-    <h1 style="color: white;">Hallo welcome!</h1>
-</video-background>
+<div>
+  <div class="hello">
+    <div>
+    <div class="vidcontainer">
+      <video-background
+        :src="require(`../assets/Scientists4.mp4`)"
+        poster="/images/mainfoto.jpg"
+        style="max-height: 500px; height: 500px;"
+        overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
+      >
+        <h1 class="header">TradeBros: <br/> Where Stock <br/> Enthusiasts Gather</h1>
+      </video-background>
     </div>
+
+    <div class="personcontainer">
     <div class="person">
       <svg
-        height="420px"
+        height="400px"
         viewBox="0 0 600 550"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -303,21 +306,49 @@
           fill="#001D2D"
         />
       </svg>
+      </div>
 
-      <p>
-        Illustration from
-        <a
-          href="https://blush.design/fr/collections/pebble-people"
-          target="_blank"
-          >Pebble People</a
-        >
-        by
-        <a href="https://blush.design/fr/artists/deivid-saenz" target="_blank"
-          >Deivd Saenz</a
-        >
-      </p>
+      <div class="paragraph">
+        <p> Want to start investing but not sure how to begin and who to ask for help? <br/>
+          <br/>
+          TradeBros aims to provide a broad starting point for beginners in the investing field by building a 
+          portfolio management tool that would assist them in creating a decision making framework, based within 
+          an immersive and interactive community-centric system that is fun and engaging to use at the same time.
+          <br/>
+          <br/> The best thing you can invest in is yourself. Start picking up valuable
+          financial knowledge today with our Resources, or get reliable opinions from the Forum!
+        </p>
+      </div>
+
+      <div class="credscontainer">
+        <!-- <h4 class="credits">
+          Illustration from
+          <a href="https://blush.design/fr/collections/pebble-people"
+            target="_blank"> Pebble People </a>
+          by
+          <a href="https://blush.design/fr/artists/deivid-saenz" target="_blank"> Deivd Saenz </a>
+        </h4> -->
+      </div>
+
     </div>
-    <p ref="paragraph">TRYING OUT PLS WORK</p>
+  
+    <div class="termoftheday">
+      <h1 class="totd">Term of the day</h1>
+      <h2 class="pnd">Pump and Dump (PnD)</h2>
+      <h4 class="explanation">Pump-and-dump is a manipulative scheme that attempts to boost the price of a stock or security 
+        through fake recommendations. These recommendations are based on false, misleading, or greatly 
+        exaggerated statements. The perpetrators of a pump-and-dump scheme already have an established position 
+        in the company's stock and will sell their positions after the hype has led to a higher share price.</h4>
+        <a href="https://www.investopedia.com/terms/p/pumpanddump.asp" target="_blank">read more</a>
+    </div>
+
+  </div>
+  </div>
+    
+
+
+ 
+
   </div>
 </template>
 
@@ -412,22 +443,115 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.person {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 
-p {
-  text-align: center;
-}
 .hello {
   background: repeating-linear-gradient(
     rgba(240, 235, 244, 1),
     rgba(161, 195, 209, 0.75),
     rgba(241, 114, 161, 0.5)
   );
+  height:500px;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 }
+.hello::-webkit-scrollbar {
+  display: none;
+}
+
+.person {
+  margin-top:0;
+}
+
+p {
+  text-align: center;
+}
+
+.paragraph {
+  margin-top:0;
+  width: 60%;
+  font-size: 22px;
+  letter-spacing: 0px;
+}
+
+.header {
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 60px;
+  color:white;
+}
+
+.credscontainer {
+  position:relative;
+}
+
+.credits {
+  font-size:13px;
+  margin-top:100px;
+  margin-bottom: 0px;
+  font-weight: light;
+  text-align:center;
+  overflow:hidden;
+  position:absolute;
+  bottom: 0px;
+}
+
+.vidcontainer {
+  scroll-snap-align: start;
+  height:500px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.personcontainer {
+  scroll-snap-align: start;
+  height:500px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* .credscontainer {
+  scroll-snap-align: start;
+  height:500px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+} */
+
+.termoftheday {
+  scroll-snap-align: start;
+  height:500px;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  width:80%;
+  margin:auto;
+}
+
+.totd,
+.pnd,
+.explanation {
+    margin-bottom:20px;
+  }
+
+  .totd {
+    font-size: 45px;
+    font-weight: bold;
+  }
+
+  .pnd {
+    font-size: 40px;
+    font-weight: bold
+  }
+
+  .explanation {
+    font-weight: light;
+  }
+
+
 
 </style>

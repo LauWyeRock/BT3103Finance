@@ -256,7 +256,7 @@
         padding-bottom: 10px;
     }
     .topnav {
-        background-color: white;
+        background-color: rgb(252, 251, 249);
         overflow: hidden;
         width: 1000px;
         height: 50px;
@@ -281,7 +281,7 @@
     }
     /* Add a color to the active/current link */
     .topnav a:focus {
-        background-color: rgba(161, 195, 209, 0.75);
+        background-color: rgba(206, 233, 244, 0.75);
         color: black;
         text-decoration: underline;
     }
@@ -330,15 +330,16 @@
     .newstitle {
         font-family:Arial;
         font-weight:bold;
-        font-size:22px;
+        font-size:18px;
         text-align:center;
+        height:100px;
     }
     .readmorebtn {
         margin-left:0%;
         font-size: 13px;
         font-weight:bold;
         border-radius:4px;
-        background-color: white;
+        background-color: rgb(252, 248, 243);
         color: black;
         cursor: pointer;
     }
@@ -353,12 +354,13 @@
         //     font-size: 1.6rem;
         //     color: #888;
         // }
-    #scroll-trigger {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100px;
-        font-size: 1.6rem;
-    }
+
+    // #scroll-trigger {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     width: 100%;
+    //     height: 100px;
+    //     font-size: 1.6rem;
+    // }
   </style>
