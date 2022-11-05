@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@iconscout/vue-unicons": "^0.0.3",
+    "@vueuse/motion": "^2.0.0-beta.12",
     "axios": "^0.27.2",
     "bootstrap-vue": "^2.22.0",
     "bootstrap-vue-3": "^0.3.5",
@@ -30,6 +31,7 @@
     "vue-chartkick": "^1.1.0",
     "vue-lazytube": "^1.1.1",
     "vue-loader": "^17.0.0",
+    "vue-responsive-video-background-player": "^2.3.1",
     "vue-router": "^4.1.5",
     "vue-svg-loader": "^0.10.0",
     "vue-trading-view": "^1.0.1",
