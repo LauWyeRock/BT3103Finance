@@ -1,7 +1,8 @@
 <template>
     <div class="blog-card-wrap">
         <div class="blog-cards container">
-            <BlogCard :post="post" v-for="(post, index) in blogPosts" :key="index" />
+          
+                <BlogCard :post="post" v-for="(post, index) in blogPosts" :key="index" />
         </div>
     </div>
 </template>

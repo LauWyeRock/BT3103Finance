@@ -9,10 +9,8 @@
       </div>
 
       <div class="searchdiv">
-        <input type="text" class="searchbar" placeholder="Search Stock..." />
-        <button class="searchbutton" type="button" v-on:click="savetofs()">
-          Search
-        </button>
+        <input type="text" id="stock" class="searchbar" placeholder="Search Stock...">
+        <button class="searchbutton" type="button" v-on:click="savetofs()">Search</button>
       </div>
 
       <div class="nav-links">
@@ -109,24 +107,13 @@ export default {
         .catch((err) => {
           console.log(err.message);
         });
-    },
-    commponents: {},
-    methods: {
-      async signOut() {
-        await signOut(auth)
-          .then(() => {
-            this.$router.push({ name: "Home" });
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
       },
+
       savetofs() {
         let a = document.getElementById("stock").value;
         this.$store.commit("updateExchangeTicker", a);
         this.$router.push("/stocks/" + a);
       },
-    },
   },
 };
 </script>

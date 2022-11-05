@@ -15,7 +15,6 @@
                     <!-- <button class="preview" :class="{ 'button-inactive': !store.state.blogPhotoFileURL }">Preview Photo</button> -->
 
                     <span>File chosen: {{ this.$store.state.blogPhotoName}}</span>
-                    <!-- <span>File chosen: {{ store.state.blogPhotoName}}</span> -->
                 </div>
                 <div class="editor">
                     <vue-editor :editorOptions="editorSettings" v-model="blogHTML" useCustomImageHandler @image-added="imageHandler" />
@@ -58,6 +57,7 @@ export default {
             file:null,
             error: null,
             user: false,
+            docRef: null,
             errorMsg: null,
             editorSettings: {
                 modules: {
@@ -97,8 +97,6 @@ export default {
             if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
                 if (this.file) {
                     const docRef = ref(getStorage(), `documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`)
-                    //const storageRef = firebase.storage().ref();
-                    //const docRef = storageRef.child(`documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`)
                     const uploadTask = uploadBytesResumable(docRef, this.file)
                     uploadTask.on('state_changed', 
                     (snapshot) => {
@@ -111,7 +109,7 @@ export default {
                         const timestamp = await Date.now();
 
                         const dataBase = collection(db, "blogPosts")
-                        await addDoc(dataBase, {
+                        this.docRef = await addDoc(dataBase, {
                             blogID: doc(dataBase).id,
                             blogHTML: this.blogHTML,
                             blogCoverPhoto: downloadURL,
@@ -119,7 +117,20 @@ export default {
                             blogTitle: this.blogTitle, 
                             profileId: this.user.uid,
                             date:timestamp,
-                        });
+                        }).then(async docRef => {
+                            await setDoc(doc(db, "blogPosts", docRef.id), {
+                                //blogID: doc(dataBase).id,
+                                blogID: docRef.id,
+                                blogHTML: this.blogHTML,
+                                blogCoverPhoto: downloadURL,
+                                blogCoverPhotoName: this.blogCoverPhotoName,
+                                blogTitle: this.blogTitle, 
+                                profileId: this.user.uid,
+                                date:timestamp,
+                                ref: docRef.id
+                            })
+                        })
+                        
                         await this.$store.dispatch("getPost")
                         this.$router.push({name: "Forum"})
                     })
@@ -132,7 +143,7 @@ export default {
                 }, 5000);
                 return;
             }
-        }
+        },                                                                         
     },
     components: {
     VueEditor,
@@ -164,7 +175,6 @@ export default {
     }
 }
 </script>
-
 <style lang="scss">
 .create-post {
     position:relative;
