@@ -37,6 +37,7 @@ const app = createApp(App);
 
 app.component('video-background', VideoBackground);
 app.use(router).use(store).use(MotionPlugin).use(Plugin);
+app.use(router).use(store).use(Plugin);
 app.use(VueChartkick);
 
 app.mount("#app");
