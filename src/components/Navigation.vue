@@ -275,9 +275,11 @@ li.dropdown {
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  cursor: pointer;
 }
 </style>
