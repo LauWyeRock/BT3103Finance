@@ -9,7 +9,7 @@
       </div>
 
       <div class="searchdiv">
-        <input type="text" id="stock" class="searchbar" placeholder="Search Stock...">
+        <input type="text" id="stock" class="searchbar" placeholder="Search Stock..." />
         <button class="searchbutton" type="button" v-on:click="savetofs()">Search</button>
       </div>
 
@@ -275,9 +275,11 @@ li.dropdown {
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+  cursor: pointer;
 }
 </style>
