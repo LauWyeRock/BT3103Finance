@@ -30,11 +30,27 @@
 			/>
 		<div> 
 			<StockInDepthData :title = getStock />
+			<button @click="() => TogglePopup('buttonTrigger')">Open Popup</button>
+		
+		<QuizPopup 
+			v-if="popupTriggers.buttonTrigger" 
+			:TogglePopup="() => TogglePopup('buttonTrigger')">
+			<h2>My Button Popup</h2>
+		</QuizPopup>
+		<QuizPopup
+			v-if="popupTriggers.timedTrigger"
+			:TogglePopup="() => TogglePopup('timedTrigger')">
+			<h2>My Timed Popup</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, accusantium sequi. Libero velit assumenda odio dolor repellendus earum debitis culpa voluptatum, illum beatae? Quasi, modi omnis repellat adipisci voluptate assumenda!
+			</p>
+		</QuizPopup>
 		</div>
 
 		<FundamentalData
 			:options = "{symbol: getStock, theme: 'dark', width: 400}" 
 		/>
+
 	</div>
 	</div>
 
@@ -44,11 +60,12 @@
 //import {src} from "https://s3.tradingview.com/tv.js"
 import { Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData } from 'vue-tradingview-widgets';
 import StockInDepthData from '@/components/StockInDepthData'
+import QuizPopup from '@/components/QuizPopup'
 
 export default {
     name: 'HelloWorld',
     components: {
-		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData, StockInDepthData
+		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData, StockInDepthData, QuizPopup
     },
 	mounted() {
 		if (localStorage.getItem('reloaded')) {
