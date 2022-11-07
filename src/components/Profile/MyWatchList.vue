@@ -20,7 +20,9 @@
 
 <script>
 import StockTickerCard from "./StockTickerCard.vue";
-export default { components: { StockTickerCard } };
+export default { 
+  components: { StockTickerCard } 
+};
 </script>
 
 <style>

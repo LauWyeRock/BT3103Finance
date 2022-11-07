@@ -41,7 +41,7 @@
         </div>
         <div>
             Take a quiz here to access paper trading! <br>
-            <button> Take the quiz </button> <br>
+            <QuizPopup/>
             *Caution: Data may not be updated in real time. For accuracy, do refer to tradingview
         </div>
     </div>
@@ -51,6 +51,7 @@
 // api key: YYDJ5HRF9K8DOGJE
 import axios from "axios";
 import { type } from "os";
+import QuizPopup from './QuizPopup.vue';
 export default {
     data() { 
         return {
@@ -59,6 +60,9 @@ export default {
             bookValue: "Loading...",
             sales: "Loading..."
         }
+    },
+    components : {
+        QuizPopup
     },
     props:{
         title: String,
