@@ -26,8 +26,8 @@
 			<div class = "modal" v-if="isOpen2"> 
         <div class = "box">
 					<h2> Are you sure? </h2><br>
-          <button class = "confirm" @click = close2()> Yes </button>
-          <button class = "close" @click = close2()> No </button>
+          <button class = "confirm" @click = "removeStocks()"> Yes </button>
+          <button class = "close" @click = "close2()"> No </button>
         </div>
       </div>
     </teleport>
@@ -41,8 +41,9 @@ import { getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 export default { 
-  components: { StockTickerCard },
+  components: { StockTickerCard},
   async created() {
+    this.toDelete = await this.getFavStocks()
     this.favorites = await this.getFavStocks();
   },
   data() {
@@ -92,6 +93,7 @@ export default {
             .then(() => {
               console.log("updated...");
               alert("Profile Updated Successfully!");
+              location.reload();
             })
             .catch((error) => {
               //error
@@ -115,8 +117,38 @@ export default {
         });
       });
     },
-    removeStocks() {
-        alert("stocks removed")
+    async removeStocks() {
+        let toDelete = this.$store.state.stocksToDelete;
+        let currentStocks = await this.getFavStocks();
+        if (toDelete.length < 1) {
+          alert("No stocks to delete! Click on the ticker and highlight the stocks to delete.");
+          this.close2();
+          return
+        }
+        for (let i = 0; i < toDelete.length; i++) {
+          let index = currentStocks.indexOf(toDelete[i]);
+          currentStocks.splice(index, 1);
+        }
+        console.log(currentStocks);
+        let b = await this.getUserId();
+        setDoc(
+            doc(db, "profiles", b),
+            {
+              favoriteStocks: currentStocks
+            },
+            { merge: true }
+          )
+            .then(() => {
+              console.log("updated...");
+              alert("Stocks Removed!");
+              location.reload();
+            })
+            .catch((error) => {
+              //error
+              console.error(
+                "oh no something went wrong with setting favorite stocks!" + error
+              );
+            });
     }
   }
 };

@@ -1,8 +1,6 @@
 <template>
   <div className="Stock-Card-Outer">
-    <img
-      className="Stock-Icon" src='https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AAPL.svg'
-    />
+    <img className="Stock-Icon" v-bind:src="newLink" />
     <div className="notClicked" id = "Ticker" style="cursor: pointer;" @click="check(this)">
       <h1> {{ ticker }} </h1>
     </div>
@@ -15,21 +13,44 @@ export default {
   props: {
     ticker: String,
   },
+  data() {
+    return {
+      newLink: this.getLink()
+    }
+  },
   methods: {
     theFunction() {
       alert("You clicked me")
     },
     check(element) {
 			console.log(element)
-			console.log(event.target.id)
-			console.log(event.target.className)
-			if(event.target.className == "notClicked"){
-				event.target.className="clicked"
+			if(event.target.className == "clicked"){
+				event.target.className="notClicked"
+        this.removeStock(this.ticker);
+        console.log(this.getStocks);
 			}
 			else {
-				event.target.className="notClicked"
+				event.target.className="clicked"
+        this.addStock(this.ticker);
+        console.log(this.getStocks);
 			}
-		}
+		},
+    addStock(stock) {
+      this.$store.dispatch('setStocksToDelete',stock);
+    },
+    removeStock(stock) {
+      this.$store.dispatch('removeStocksToDelete', stock);
+    },
+    getLink() {
+      let c = 'https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/' + this.ticker + '.svg'
+      return c
+    }
+  }, 
+  computed: {
+    getStocks() {
+        let a = this.$store.state.stocksToDelete;
+        return a;
+    }
   }
 };
 </script>

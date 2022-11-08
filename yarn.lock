@@ -9371,6 +9371,11 @@
     "hash-sum" "^2.0.0"
     "loader-utils" "^2.0.0"
 
+"vue-multiselect@^2.1.6":
+  "integrity" "sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w=="
+  "resolved" "https://registry.npmjs.org/vue-multiselect/-/vue-multiselect-2.1.6.tgz"
+  "version" "2.1.6"
+
 "vue-responsive-video-background-player@^2.3.1":
   "integrity" "sha512-9IdFfmHe1cY0PvTw51sYcSO5+gPJya5einLIoktVzBMALEC3yok36X/1+hDfbgihapRYxz3fmyv1o5M1u+0xEA=="
   "resolved" "https://registry.npmjs.org/vue-responsive-video-background-player/-/vue-responsive-video-background-player-2.3.1.tgz"
