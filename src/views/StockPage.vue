@@ -2,20 +2,28 @@
 <div class="tradingview-widget-container">
     <div id="tradingview_4894e"></div>
     <div class="tradingview-widget-copyright">
-		<div class = "Hello" style = "float: left">
+		<div class = "Hello" style = "float: left; border-color: black; border-radius: 5px;">
 			<SymbolInfo
-			:options = "{symbol: getStock, theme: 'dark'}"/>
+			:options = "{symbol: getStock, theme: 'dark', width: 970, isTransparent: true}"/>
 			<Chart
 			:options = "{
+					theme: 'dark',
 					autosize: false,
 					symbol: getStock,
-					style: 1,
-					allow_symbol_change: false
+					allow_symbol_change: false,
+					height: 632.5,
 			}"/>
 		</div>
 			<div> 
-				<StockInDepthData/>
+				<StockInDepthData :title="getStock"/>
 			</div>
+	</div>
+	<div style = "display: flex; flex-direction: row;">
+		<TechnicalAnalysis :options = "{symbol: getStock, isTransparent: true}"/>
+	</div>
+	<div style = "display: flex; align-items: center;">
+		<FundamentalData :options = "{symbol: getStock, width: 666, height: 600, isTransparent: true}"/>
+		<CompanyProfile :options = "{symbol: getStock, width: 700, height: 600, isTransparent: true}"/>
 	</div>
 </div>
 
@@ -23,14 +31,14 @@
 
 <script>
 //import {src} from "https://s3.tradingview.com/tv.js"
-import { Chart, SymbolInfo } from 'vue-tradingview-widgets';
+import { Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData  } from 'vue-tradingview-widgets';
 import StockInDepthData from '@/components/StockInDepthData'
 //import QuizPopup from '@/components/QuizPopup'
 
 export default {
     name: 'HelloWorld',
     components: {
-		Chart, SymbolInfo, StockInDepthData
+		Chart, TechnicalAnalysis, CompanyProfile, SymbolInfo, FundamentalData , StockInDepthData
     },
 	mounted() {
 		if (localStorage.getItem('reloaded')) {
@@ -56,13 +64,11 @@ export default {
 
 <style scoped>
 .tradingview-widget-container {
-	
-	background: linear-gradient(
-		180deg,
-		rgba(161, 195, 209, 0.75) 46.38%,
-		rgba(241, 114, 161, 0.5) 100%
-	);
-
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
 }
 
 </style>

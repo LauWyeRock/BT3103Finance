@@ -42,7 +42,7 @@
         <div>
             Take a quiz here to access paper trading! <br>
             <QuizPopup/>
-            *Caution: Data may not be updated in real time. For accuracy, do refer to tradingview
+            <br>
         </div>
     </div>
 </template>
@@ -100,8 +100,10 @@ export default {
 <style scoped>
 
 .Box {
-	background: white;
+	background: transparent;
     color: black;
+    justify-content: center;
+    align-items: center;
 }
 
 .Hello {
@@ -126,6 +128,7 @@ export default {
   padding: 5px 0;
   top: -5px;
   right: 105%;
+  line-height: 20px;
 
   /* Position the tooltip */
   position: absolute;

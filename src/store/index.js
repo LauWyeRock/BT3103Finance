@@ -24,6 +24,7 @@ export default createStore({
       },
     state: {
         blogPosts: [],
+        stocksToDelete: [],
         postLoaded:null,
         editPost:null,
         user:null,
