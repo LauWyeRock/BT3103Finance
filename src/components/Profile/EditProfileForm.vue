@@ -566,6 +566,7 @@ async function getProfile() {
       about: "Hi! I'm new to FinanceBois!",
       following: [],
       followers: [],
+      favoriteStocks: []
     })
       .then(() => {
         console.log("created new profile for user...");
@@ -594,6 +595,7 @@ form {
     rgba(241, 114, 161, 0.5)
   );
 }
+
 .edit-form-row-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -624,9 +626,11 @@ form {
   border-radius: 0.375rem;
   border-color: #d1d5db;
 }
+
 ::-webkit-file-upload-button {
   display: none;
 }
+
 .submit-button {
   display: inline-flex;
   padding-top: 0.5rem;
