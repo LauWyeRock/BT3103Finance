@@ -48,7 +48,6 @@ export default {
         padding: 50px;
         height: 400px;
 
-
         .closebtn {
             width: 28px;
             height: auto;
