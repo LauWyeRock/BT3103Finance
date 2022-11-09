@@ -90,11 +90,11 @@ export default {
 
 <style lang="scss">
 .form-wrap {
-    background: linear-gradient(
-        200deg,
-        rgba(161, 195, 209, 0.75) 10%,
-        rgba(241, 114, 161, 0.5) 100%
-    );
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
     overflow:hidden;
     display:flex;
     height:100vh;

@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <div class='page'>
   <div class="forum">
     <BlogPost :post="welcomeScreen" />
     <BlogPost
@@ -32,6 +33,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -71,12 +73,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .blog-card-wrap {
   h3 {
     font-weight: 300;
     font-size: 28px;
     margin-bottom: 32px;
   }
+}
+.page {
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
 }
 </style>

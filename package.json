@@ -29,6 +29,7 @@
     "sass-loader": "^13.1.0",
     "vue": "^3.2.13",
     "vue-chartkick": "^1.1.0",
+    "vue-comment-grid": "^1.0.12",
     "vue-lazytube": "^1.1.1",
     "vue-loader": "^17.0.0",
     "vue-responsive-video-background-player": "^2.3.1",

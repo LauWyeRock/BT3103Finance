@@ -1,3 +1,4 @@
+/* eslint-disable vue/multi-word-component-names */
 import { createApp } from "vue";
 import App from "./App.vue";
 import { MotionPlugin } from '@vueuse/motion'
@@ -5,6 +6,8 @@ import router from "./router";
 
 import VideoBackground from 'vue-responsive-video-background-player'
 import { Plugin } from 'vue-responsive-video-background-player'
+
+import CommentGrid from 'vue-comment-grid'
 
 import store from "./store";
 import VueChartkick from "vue-chartkick";
@@ -35,8 +38,9 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App);
 
+
 app.component('video-background', VideoBackground);
-app.use(router).use(store).use(MotionPlugin).use(Plugin);
+app.use(router).use(store).use(MotionPlugin).use(Plugin).use(CommentGrid);
 app.use(VueChartkick);
 
 app.mount("#app");
