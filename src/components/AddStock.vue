@@ -59,7 +59,7 @@
   
         alert(" Saving Coin: " + a);
   
-        try{
+        try {
           const docRef = await setDoc(doc(db,String(this.fbuser), a), {Coin:a, Ticker: b, Buy_Price: c, Buy_Quantity: d})
           console.log(docRef)
           document.getElementById('myform').reset();
