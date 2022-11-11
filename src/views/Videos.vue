@@ -1,6 +1,6 @@
 <template>
 	<div>
-	<div class="container">
+	<div class="container-fluid">
 
 		<!-- header + search bar -->
         <div class="header">videos</div>
@@ -92,7 +92,7 @@ export default {
 		padding: 10px 10px 10px 10px;
 		/* text-transform: lowercase;  */
 	}
-	.container {
+	.container-fluid {
 		background-image: repeating-linear-gradient(
 		rgba(240, 235, 244, 1), 
 		rgba(161, 195, 209, 0.5), 

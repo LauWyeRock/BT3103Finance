@@ -23,7 +23,7 @@ export default {
     name: "app",
     data() {
         return {
-          navigation: null,
+          navigation: false,
         };
     },
     created() { 
@@ -40,7 +40,7 @@ export default {
     mounted() { },
     methods: {
       checkRoute() {
-        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword") {
+        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword" || this.$route.name === "Home") {
           this.navigation = true;
           return ;
         }
