@@ -50,12 +50,12 @@
             Contribution Score : 5010101
           </h3>
           <div style="margin-top: 10px">
-            <a @click="showFollowing = true">
+            <a @click="showFollowing = true" style="cursor: pointer">
               <p style="display: inline-block; margin-right: 25px">
                 Following: {{ profile.following.length }}
               </p>
             </a>
-            <a @click="showFollowers = true">
+            <a @click="showFollowers = true" style="cursor: pointer">
               <span>Followers: {{ profile.followers.length }}</span>
             </a>
           </div>
@@ -114,12 +114,15 @@
     <!-- use the modal component, pass in the prop -->
     <ProfileModal :show="showFollowers" @close="showFollowers = false">
       <template #header>
-        <h3>Followers</h3>
+        <h3>Followers ({{ profile.followers.length }})</h3>
       </template>
       <template #body>
         <div>
           <div v-for="follower in profile.followers" :key="follower">
-            <a @click="$router.push(follower.uid)">
+            <a
+              @click="$router.push({ path: `/profile/${follower.uid}` })"
+              style="cursor: pointer"
+            >
               {{ follower.displayName }}
             </a>
           </div>
@@ -132,12 +135,15 @@
     <!-- use the modal component, pass in the prop -->
     <ProfileModal :show="showFollowing" @close="showFollowing = false">
       <template #header>
-        <h3>Following</h3>
+        <h3>Following ({{ profile.following.length }})</h3>
       </template>
       <template #body>
         <div>
           <div v-for="following in profile.following" :key="following">
-            <a @click="$router.push(following.uid)">
+            <a
+              @click="$router.push({ path: `/profile/${following.uid}` })"
+              style="cursor: pointer"
+            >
               {{ following.displayName }}
             </a>
           </div>
@@ -270,8 +276,6 @@ export default {
           this.isFollowing = true;
         }
       }
-
-      console.log("AM I FOLLOWING? " + this.isFollowing);
     }
   },
   data() {
