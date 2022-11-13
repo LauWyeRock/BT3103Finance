@@ -5,38 +5,38 @@
         <ToolTip
           text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
         >
-          <span>Asset</span>
+          <span class="header-text">Asset</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip text="Company's Full Name">
-          <span>Name</span>
+          <span class="header-text">Name</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="The amount of an asset or security that changes hands over some period of time, often over the course of a day"
         >
-          <span>Volume</span>
+          <span class="header-text">Volume</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="The current price that a share of stock is trading for on the market"
         >
-          <span>Price</span>
+          <span class="header-text">Price</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Market capitalization refers to how much a company is worth as determined by the stock market"
         >
-          <span>Market Cap</span>
+          <span class="header-text">Market Cap</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip text="Analyst buy, hold and sell ratings">
-          <span>Recommendation</span>
+          <span class="header-text">Recommendation</span>
         </ToolTip>
       </th>
     </tr>
@@ -55,63 +55,63 @@
         <ToolTip
           text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
         >
-          <span>Asset</span>
+          <span class="header-text">Asset</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been mentioned on Reddit"
         >
-          <span>Reddit Total Mentions</span>
+          <span class="header-text">Reddit Total Mentions</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been negatively mentioned on Reddit"
         >
-          <span>Reddit Total Negative Score</span>
+          <span class="header-text">Reddit Total Negative Score</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been positively mentioned on Reddit"
         >
-          <span>Reddit Total Positive Score</span>
+          <span class="header-text">Reddit Total Positive Score</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Final score based on positive and negative mentions on Reddit"
         >
-          <span>Reddit Total Score</span>
+          <span class="header-text">Reddit Total Score</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been mentioned on Twitter"
         >
-          <span>Twitter Total Mentions</span>
+          <span class="header-text">Twitter Total Mentions</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been negatively mentioned on Twitter"
         >
-          <span>Twitter Total Negative Score</span>
+          <span class="header-text">Twitter Total Negative Score</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Total number of times asset has been positively mentioned on Twitter"
         >
-          <span>Twitter Total Positive Score</span>
+          <span class="header-text">Twitter Total Positive Score</span>
         </ToolTip>
       </th>
       <th>
         <ToolTip
           text="Final score based on positive and negative mentions on Twitter"
         >
-          <span>Twitter Total Score</span>
+          <span class="header-text">Twitter Total Score</span>
         </ToolTip>
       </th>
     </tr>
@@ -182,5 +182,9 @@ th {
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.header-text {
+  border-bottom: 1px dotted black;
 }
 </style>
