@@ -11,7 +11,7 @@
       <SocialsCard :profile="profile" :ownPage="ownPage" />
     </div>
     <MyWatchList :profile="profile" :ownPage="ownPage" />
-    <AchievementListCard :profile="profile" :ownPage="ownPage" />
+    <AchievementListCard :uid="profileUid" />
   </div>
   <div v-else>
     <span>NO USER FOUND</span>
@@ -60,7 +60,7 @@ export default {
       var profile = null;
       var profileUid = null;
       if (uid == "") {
-        profileUid = myUid;
+        profileUid = auth.currentUser.uid;
         profile = await getProfile();
       } else {
         profileUid = uid;
@@ -69,6 +69,7 @@ export default {
       if (profile == null) {
         userFound = false;
       }
+      console.log("PUID" + profileUid);
     } catch (e) {
       console.error("error in setup" + e);
     }
