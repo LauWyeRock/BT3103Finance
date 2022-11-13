@@ -339,8 +339,39 @@
         through fake recommendations. These recommendations are based on false, misleading, or greatly 
         exaggerated statements. The perpetrators of a pump-and-dump scheme already have an established position 
         in the company's stock and will sell their positions after the hype has led to a higher share price.</h4>
-        <a href="https://www.investopedia.com/terms/p/pumpanddump.asp" target="_blank">read more</a>
+        <a href="https://www.investopedia.com/terms/p/pumpanddump.asp" target="_blank" class="readmore">read more</a>
     </div>
+
+    <div class="reviewdiv">
+        <h1 style="font-size: 30px; text-align: center; margin-bottom: 50px">What users are saying about TradeBros...</h1>  
+        
+        <div class="reviewcardcontainer">
+          <div class="reviewcard">
+              <ReviewCard>
+              </ReviewCard>
+          </div>
+        </div>
+    </div>
+
+    <div class="aboutus">
+        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The TradeBros Team
+          <br/>
+          <h4 style="font-size: 20px; text-align: center; margin-bottom: 50px">At TradeBros, we believe that financial knowledge is an extremely powerful tool in
+              today's society.
+              <br/>With the right information, tools and community, anyone can learn how
+              to invest wisely.
+              <br/>That is why we would like to share these same things with you.
+              <br/>If you have any enquiries, feel free to contact us via the button below. Cheers!
+          </h4>
+        </h1>
+
+        <div class="center">
+          <button class="contactus" type="button">
+            Contact Us
+          </button>
+        </div>
+    </div>
+
 
   </div>
   </div>
@@ -355,10 +386,14 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useMotion } from "@vueuse/motion";
+import ReviewCard from "@/components/ReviewCard.vue";
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
+  components: {
+    ReviewCard,
+  },
   mounted() {
     if (localStorage.getItem("reloaded")) {
       // The page was just reloaded. Clear the value from local storage
@@ -450,7 +485,7 @@ export default defineComponent({
     rgba(161, 195, 209, 0.75),
     rgba(241, 114, 161, 0.5)
   );
-  height:500px;
+  height:100vh;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 }
@@ -484,29 +519,10 @@ p {
   position:relative;
 }
 
-.credits {
-  font-size:13px;
-  margin-top:100px;
-  margin-bottom: 0px;
-  font-weight: light;
-  text-align:center;
-  overflow:hidden;
-  position:absolute;
-  bottom: 0px;
-}
-
-.vidcontainer {
-  scroll-snap-align: start;
-  height:500px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-}
-
+.vidcontainer,
 .personcontainer {
   scroll-snap-align: start;
-  height:500px;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -524,7 +540,7 @@ p {
 
 .termoftheday {
   scroll-snap-align: start;
-  height:500px;
+  height:100vh;
   justify-content:center;
   align-items:center;
   overflow:hidden;
@@ -552,6 +568,59 @@ p {
     font-weight: light;
   }
 
+  .readmore {
+    color: rgb(136, 19, 165);
+  }
 
+  .readmore:hover {
+    color: rgb(252, 248, 243);
+  }
+
+  .reviewdiv {
+  scroll-snap-align: start;
+  height:100vh;
+  justify-content:center;
+  overflow:hidden;
+  margin: auto;
+  align-self: center;
+}
+
+.reviewcardcontainer {
+  display:flex;
+  margin: auto;
+}
+
+.aboutus {
+  scroll-snap-align: start;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  width:80%;
+  margin:auto;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.contactus {
+  margin: auto;
+  background-color: rgb(252, 248, 243);
+  color: rgb(192, 140, 205);
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.contactus:hover {
+  background-color: rgb(192, 140, 205);
+  color: rgb(252, 248, 243);
+}
 
 </style>
