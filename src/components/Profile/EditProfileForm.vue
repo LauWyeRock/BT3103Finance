@@ -1,11 +1,12 @@
 <template>
   <form
     style="
-      margin: 2rem;
-      margin-left: 5rem;
-      margin-right: 5rem;
+      padding: 2rem;
+      padding-left: 5rem;
+      padding-right: 5rem;
       border-top-width: 1px;
       border-color: #e5e7eb;
+      box-sizing: border-box;
     "
   >
     <div
@@ -56,7 +57,7 @@
         </div>
 
         <!-- displayName -->
-        <div className="form-row-container">
+        <div className="edit-form-row-container">
           <label className="form-row-label">Display Name</label>
           <div
             style="
@@ -79,7 +80,7 @@
         </div>
       </div>
       <!-- profile picture -->
-      <div className="form-row-container">
+      <div className="edit-form-row-container">
         <label className="form-row-label">Profile Picture</label>
         <div style="margin-top: 0.25rem">
           <div style="display: flex; align-items: center">
@@ -106,7 +107,7 @@
             <label
               style="
                 margin-left: 1rem;
-                background-color: #ffffff;
+                background-color: transparent;
                 color: #4f46e5;
                 font-weight: 500;
                 border-radius: 0.375rem;
@@ -120,7 +121,7 @@
         </div>
       </div>
       <!-- cover photo -->
-      <div className="form-row-container">
+      <div className="edit-form-row-container">
         <label className="form-row-label">Cover Photo</label>
 
         <div
@@ -134,7 +135,7 @@
             max-width: 32rem;
             border-radius: 0.375rem;
             border-width: 2px;
-            border-color: #d1d5db;
+            border-color: #9ca3af;
             border-style: dashed;
           "
         >
@@ -165,7 +166,7 @@
               <label
                 style="
                   position: relative;
-                  background-color: #ffffff;
+                  background-color: transparent;
                   color: #4f46e5;
                   font-weight: 500;
                   border-radius: 0.375rem;
@@ -188,7 +189,7 @@
         </div>
       </div>
       <!-- about -->
-      <div className="form-row-container">
+      <div className="edit-form-row-container">
         <label className="form-row-label">About</label>
         <div style="margin-top: 0.25rem">
           <textarea
@@ -198,19 +199,20 @@
             cols="30"
             rows="5"
             style="
+              background-color: transparent;
               padding: 3px;
               display: block;
               width: 100%;
               max-width: 32rem;
               border-radius: 0.375rem;
-              border-color: #d1d5db;
+              border-color: #9ca3af;
               box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             "
           ></textarea>
         </div>
       </div>
       <!-- social links -->
-      <div className="form-row-container">
+      <div className="edit-form-row-container">
         <label className="form-row-label">Social Links</label>
         <div
           style="
@@ -225,12 +227,12 @@
               display: inline-flex;
               padding-left: 0.75rem;
               padding-right: 0.75rem;
-              background-color: #f9fafb;
+              background-color: transparent;
               color: #6b7280;
               align-items: center;
               border-top-left-radius: 0.375rem;
               border-bottom-left-radius: 0.375rem;
-              border-width: 1px;
+              border-width: 2px;
               border-right-width: 0;
               border-color: #d1d5db;
             "
@@ -250,6 +252,7 @@
               border-top-right-radius: 0.375rem;
               border-bottom-right-radius: 0.375rem;
               border-color: #d1d5db;
+              background-color: transparent;
             "
           />
         </div>
@@ -268,7 +271,7 @@
               display: inline-flex;
               padding-left: 0.75rem;
               padding-right: 0.75rem;
-              background-color: #f9fafb;
+              background-color: transparent;
               color: #6b7280;
               align-items: center;
               border-top-left-radius: 0.375rem;
@@ -293,6 +296,7 @@
               border-top-right-radius: 0.375rem;
               border-bottom-right-radius: 0.375rem;
               border-color: #d1d5db;
+              background-color: transparent;
             "
           />
         </div>
@@ -311,7 +315,7 @@
               display: inline-flex;
               padding-left: 0.75rem;
               padding-right: 0.75rem;
-              background-color: #f9fafb;
+              background-color: transparent;
               color: #6b7280;
               align-items: center;
               border-top-left-radius: 0.375rem;
@@ -336,6 +340,7 @@
               border-top-right-radius: 0.375rem;
               border-bottom-right-radius: 0.375rem;
               border-color: #d1d5db;
+              background-color: transparent;
             "
           />
         </div>
@@ -346,8 +351,8 @@
       style="
         padding-top: 1.25rem;
         border-top-style: solid;
-        border-top-width: 2px;
-        border-color: #e5e7eb;
+        border-top-width: 1px;
+        border-color: #9ca3af;
       "
     >
       <div style="display: flex; justify-content: center">
@@ -496,11 +501,15 @@ export default {
       console.log("About: " + about);
       console.log("Links: " + links);
 
-      setDoc(doc(db, "profiles", uid), {
-        displayName: displayName,
-        about: about,
-        links: links,
-      })
+      setDoc(
+        doc(db, "profiles", uid),
+        {
+          displayName: displayName,
+          about: about,
+          links: links,
+        },
+        { merge: true }
+      )
         .then(() => {
           console.log("updated...");
           alert("Profile Updated Successfully!");
@@ -554,6 +563,10 @@ async function getProfile() {
     await setDoc(doc(db, "profiles", uid), {
       displayName: "new user",
       links: links,
+      about: "Hi! I'm new to FinanceBois!",
+      following: [],
+      followers: [],
+      favoriteStocks: []
     })
       .then(() => {
         console.log("created new profile for user...");
@@ -575,15 +588,23 @@ async function getProfile() {
 </script>
 
 <style>
-.form-row-container {
+form {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
+
+.edit-form-row-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
   display: grid;
   padding-top: 1.25rem;
   align-items: flex-start;
   border-top-style: solid;
-  border-top-width: 2px;
-  border-color: #e5e7eb;
+  border-top-width: 1px;
+  border-color: #9ca3af;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
@@ -597,6 +618,7 @@ async function getProfile() {
 }
 
 .long-text-box {
+  background-color: transparent;
   padding: 3px;
   display: block;
   width: 100%;
@@ -604,9 +626,11 @@ async function getProfile() {
   border-radius: 0.375rem;
   border-color: #d1d5db;
 }
+
 ::-webkit-file-upload-button {
   display: none;
 }
+
 .submit-button {
   display: inline-flex;
   padding-top: 0.5rem;

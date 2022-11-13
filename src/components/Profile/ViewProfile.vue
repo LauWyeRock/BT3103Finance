@@ -5,13 +5,13 @@
  -->
 <template>
   <div v-if="userFound">
-    <ProfileCard :profile="profile" :ownPage="ownPage" />
+    <ProfileCard :profile="profile" :ownPage="ownPage" :uid="profileUid" />
     <div className="cards">
       <AboutMeCard :profile="profile" />
       <SocialsCard :profile="profile" :ownPage="ownPage" />
     </div>
     <MyWatchList :profile="profile" :ownPage="ownPage" />
-    <AchievementListCard :profile="profile" :ownPage="ownPage" />
+    <AchievementListCard :uid="profileUid" />
   </div>
   <div v-else>
     <span>NO USER FOUND</span>
@@ -35,13 +35,14 @@ export default {
       var ownPage = false;
       var userFound = true;
       var uid = route.params.uid;
+      var myUid = "";
       if (uid == null) {
         uid = "";
       }
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          const myUid = auth.currentUser.uid;
+          myUid = auth.currentUser.uid;
           //this is users page
           if (myUid == uid) {
             //passed in UID of ur own profile
@@ -57,18 +58,23 @@ export default {
       });
 
       var profile = null;
+      var profileUid = null;
       if (uid == "") {
+        profileUid = auth.currentUser.uid;
         profile = await getProfile();
       } else {
+        profileUid = uid;
         profile = await getProfileByUid(uid);
       }
       if (profile == null) {
         userFound = false;
       }
+      console.log("PUID" + profileUid);
     } catch (e) {
       console.error("error in setup" + e);
     }
     return {
+      profileUid,
       profile,
       ownPage,
       userFound,

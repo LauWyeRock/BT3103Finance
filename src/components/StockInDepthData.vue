@@ -41,8 +41,8 @@
         </div>
         <div>
             Take a quiz here to access paper trading! <br>
-            <button> Take the quiz </button> <br>
-            *Caution: Data may not be updated in real time. For accuracy, do refer to tradingview
+            <QuizPopup/>
+            <br>
         </div>
     </div>
 </template>
@@ -51,6 +51,7 @@
 // api key: YYDJ5HRF9K8DOGJE
 import axios from "axios";
 import { type } from "os";
+import QuizPopup from './QuizPopup.vue';
 export default {
     data() { 
         return {
@@ -59,6 +60,9 @@ export default {
             bookValue: "Loading...",
             sales: "Loading..."
         }
+    },
+    components : {
+        QuizPopup
     },
     props:{
         title: String,
@@ -96,8 +100,10 @@ export default {
 <style scoped>
 
 .Box {
-	background: white;
+	background: transparent;
     color: black;
+    justify-content: center;
+    align-items: center;
 }
 
 .Hello {
@@ -122,6 +128,7 @@ export default {
   padding: 5px 0;
   top: -5px;
   right: 105%;
+  line-height: 20px;
 
   /* Position the tooltip */
   position: absolute;

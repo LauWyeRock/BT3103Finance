@@ -24,6 +24,7 @@ export default createStore({
       },
     state: {
         blogPosts: [],
+        stocksToDelete: [],
         postLoaded:null,
         editPost:null,
         user:null,
@@ -38,6 +39,9 @@ export default createStore({
     },
     
     mutations: {
+        modifyStocksToDelete(state, payload) {
+            state.stocksToDelete = payload;
+        },
         newBlogPost(state, payload) {
             state.blogHTML = payload;
         },
@@ -97,6 +101,20 @@ export default createStore({
             });
             state.postLoaded = true;
             console.log(state.blogPosts)
+        },
+        async setStocksToDelete({ commit }, value) {
+            let a = this.state.stocksToDelete;
+            a.push(value);
+            commit('modifyStocksToDelete', a);
+        },
+        async removeStocksToDelete({ commit }, value) {
+            let a = this.state.stocksToDelete;
+            let b = a.indexOf(value);
+            a.splice(b, 1);
+            commit('modifyStocksToDelete', a);
+        },
+        async resetStocks({ commit }) {
+            commit('modifyStocksToDelete', []);
         }   
         
     },
@@ -112,10 +130,10 @@ export default createStore({
         },
         blogPosts(state) {
             return state.blogPosts
-        }
+        },
+        getStocksToDelete(){
+            return this.$store.state.exchangeTicker;
+        },
     },
-    //computed: {
-    //    stockTicker: storeKey.state.stockTicker
-    //},
     modules: {},
 })

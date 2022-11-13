@@ -2,80 +2,61 @@
   <div>
     <div class="list-box">
       <li v-for="(stock, index) in stocksInfo.Stocks" v-bind:key="stock.symbol">
-        <StockCard
-          class="stock-item"
-          v-bind:stock="stock"
-          v-on:click="assignSelectedStockIndex(index)"
-        />
+        <StockCard class="stock-item" v-bind:stock="stock" v-on:click="assignSelectedStockIndex(index)" />
       </li>
     </div>
-    <div class="table-box">
-      <StockTable :isByVolume="isByVolume" :stocksInfo="stocksInfo" />
-    </div>
-    <button
-      v-show="
-        selectedStockIndex > -1 &&
-        !isByVolume &&
-        stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention > 0 &&
-        stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention > 0
-      "
-      @click="this.selectedStockIndex = -1"
-    >
+    <button v-show="
+      selectedStockIndex > -1 &&
+      !isByVolume &&
+      (stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention !== 0 &&
+        stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention !== 0 && stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention !== 0 &&
+        stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention !== 0)
+    " @click="this.selectedStockIndex = -1">
       Close
     </button>
     <div style="margin-bottom: 5px">
-      <pie-chart
-        style="float: left; width: 50%"
-        v-show="
-          selectedStockIndex > -1 &&
-          !isByVolume &&
-          stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention > 0 &&
-          stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention > 0
-        "
-        :data="
-          selectedStockIndex > -1 && [
-            [
-              'Negative',
-              stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention,
-            ],
-            [
-              'Positive',
-              stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention,
-            ],
-          ]
-        "
-        :donut="true"
-        title="Negative Mentions vs Positive Mentions (Reddit)"
-      ></pie-chart>
-      <pie-chart
-        style="float: left; width: 50%"
-        v-show="
-          selectedStockIndex > -1 &&
-          !isByVolume &&
-          stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention > 0 &&
-          stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention > 0
-        "
-        :data="
-          selectedStockIndex > -1 && [
-            [
-              'Negative',
-              stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention,
-            ],
-            [
-              'Positive',
-              stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention,
-            ],
-          ]
-        "
-        :donut="true"
-        title="Negative Mentions vs Positive Mentions (Twitter)"
-      ></pie-chart>
+      <pie-chart style="float: left; width: 50%" v-show="
+        selectedStockIndex > -1 &&
+        !isByVolume &&
+        (stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention !== 0 &&
+          stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention !== 0)
+      " :data="
+  selectedStockIndex > -1 && [
+    [
+      'Negative',
+      stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention,
+    ],
+    [
+      'Positive',
+      stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention,
+    ],
+  ]
+" :donut="true" title="Negative Mentions vs Positive Mentions (Reddit)"></pie-chart>
+      <pie-chart style="float: left; width: 50%" v-show="
+        selectedStockIndex > -1 &&
+        !isByVolume &&
+        (stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention !== 0 &&
+          stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention !== 0)
+      " :data="
+  selectedStockIndex > -1 && [
+    [
+      'Negative',
+      stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention,
+    ],
+    [
+      'Positive',
+      stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention,
+    ],
+  ]
+" :donut="true" title="Negative Mentions vs Positive Mentions (Twitter)"></pie-chart>
+    </div>
+    <div class="table-box">
+      <StockTable :isByVolume="isByVolume" :stocksInfo="stocksInfo" />
     </div>
   </div>
 </template>
 
 <script>
-//STOCK API KEY = YYDJ5HRF9K8DOGJE
 import StockCard from "../components/StockCard.vue";
 import StockTable from "../components/StockTable.vue";
 
@@ -104,6 +85,9 @@ export default {
       stocksInfo = await fetch(
         `http://timcheng112.pythonanywhere.com/social-sentiments`
       ).then((res) => res.json());
+      // stocksInfo = await fetch(
+      //   `http://127.0.0.1:8000/twitter-sentiments`
+      // ).then((res) => res.json());
     }
     return { stocksInfo };
   },

@@ -1,18 +1,37 @@
 <template>
   <div className="Achieve-Card-Spec-Outer">
-    <img
-      className="Achievement-Icon"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDS6ZW_l2Jfud1PqJwN10oWlqAHSIpgIO8sg&usqp=CAU"
-    />
+    <img className="Achievement-Icon" v-bind:src="post.blogCoverPhoto" />
     <div className="Achievement-Info">
-      <h2>Best Junior Trader</h2>
-      <h5>Tradebros Autumn Paper Trade Champion 2022 Junior Category</h5>
+      <h2>{{ post.blogTitle }}</h2>
+      <h5>Posted on: {{ dateIntToString(post.date) }}</h5>
+      <button @click="$router.push({ path: `/view-post/${post.blogID}` })">
+        View Post >
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    post: Object,
+  },
+  mounted() {
+    console.log("IN ACHIEVEMENT CARD: " + this.post);
+    this.date = Date(this.post.date).toString();
+  },
+  data() {
+    return {
+      date: null,
+    };
+  },
+  methods: {
+    dateIntToString(dateint) {
+      const date = new Date(dateint);
+      return date.toUTCString();
+    },
+  },
+};
 </script>
 
 <style>
