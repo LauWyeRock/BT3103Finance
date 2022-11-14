@@ -4,7 +4,7 @@
     <div class="container">
         <div class="left">
             <div class="col-1">
-                <router-link class="header" :to="{name : 'Home'}">FinanceBois</router-link>
+                <router-link class="header" :to="{name : 'Home'}">tradebros</router-link>
                 <!-- <ul>
                     <li>
                         <a href="#"><uniCarWash class="svg-icon" /></a>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="right">
-            <p>Copyright 2022 All Rights Reserved</p>
+            <p>Copyright 2022 All Rights Reserved.</p>
         </div>
     </div>
 </footer>
@@ -50,8 +50,8 @@
 <style lang="scss" scoped>
 footer{
     margin-top:auto;
-    padding: 100px 25px;
-    background-color: #303030;
+    padding: 50px 25px;
+    background-color: #f0ebf4;
     .container{
         display: flex;
         flex-direction: column;
@@ -66,7 +66,7 @@ footer{
         }
         .left{
             gap:32px;
-            color: #fff;
+            color: black;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -76,14 +76,19 @@ footer{
                 gap: 0;
             }
             .header {
+                font-weight: bold;
+                font-family: serif;
+                letter-spacing: -2px;
                 text-align: center;
-                font-size:24px;
-                color:#fff;
+                font-size:50px;
+                color:black;
                 text-decoration: none;
-                font-weight: 600;
                 @media(min-width: 800px) {
                     text-align: initial;
                 }
+            }
+            .header:hover {
+                color: rgba(118, 11, 118, 0.703);
             }
             ul {
                 gap:16px;
@@ -136,15 +141,18 @@ footer{
                     .link {
                         font-size: 16px;
                         font-weight: 500;
-                        color: #fff;
+                        color: black;
                         text-decoration: none;
+                    }
+                    .link:hover {
+                        color: rgba(74, 6, 74, 0.703);
                     }
                 }
             }
         }
         .right {
             gap:32px;
-            color:#fff;
+            color:black;
             align-items: center;
             flex-direction: column;
             @media(min-width: 800px) {
