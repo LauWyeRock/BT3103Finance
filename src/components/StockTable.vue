@@ -3,8 +3,7 @@
     <tr>
       <th>
         <ToolTip
-          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
-        >
+          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit">
           <span class="header-text">Asset</span>
         </ToolTip>
       </th>
@@ -15,22 +14,17 @@
       </th>
       <th>
         <ToolTip
-          text="The amount of an asset or security that changes hands over some period of time, often over the course of a day"
-        >
+          text="The amount of an asset or security that changes hands over some period of time, often over the course of a day">
           <span class="header-text">Volume</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="The current price that a share of stock is trading for on the market"
-        >
+        <ToolTip text="The current price that a share of stock is trading for on the market">
           <span class="header-text">Price</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="Market capitalization refers to how much a company is worth as determined by the stock market"
-        >
+        <ToolTip text="Market capitalization refers to how much a company is worth as determined by the stock market">
           <span class="header-text">Market Cap</span>
         </ToolTip>
       </th>
@@ -53,78 +47,37 @@
     <tr>
       <th>
         <ToolTip
-          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit"
-        >
+          text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit">
           <span class="header-text">Asset</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="Total number of times asset has been mentioned on Reddit"
-        >
-          <span class="header-text">Reddit Total Mentions</span>
+        <ToolTip text="Total likes and shares for the posts analyzed">
+          <span class="header-text">Activity</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="Total number of times asset has been negatively mentioned on Reddit"
-        >
-          <span class="header-text">Reddit Total Negative Score</span>
+        <ToolTip text="Weighted average of negative posts found on social media">
+          <span class="header-text">Negative Score</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="Total number of times asset has been positively mentioned on Reddit"
-        >
-          <span class="header-text">Reddit Total Positive Score</span>
+        <ToolTip text="Weighted average of positive posts found on social media">
+          <span class="header-text">Positive Score</span>
         </ToolTip>
       </th>
       <th>
-        <ToolTip
-          text="Final score based on positive and negative mentions on Reddit"
-        >
-          <span class="header-text">Reddit Total Score</span>
-        </ToolTip>
-      </th>
-      <th>
-        <ToolTip
-          text="Total number of times asset has been mentioned on Twitter"
-        >
-          <span class="header-text">Twitter Total Mentions</span>
-        </ToolTip>
-      </th>
-      <th>
-        <ToolTip
-          text="Total number of times asset has been negatively mentioned on Twitter"
-        >
-          <span class="header-text">Twitter Total Negative Score</span>
-        </ToolTip>
-      </th>
-      <th>
-        <ToolTip
-          text="Total number of times asset has been positively mentioned on Twitter"
-        >
-          <span class="header-text">Twitter Total Positive Score</span>
-        </ToolTip>
-      </th>
-      <th>
-        <ToolTip
-          text="Final score based on positive and negative mentions on Twitter"
-        >
-          <span class="header-text">Twitter Total Score</span>
+        <ToolTip text="Weighted average of positive, negative, and neutral posts found on social media">
+          <span class="header-text">Score</span>
         </ToolTip>
       </th>
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
       <td>{{ stock.symbol }}</td>
-      <td>{{ numberWithCommas(stock.reddit_total_mentions) }}</td>
-      <td>{{ percentageConvert(stock.reddit_total_negative_score) }}%</td>
-      <td>{{ percentageConvert(stock.reddit_total_positive_score) }}%</td>
-      <td>{{ percentageConvert(stock.reddit_total_score) }}%</td>
-      <td>{{ numberWithCommas(stock.twitter_total_mentions) }}</td>
-      <td>{{ percentageConvert(stock.twitter_total_negative_score) }}%</td>
-      <td>{{ percentageConvert(stock.twitter_total_positive_score) }}%</td>
-      <td>{{ percentageConvert(stock.twitter_total_score) }}%</td>
+      <td>{{ numberWithCommas(stock.activity) }}</td>
+      <td>{{ numberWithCommas(stock.negative_score) }}</td>
+      <td>{{ numberWithCommas(stock.positive_score) }}</td>
+      <td>{{ numberWithCommas(stock.score) }}</td>
     </tr>
   </table>
 </template>
