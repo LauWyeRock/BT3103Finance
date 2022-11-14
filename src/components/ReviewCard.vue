@@ -59,7 +59,7 @@
 
 <script>
 export default {
-    name: "NewsCard",
+    name: "ReviewCard",
     components: {
         
     }
