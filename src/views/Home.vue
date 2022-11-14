@@ -2,7 +2,7 @@
 
 <template>
 
-<div>
+<div class="body">
   <div class="hello">
     <div>
     <div class="vidcontainer">
@@ -318,6 +318,17 @@
           <br/> The best thing you can invest in is yourself. Start picking up valuable
           financial knowledge today with our Resources, or get reliable opinions from the Forum!
         </p>
+        <section class="btndiv">
+          <button onclick="window.location.href='news'" class="personbtn">
+            News
+          </button>
+          <button onclick="window.location.href='videos'" class="personbtn">
+            Videos
+          </button>
+          <button onclick="window.location.href='forum'" class="personbtn">
+            Forum
+          </button>
+        </section>
       </div>
 
       <div class="credscontainer">
@@ -333,36 +344,79 @@
     </div>
   
     <div class="termoftheday">
-      <h1 class="totd">Term of the day</h1>
-      <h2 class="pnd">Pump and Dump (PnD)</h2>
+      <h1 class="totd">Term of the day</h1> <br/>
+      <h2 class="pnd">Pump and Dump (PnD)</h2> <br/>
       <h4 class="explanation">Pump-and-dump is a manipulative scheme that attempts to boost the price of a stock or security 
         through fake recommendations. These recommendations are based on false, misleading, or greatly 
         exaggerated statements. The perpetrators of a pump-and-dump scheme already have an established position 
-        in the company's stock and will sell their positions after the hype has led to a higher share price.</h4>
+        in the company's stock and will sell their positions after the hype has led to a higher share price. <br/>
+        <br/>
         <a href="https://www.investopedia.com/terms/p/pumpanddump.asp" target="_blank" class="readmore">read more</a>
-    </div>
+      </h4>
+      </div>
 
     <div class="reviewdiv">
-        <h1 style="font-size: 30px; text-align: center; margin-bottom: 50px">What users are saying about TradeBros...</h1>  
-        
-        <div class="reviewcardcontainer">
-          <div class="reviewcard">
-              <ReviewCard>
-              </ReviewCard>
+        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about tradebros</h1>  
+        <div class="reviewcardscontainer">
+          <div class="reviewcards">
+                <ReviewCard>
+                </ReviewCard>
           </div>
+        </div>  
+    </div>
+
+    <div class="trdgstockscontainer">
+
+        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">
+        Track Market Trends And The Best Stocks To Watch</h1>
+
+        <div class="contentdiv">
+          Why is the stock market up today? Why is the market down? 
+          What's the outlook for stock market futures?
+          <br/> What are the best stocks to buy right now? 
+          Is it time to sell your stocks?
+          <br/>
+          <br/>
+          Our Stock Screener helps you answer those questions before the market 
+          opens, throughout each trading session and after each day's stock 
+          market close. It's a quick and easy way to stay on top of market, and see the top stocks by volume and social sentiment.
+          <br/>
+          <br/>
+          Check out our Stock Screener
+          <a href="stock-screener" target="_blank" class="stockscreenerhere">here</a>.
         </div>
     </div>
+
+
+    <div class="pptrdgcontainer">
+
+      <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">
+      Want to test your knowledge?</h1>
+
+      <div class="contentdiv">
+        Paper trading is simulated trading that allows investors to 
+        practice buying and selling securities.
+        <br/>
+        You can use it to test a new investment strategy before 
+        employing it in a live account.
+        <br/>
+        <br/>
+        Check out our Trading Simulation
+        <a href="papertrading" target="_blank" class="pptrdghere">here</a>.
+      </div>
+      </div>
 
     <div class="aboutus">
         <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The TradeBros Team
           <br/>
-          <h4 style="font-size: 20px; text-align: center; margin-bottom: 50px">At TradeBros, we believe that financial knowledge is an extremely powerful tool in
-              today's society.
+          <p style="font-size: 20px; text-align: center; font-weight:300; margin-top: 60px; margin-bottom: 20px">
+            At TradeBros, we believe that financial knowledge is an 
+            extremely powerful tool in today's society.
               <br/>With the right information, tools and community, anyone can learn how
               to invest wisely.
               <br/>That is why we would like to share these same things with you.
               <br/>If you have any enquiries, feel free to contact us via the button below. Cheers!
-          </h4>
+          </p>
         </h1>
 
         <div class="center">
@@ -478,7 +532,32 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.body {
+  scroll-behavior: smooth;
+}
+.button {
+  border-radius: 20px;
+  padding: 8px;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: fixed;
+  bottom: 8%;
+  background: #ccc;
+}
 
+.button__arrow {
+  background-color: transparent;
+  height: 12px;
+  width: 12px;
+}
+
+.button__arrow--down {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+  border-right: 3px solid rgba(0, 0, 0, 0.3);
+  transform: translateY(-25%) rotate(45deg);
+}
 .hello {
   background: repeating-linear-gradient(
     rgba(240, 235, 244, 1),
@@ -529,6 +608,30 @@ p {
   overflow:hidden;
 }
 
+.btndiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:25px;
+  float:inline-end;
+  font-size: 22px;
+  letter-spacing: 0px;
+}
+.personbtn {
+  margin: auto;
+  background-color: transparent;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.personbtn:hover {
+  background-color: rgb(192, 140, 205);
+  color: rgb(252, 248, 243);
+}
+
 /* .credscontainer {
   scroll-snap-align: start;
   height:500px;
@@ -546,37 +649,48 @@ p {
   overflow:hidden;
   width:80%;
   margin:auto;
+  margin: 0;
 }
 
 .totd,
 .pnd,
 .explanation {
-    margin-bottom:20px;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    width:80%;
+    margin:auto;
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%);
   }
-
   .totd {
     font-size: 45px;
     font-weight: bold;
   }
-
   .pnd {
     font-size: 40px;
     font-weight: bold
   }
-
   .explanation {
     font-weight: light;
   }
 
   .readmore {
     color: rgb(136, 19, 165);
+    margin-top: 20px;
   }
 
-  .readmore:hover {
+  .readmore:hover,
+  .stockscreenerhere:hover,
+  .pptrdghere:hover {
     color: rgb(252, 248, 243);
   }
 
-  .reviewdiv {
+  .reviewdiv,
+  .trdgstockscontainer,
+  .pptrdgcontainer {
   scroll-snap-align: start;
   height:100vh;
   justify-content:center;
@@ -585,9 +699,27 @@ p {
   align-self: center;
 }
 
-.reviewcardcontainer {
-  display:flex;
-  margin: auto;
+/* 
+.trdgstocks {
+  text-align:center;
+} */
+
+.reviewcardscontainer,
+.reviewcards,
+.contentdiv {
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  width:100%;
+  margin:auto;
+  position: relative;
+  border: 10px;
+}
+
+.contentdiv {
+  text-align: center;
+  width: 80%;
+  font-size: 20px;
 }
 
 .aboutus {
