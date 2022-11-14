@@ -4,8 +4,8 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>I've had a great experience with TradeBros. TradeBros not only has a ton of 
-                    technical analysis tools, but also fundamental information, screeners, as well as news information.
+                <h4>"I've had a great experience with TradeBros. TradeBros not only has a ton of 
+                    technical analysis tools, but also fundamental information, screeners, as well as news information."
                 </h4>
             </div>
             <div class="author">
@@ -17,9 +17,9 @@
             <!-- <img :src="post.blogCoverPhoto" alt="" /> -->
             <div class="info">
                 <h4>
-                    It has been very helpful to have so many tools on the same platform.
+                    "It has been very helpful to have so many tools on the same platform.
                     User defined strategies and technical indicators are a bonus, and you
-                    can also save your favourite stocks according to your needs.
+                    can also save your favourite stocks according to your needs."
                 </h4>
             </div>
             <div class="author">
@@ -29,7 +29,7 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>Thank you so much TradeBros for your technicals.
+                <h4>"Thank you so much TradeBros for your technicals.
                     They have made me a lot of money in short-term and long-term gains.
                     I would definitely recommend all investors to use TradeBros.
                 </h4>
@@ -41,9 +41,9 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>I'm new to investing and have used TradeBros for a couple of months now.
+                <h4>"I'm new to investing and have used TradeBros for a couple of months now.
                     I really love how much resources they provide like news and videos to teach
-                    beginners like me how to invest my money smartly!
+                    beginners like me how to invest my money smartly!"
                 </h4>
             </div>
             <div class="author">
@@ -59,7 +59,7 @@
 
 <script>
 export default {
-    name: "NewsCard",
+    name: "ReviewCard",
     components: {
         
     }
@@ -77,6 +77,7 @@ export default {
     align-items: center;
     width: 90%;
     margin: auto;
+    justify-content: center;
 }
 .blog-card {
     // position: relative;
@@ -84,7 +85,7 @@ export default {
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    background-color: rgb(255, 251, 246);
+    background-color: rgba(255, 251, 246, 0.726);
     min-height: 360px;
     width: 33%;
     transition: 0.5s ease all;
