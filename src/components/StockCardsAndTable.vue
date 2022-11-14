@@ -14,7 +14,7 @@
     " @click="this.selectedStockIndex = -1">
       Close
     </button>
-    <line-chart v-show="selectedStockIndex > -1" title="Activity over past week" style="margin-bottom: 40px;"
+    <line-chart v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].activity" title="Activity over past week" style="margin-bottom: 40px;"
       :data="selectedStockIndex > -1 && {'Six Days Ago': stocksInfo.Stocks[selectedStockIndex].activity0, 'Five Days Ago': stocksInfo.Stocks[selectedStockIndex].activity1, 'Four Days Ago': stocksInfo.Stocks[selectedStockIndex].activity2, 'Three Days Ago': stocksInfo.Stocks[selectedStockIndex].activity3, 'Two Days Ago': stocksInfo.Stocks[selectedStockIndex].activity4, 'One Day Ago': stocksInfo.Stocks[selectedStockIndex].activity }"
       :download="true">
     </line-chart>
