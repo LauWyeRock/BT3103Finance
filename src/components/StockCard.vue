@@ -10,9 +10,7 @@
       </h3>
       <h3>
         {{
-          stock.reddit_total_mentions || stock.reddit_total_mentions >= 0
-            ? numberWithCommas(stock.reddit_total_mentions) + " reddit"
-            : ""
+          stock.activity && numberWithCommas(stock.activity) + "\nlikes and shares"
         }}
       </h3>
       <h3>
