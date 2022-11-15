@@ -4,7 +4,7 @@
     <div class="container">
         <div class="left">
             <div class="col-1">
-                <router-link class="header" :to="{name : 'Home'}">tradebros</router-link>
+                <router-link class="header" :to="{name : 'Home'}">Flourich</router-link>
                 <!-- <ul>
                     <li>
                         <a href="#"><uniCarWash class="svg-icon" /></a>
@@ -23,11 +23,12 @@
             <div class="col-2">
                 <ul>
                     <router-link class="link" to="/">Home</router-link>
-                    <router-link class="link" to="/feed">Feed</router-link>
                     <router-link class="link" to="/register"> Register </router-link>
+                    <router-link class="link" to="/stock-screener"> Stock Screener </router-link>
+                    <router-link class="link" to="/papertrading"> Paper Trading </router-link>
                     <router-link class="link" to="/news"> News </router-link>
                     <router-link class="link" to="/forum"> Forum </router-link>
-                    <router-link class="link" to="/chat"> Chat </router-link>
+                    <router-link class="link" to="/blogs"> Blogs </router-link>
                 </ul>
             </div>
         </div>
