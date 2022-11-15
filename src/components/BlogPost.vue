@@ -121,6 +121,17 @@ export default {
     }
   }
 
+  .discoverbtn {
+    border: 1px solid white;
+    border-radius:2px;
+    padding:8px;
+  }
+
+  .discoverbtn:hover {
+    background-color: white;
+    color:black;
+  }
+
   .blog-photo {
     order: 1;
     flex: 3;

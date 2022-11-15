@@ -124,16 +124,22 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 .view {
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(
-            180deg,
-            rgba(161, 195, 209, 0.75) 46.38%,
-            rgba(241, 114, 161, 0.5) 100%
-        );
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
 
   &.login {
     align-items: center;

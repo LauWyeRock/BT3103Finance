@@ -6,7 +6,9 @@
         <img :src="this.currentBlog.data().blogCoverPhoto" alt="" />
         <div class="post-content ql-editor" v-html="this.currentBlog.data().blogHTML"></div>
     </div>
+<div>
 
+</div>
     <div class="commentformspace">
       <input v-model="message" placeholder="Comment here" />
     </div>
@@ -67,6 +69,11 @@ export default {
 <style lang="scss">
 .post-view{
     min-height: 100%;
+    background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
     .container {
         max-width: 1000px;
         padding: 60px 25px;
