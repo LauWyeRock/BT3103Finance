@@ -44,8 +44,8 @@ export default {
 
   background: rgba(179, 155, 200, 0.3);
   border: 1px solid #f5f5f5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .Achievement-Icon {
   width: 100px;

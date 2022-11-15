@@ -226,12 +226,14 @@ export default {
 <style>
 .Watch-List-Outer {
   border-radius: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-bottom: 10px;
   width: 95%;
   padding: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 }
 
 .Watch-List-Title {
@@ -244,8 +246,8 @@ export default {
 
 .Watch-List-Content {
   margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
+  /* margin-left: 5%; */
+  margin-right: 2%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

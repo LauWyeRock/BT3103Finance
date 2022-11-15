@@ -12,6 +12,7 @@
             <input
               type="text"
               id="searchQuery"
+              @keyup.enter="searchForUser()"
               placeholder="Find a Trade Bro"
               required
             />
@@ -27,9 +28,10 @@
     </div>
 
     <div v-for="user in resultsArray" :key="user">
-      <img :src="user[0].profilePicture" />
+      <!-- <img :src="user[0].profilePicture" />
       <h1>{{ user[0].displayName }}</h1>
-      <h2>{{ user[1] }}</h2>
+      <h2>{{ user[1] }}</h2> -->
+      <SearchProfileCard :uid="user[1]" :profile="user[0]" />
     </div>
   </div>
 </template>
@@ -37,7 +39,12 @@
 <script>
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
+import SearchProfileCard from "./SearchProfileCard.vue";
+
 export default {
+  components: {
+    SearchProfileCard,
+  },
   methods: {
     async searchForUser() {
       let searchInput = document.getElementById("searchQuery").value;
@@ -88,7 +95,6 @@ export default {
 
 <style scoped>
 #bg-container {
-  text-align: center;
   min-height: 41.5rem;
   background-image: repeating-linear-gradient(
     rgba(240, 235, 244, 1),
@@ -134,7 +140,7 @@ button {
 #cover {
   /* position: absolute; */
   /* top: 25%; */
-  width: 80%;
+  width: 100%;
   padding: 35px;
   margin: auto;
   background-color: rgba(161, 195, 209, 0.75);
