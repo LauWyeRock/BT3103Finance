@@ -23,6 +23,7 @@ export default {};
   border: 1px solid #dddddd;
   padding: 1vh;
   border-radius: 12px;
+  background-color: #ffffff;
 }
 
 .stock-logo-box {

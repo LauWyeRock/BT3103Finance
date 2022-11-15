@@ -2,7 +2,7 @@
 <template>
     <div class="blog-card">
 
-        <router-link class="link" :to="{name: 'Chat'}">
+        <router-link class="link" :to="{name: 'Chat2'}">
         
             <div class="icons">
                 <div class="icon">
@@ -10,10 +10,10 @@
                 </div>
             </div>
 
-            <img src="..\assets\blogPhotos\stockmarket.jpg" alt=""/>
+            <img src="..\assets\blogPhotos\crypto.jpg" alt=""/>
         
             <div class="info">
-                <h2 style="text-align:center;">Stock Market</h2>
+                <h2 style="text-align:center;">Cryptocurrency</h2>
             </div>
 
         </router-link>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: "ChatCard1",
+    name: "ChatCard2",
     components: {
         
     }
@@ -65,12 +65,6 @@ export default {
             color:black;
             transition: 0.5s ease all;
             margin-top: 5px;
-
-            h4 {
-                text-align:center;
-                font-size: 15px;
-                font-weight:400;
-            }
 
             &:hover {
                 background-color: #303030;

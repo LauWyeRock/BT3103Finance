@@ -4,8 +4,8 @@
 		<teleport to = "body">
 			<div class = "modal" v-if="isOpen">
 				<div>
-					<h2> TradeBros Quiz </h2>
-					<div class = "question"> Q1: Which market is TradeBros NOT centered around?</div>
+					<h2> Flourich Quiz </h2>
+					<div class = "question"> Q1: Which market is Flourich NOT centered around?</div>
 					<div class="options">
 						<button id="0" class="option1" @click=check(this)> Cryptocurrency Market </button>
 						<button id="1" class="option2" @click=check(this)> Supermarket</button>
@@ -16,7 +16,7 @@
 						<button id= "0" class="option1" @click=check(this)> Choice to buy/sell a stock </button>
 						<button id="1" class="option2" @click=check(this)> Financial Derivative</button>
 					</Div>
-					<div class = "question"> Q3: What does TradeBros help you with? </div>
+					<div class = "question"> Q3: What does Flourich help you with? </div>
 					<div class="options">
 						<button id="0" class="option1" @click=check(this)> Getting Rich </button>
 						<button id="1" class="option2" @click=check(this)> Financial Literacy</button>

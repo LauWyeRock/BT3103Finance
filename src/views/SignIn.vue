@@ -7,7 +7,7 @@
           >Register</router-link
         >
       </p>
-      <h2>Login to TradeBros</h2>
+      <h2>Login to Flourich</h2>
       <div class="inputs">
         <div class="input">
           <input type="text" placeholder="Email" v-model="email" />

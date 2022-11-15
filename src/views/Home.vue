@@ -12,7 +12,7 @@
         style="max-height: 500px; height: 500px;"
         overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
       >
-        <h1 class="header">TradeBros: <br/> Where Stock <br/> Enthusiasts Gather</h1>
+        <h1 class="header">Flourich: <br/> Where Stock <br/> Enthusiasts Gather</h1>
       </video-background>
     </div>
 
@@ -311,37 +311,57 @@
       <div class="paragraph">
         <p> Want to start investing but not sure how to begin and who to ask for help? <br/>
           <br/>
-          TradeBros aims to provide a broad starting point for beginners in the investing field by building a 
+          Flourich aims to provide a broad starting point for beginners in the investing field by building a 
           portfolio management tool that would assist them in creating a decision making framework, based within 
           an immersive and interactive community-centric system that is fun and engaging to use at the same time.
           <br/>
           <br/> The best thing you can invest in is yourself. Start picking up valuable
           financial knowledge today with our Resources, or get reliable opinions from the Forum!
         </p>
-        <section class="btndiv">
-          <button onclick="window.location.href='news'" class="personbtn">
-            News
-          </button>
-          <button onclick="window.location.href='videos'" class="personbtn">
-            Videos
-          </button>
-          <button onclick="window.location.href='forum'" class="personbtn">
-            Forum
-          </button>
-        </section>
       </div>
 
-      <div class="credscontainer">
-        <!-- <h4 class="credits">
-          Illustration from
-          <a href="https://blush.design/fr/collections/pebble-people"
-            target="_blank"> Pebble People </a>
-          by
-          <a href="https://blush.design/fr/artists/deivid-saenz" target="_blank"> Deivd Saenz </a>
-        </h4> -->
       </div>
 
-    </div>
+      <!-- SECTION 2 -->
+
+      <div class="aboutus">
+      <section class="campus">
+        <h1 style="font-size:35px; margin-bottom: 30px">Explore Our Resources</h1>
+
+        <div class="row">
+
+          <div href="/news" class="campus-col">
+            <img src="../assets/newspapers.jpg">
+            <a href="news" target="_blank">
+            <div class="layer">
+              <h3>NEWS</h3>
+            </div>
+            </a>
+          </div>
+
+          <div class="campus-col">
+            <img src="../assets/videos.jpg">
+            <a href="videos" target="_blank">
+            <div class="layer">
+              <h3>VIDEOS</h3>
+            </div>
+            </a>
+          </div>
+
+          <div class="campus-col">
+            <img src="../assets/forum.jpg">
+            <a href="forum" target="_blank">
+            <div class="layer">
+              <h3>FORUM</h3>
+            </div>
+            </a>
+          </div>
+
+        </div>
+      </section>
+      </div>
+
+<!--------- TERM OF THE DAY ---------->
   
     <div class="termoftheday">
       <h1 class="totd">Term of the day</h1> <br/>
@@ -355,8 +375,35 @@
       </h4>
       </div>
 
+
+<!--------- STOCK SCREENER ---------->
+
+
+      <div class="trdgstockscontainer">
+
+      <h1 style="font-size: 40px; text-align: center; margin-top:30px; margin-bottom: 50px">
+      Track Market Trends And The Best Stocks To Watch</h1>
+
+      <div class="contentdiv">
+        Why is the stock market up today? Why is the market down? 
+        What's the outlook for stock market futures?
+        <br/> What are the best stocks to buy right now? 
+        Is it time to sell your stocks?
+        <br/>
+        <br/>
+        Our Stock Screener helps you answer those questions before the market 
+        opens, throughout each trading session and after each day's stock 
+        market close. It's a quick and easy way to stay on top of market, and see the top stocks by volume and social sentiment.
+        <br/>
+        <br/>
+        <button style="font-size:17px" v-on:click="openss()" class="stockscreenerhere">DISCOVER OUR STOCK SCREENER</button>
+      </div>
+      </div>
+
+<!--------- TESTIMONIALS ---------->
+
     <div class="reviewdiv">
-        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about tradebros</h1>  
+        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about Flourich</h1>  
         <div class="reviewcardscontainer">
           <div class="reviewcards">
                 <ReviewCard>
@@ -365,52 +412,14 @@
         </div>  
     </div>
 
-    <div class="trdgstockscontainer">
-
-        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">
-        Track Market Trends And The Best Stocks To Watch</h1>
-
-        <div class="contentdiv">
-          Why is the stock market up today? Why is the market down? 
-          What's the outlook for stock market futures?
-          <br/> What are the best stocks to buy right now? 
-          Is it time to sell your stocks?
-          <br/>
-          <br/>
-          Our Stock Screener helps you answer those questions before the market 
-          opens, throughout each trading session and after each day's stock 
-          market close. It's a quick and easy way to stay on top of market, and see the top stocks by volume and social sentiment.
-          <br/>
-          <br/>
-          Check out our Stock Screener
-          <a href="stock-screener" target="_blank" class="stockscreenerhere">here</a>.
-        </div>
-    </div>
-
-
-    <div class="pptrdgcontainer">
-
-      <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">
-      Want to test your knowledge?</h1>
-
-      <div class="contentdiv">
-        Paper trading is simulated trading that allows investors to 
-        practice buying and selling securities.
-        <br/>
-        You can use it to test a new investment strategy before 
-        employing it in a live account.
-        <br/>
-        <br/>
-        Check out our Trading Simulation
-        <a href="papertrading" target="_blank" class="pptrdghere">here</a>.
-      </div>
-      </div>
+  
+<!--------- CONTACT US ---------->
 
     <div class="aboutus">
-        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The TradeBros Team
+        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The Flourich Team
           <br/>
           <p style="font-size: 20px; text-align: center; font-weight:300; margin-top: 60px; margin-bottom: 20px">
-            At TradeBros, we believe that financial knowledge is an 
+            At Flourich, we believe that financial knowledge is an 
             extremely powerful tool in today's society.
               <br/>With the right information, tools and community, anyone can learn how
               to invest wisely.
@@ -426,14 +435,8 @@
         </div>
     </div>
 
-
   </div>
   </div>
-    
-
-
- 
-
   </div>
 </template>
 
@@ -447,6 +450,11 @@ export default defineComponent({
   name: "Home",
   components: {
     ReviewCard,
+  },
+  methods: {
+    openss() {
+        window.open("/stock-screener", '_blank');
+      },
   },
   mounted() {
     if (localStorage.getItem("reloaded")) {
@@ -632,15 +640,6 @@ p {
   color: rgb(252, 248, 243);
 }
 
-/* .credscontainer {
-  scroll-snap-align: start;
-  height:500px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-} */
-
 .termoftheday {
   scroll-snap-align: start;
   height:100vh;
@@ -682,14 +681,19 @@ p {
     margin-top: 20px;
   }
 
+  .stockscreenerhere {
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+  }
   .readmore:hover,
   .stockscreenerhere:hover,
   .pptrdghere:hover {
-    color: rgb(252, 248, 243);
+    color: darkgrey;
   }
 
   .reviewdiv,
-  .trdgstockscontainer,
   .pptrdgcontainer {
   scroll-snap-align: start;
   height:100vh;
@@ -699,10 +703,20 @@ p {
   align-self: center;
 }
 
-/* 
-.trdgstocks {
-  text-align:center;
-} */
+.trdgstockscontainer {
+  background-image: url(../assets/stocks.jpg);
+  background-color: grey;
+  background-blend-mode: multiply;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+  justify-content: center;
+  font-size: 40px;
+  align-items: center;
+  scroll-snap-align: start;
+  overflow:hidden;
+  margin: auto;
+}
 
 .reviewcardscontainer,
 .reviewcards,
@@ -753,6 +767,65 @@ p {
 .contactus:hover {
   background-color: rgb(192, 140, 205);
   color: rgb(252, 248, 243);
+}
+
+/* TEST NEW SECTION */
+
+.campus {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.row {
+  display: flex;
+  gap: 40px;
+}
+
+.campus-col {
+  flex-basis: 33%;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.campus-col img {
+  width: 100%;
+  display: block;
+}
+
+.layer {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.layer:hover {
+  background: rgba(255, 234, 234, 0.7);
+  transition: 0.5s;
+}
+
+.layer h3 {
+  width: 100%;
+  font-weight: 500;
+  color: black;
+  font-size: 26px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  opacity:0;
+  transition: 0.5s;
+}
+
+.layer:hover h3 {
+  bottom: 49%;
+  opacity: 1;
 }
 
 </style>

@@ -2,42 +2,33 @@
     <div class="body">
         <div class="container">
     
-            <div class="blog-card">
+            <a href="chat" target="_blank" class="blog-card">
                 <div class="info">
-                    <h1>Dividends</h1>
+                    <h1>Stock Market</h1>
                 </div>
                 <div class="author">
-                    <h2>5073 posts</h2>
+                    <h2>5073 messages</h2>
                 </div>
-            </div>
+            </a>
     
-            <div class="blog-card">
+            <a href="chat" target="_blank" class="blog-card">
                 <!-- <img :src="post.blogCoverPhoto" alt="" /> -->
                 <div class="info">
-                    <h1>Cryptocurrency</h1>
+                    <h1>Today's Trades</h1>
                 </div>
                 <div class="author">
-                    <h2>6245 posts</h2>
+                    <h2>6245 messages</h2>
                 </div>
-            </div>
+            </a>
     
-            <div class="blog-card">
+            <a href="chat" target="_blank" class="blog-card">
                 <div class="info">
                     <h1>Beginners</h1>
                 </div>
                 <div class="author">
-                    <h2>2967 posts</h2>
+                    <h2>2967 messages</h2>
                 </div>
-            </div>
-    
-            <div class="blog-card">
-                <div class="info">
-                    <h1>Discussion</h1>
-                </div>
-                <div class="author">
-                    <h2>1965 posts</h2>
-                </div>
-            </div>
+            </a>
     
         </div>
     </div>
@@ -66,6 +57,10 @@
         margin: auto;
         justify-content: center;
     }
+
+    a {
+        text-decoration: none;
+    }
     .blog-card {
         // position: relative;
         cursor:pointer;
@@ -74,7 +69,7 @@
         border-radius: 8px;
         background-color: rgba(255, 245, 233, 0.897);
         min-height: 250px;
-        width: 33%;
+        width: 25%;
         transition: 0.5s ease all;
         align-items: center;
     
