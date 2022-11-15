@@ -10,9 +10,7 @@
       </h3>
       <h3>
         {{
-          stock.reddit_total_mentions || stock.reddit_total_mentions >= 0
-            ? numberWithCommas(stock.reddit_total_mentions) + " reddit"
-            : ""
+          stock.activity && numberWithCommas(stock.activity) + "\nlikes and shares"
         }}
       </h3>
       <h3>
@@ -48,6 +46,8 @@ export default {
   border: 1px solid #dddddd;
   padding: 1vh;
   border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .stock-logo-box {

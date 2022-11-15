@@ -22,17 +22,18 @@ export default {
 .tooltip-box {
   position: relative;
   display: inline-block;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .tooltip-box:hover .tooltip {
-  opacity: 1;
+  /* opacity: 1; */
+  visibility: visible;
 }
 
 .tooltip {
   color: #ffffff;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px 10px;
   border-radius: 6px;
 
   width: 120px;
@@ -40,8 +41,9 @@ export default {
   left: 50%;
   margin-left: -60px;
 
-  opacity: 0;
-  transition: opacity 1s;
+  visibility: hidden;
+  /* opacity: 0;
+  transition: opacity 1s; */
 
   position: absolute;
   z-index: 1;

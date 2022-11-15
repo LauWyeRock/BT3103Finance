@@ -29,5 +29,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.blog-card-wrap {
+    background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
 </style>

@@ -33,6 +33,30 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    // {
+    //   path: "/forum",
+    //   component: () => import("../views/testforum.vue"),
+    //   name: "TestForum",
+    //   meta: {
+    //     requiresAuth: true,
+    //   },
+    // },
+    // {
+    //   path: "/forumposts",
+    //   component: () => import("../views/testforumposts.vue"),
+    //   name: "TestForumPosts",
+    //   meta: {
+    //     requiresAuth: true,
+    //   },
+    // },
+    // {
+    //   path: "/forumdetail",
+    //   component: () => import("../views/testforumdetail.vue"),
+    //   name: "TestForumDetail",
+    //   meta: {
+    //     requiresAuth: true,
+    //   },
+    // },
     {
       path: "/blogs",
       component: () => import("../views/Blogs.vue"),
@@ -114,6 +138,11 @@ const router = createRouter({
       component: () => import("../views/NotFound.vue"),
       name: "NotFound",
     },
+    // {
+    //   path: "/inverse",
+    //   component: () => import("../views/inverse.vue"),
+    //   name: "inverse",
+    // },
   ],
 });
 
