@@ -39,7 +39,7 @@
               <a href="/">Home</a>
               <a href="/feed">TestPageNotFound</a>
               <a href="papertrading" v-if="user">Paper Trading</a>
-              <a href="stock-screener" v-if="user">Stock Screener</a>
+              <a href="/stock-screener" v-if="user">Stock Screener</a>
             </div>
           </li>
 
