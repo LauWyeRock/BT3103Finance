@@ -138,11 +138,11 @@ const router = createRouter({
       component: () => import("../views/NotFound.vue"),
       name: "NotFound",
     },
-    {
-      path: "/inverse",
-      component: () => import("../views/inverse.vue"),
-      name: "inverse",
-    },
+    // {
+    //   path: "/inverse",
+    //   component: () => import("../views/inverse.vue"),
+    //   name: "inverse",
+    // },
   ],
 });
 
