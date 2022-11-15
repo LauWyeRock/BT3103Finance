@@ -5,7 +5,7 @@
 		<!-- header + search bar -->
         <div class="header">videos</div>
 		<div class="subheader">Not sure where to start?</div>
-		<div class="description"> flourich has carefully curated a list of investing educational videos below,
+		<div class="description"> Flourich has carefully curated a list of investing educational videos below,
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
 

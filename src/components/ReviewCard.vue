@@ -4,7 +4,7 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>"I've had a great experience with flourich. flourich not only has a ton of 
+                <h4>"I've had a great experience with Flourich. Flourich not only has a ton of 
                     technical analysis tools, but also fundamental information, screeners, as well as news information."
                 </h4>
             </div>
@@ -29,9 +29,9 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>"Thank you so much flourich for your technicals.
+                <h4>"Thank you so much Flourich for your technicals.
                     They have made me a lot of money in short-term and long-term gains.
-                    I would definitely recommend all investors to use flourich.
+                    I would definitely recommend all investors to use Flourich.
                 </h4>
             </div>
             <div class="author">
@@ -41,7 +41,7 @@
 
         <div class="blog-card">
             <div class="info">
-                <h4>"I'm new to investing and have used flourich for a couple of months now.
+                <h4>"I'm new to investing and have used Flourich for a couple of months now.
                     I really love how much resources they provide like news and videos to teach
                     beginners like me how to invest my money smartly!"
                 </h4>

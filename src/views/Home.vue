@@ -12,7 +12,7 @@
         style="max-height: 500px; height: 500px;"
         overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
       >
-        <h1 class="header">flourich: <br/> Where Stock <br/> Enthusiasts Gather</h1>
+        <h1 class="header">Flourich: <br/> Where Stock <br/> Enthusiasts Gather</h1>
       </video-background>
     </div>
 
@@ -311,7 +311,7 @@
       <div class="paragraph">
         <p> Want to start investing but not sure how to begin and who to ask for help? <br/>
           <br/>
-          flourich aims to provide a broad starting point for beginners in the investing field by building a 
+          Flourich aims to provide a broad starting point for beginners in the investing field by building a 
           portfolio management tool that would assist them in creating a decision making framework, based within 
           an immersive and interactive community-centric system that is fun and engaging to use at the same time.
           <br/>
@@ -403,7 +403,7 @@
 <!--------- TESTIMONIALS ---------->
 
     <div class="reviewdiv">
-        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about flourich</h1>  
+        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about Flourich</h1>  
         <div class="reviewcardscontainer">
           <div class="reviewcards">
                 <ReviewCard>
@@ -416,10 +416,10 @@
 <!--------- CONTACT US ---------->
 
     <div class="aboutus">
-        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The flourich Team
+        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The Flourich Team
           <br/>
           <p style="font-size: 20px; text-align: center; font-weight:300; margin-top: 60px; margin-bottom: 20px">
-            At flourich, we believe that financial knowledge is an 
+            At Flourich, we believe that financial knowledge is an 
             extremely powerful tool in today's society.
               <br/>With the right information, tools and community, anyone can learn how
               to invest wisely.
@@ -704,8 +704,7 @@ p {
 }
 
 .trdgstockscontainer {
-  /* background-color: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)); */
-  background-image: url(../assets/ss.jpg);
+  background-image: url(../assets/stocks.jpg);
   background-color: grey;
   background-blend-mode: multiply;
   background-size: cover;
