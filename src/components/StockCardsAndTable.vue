@@ -2,23 +2,21 @@
   <div>
     <div class="list-box">
       <li v-for="(stock, index) in stocksInfo.Stocks" v-bind:key="stock.symbol">
-        <StockCard class="stock-item" v-bind:stock="stock" v-on:click="assignSelectedStockIndex(index)" />
+        <StockCard @selectedStockIndex="assignSelectedStockIndex(index)" class="stock-item" v-bind:stock="stock"
+          :index="index" />
       </li>
     </div>
-    <div class="line-chart-box" v-show="selectedStockIndex > -1">
+    <div class="line-chart-box" v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].activity">
       <button v-show="
         selectedStockIndex > -1 &&
-        !isByVolume &&
-        (stocksInfo.Stocks[selectedStockIndex].reddit_negative_mention !== 0 &&
-          stocksInfo.Stocks[selectedStockIndex].reddit_positive_mention !== 0 && stocksInfo.Stocks[selectedStockIndex].twitter_negative_mention !== 0 &&
-          stocksInfo.Stocks[selectedStockIndex].twitter_positive_mention !== 0)
+        !isByVolume
       " @click="this.selectedStockIndex = -1">
         Close
       </button>
       <line-chart v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].activity"
         :title="'Activity over the past week'"
         :data="selectedStockIndex > -1 && { 'Six Days Ago': stocksInfo.Stocks[selectedStockIndex].activity0, 'Five Days Ago': stocksInfo.Stocks[selectedStockIndex].activity1, 'Four Days Ago': stocksInfo.Stocks[selectedStockIndex].activity2, 'Three Days Ago': stocksInfo.Stocks[selectedStockIndex].activity3, 'Two Days Ago': stocksInfo.Stocks[selectedStockIndex].activity4, 'One Day Ago': stocksInfo.Stocks[selectedStockIndex].activity }"
-        :download="true" thousands="," :curve="false">
+        :download="true" thousands="," :curve="true">
       </line-chart>
     </div>
     <div class="table-box">
@@ -104,7 +102,6 @@ li {
 
 .stock-item {
   margin-left: 1vw;
-  cursor: pointer;
 }
 
 .table-box {
@@ -123,6 +120,13 @@ li {
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 1371px) {
+  .list-box {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
 }
 
 @media only screen and (max-width: 1245px) {
