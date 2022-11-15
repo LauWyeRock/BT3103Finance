@@ -71,6 +71,7 @@ export default {
 
 <style scoped>
 .stock-title {
+  margin: auto;
   text-align: center;
   padding-top: 2vh;
   padding-bottom: 4vh;
@@ -79,6 +80,8 @@ export default {
   font-weight: bold;
   /* padding-top: 30px; */
   letter-spacing: -1px;
+  width: 25%;
+  border-radius: 20px;
 }
 
 .title {
@@ -86,7 +89,7 @@ export default {
   letter-spacing: -1px;
   font-weight: bold;
   margin-left: 1vw;
-  font-size: 200%;
+  font-size: 250%;
 }
 
 .subtitle {

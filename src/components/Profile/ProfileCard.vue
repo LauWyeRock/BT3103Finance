@@ -1,6 +1,9 @@
 <template>
   <div className="Profile-Main-Card">
-    <div className="Profile-Banner"></div>
+    <div
+      className="Profile-Banner"
+      v-bind:style="{ backgroundImage: 'url(' + profile.profileBanner + ')' }"
+    ></div>
     <div className="Profile-Picture">
       <img
         style="
@@ -9,7 +12,18 @@
           height: 220px;
           object-fit: cover;
         "
-        src="https://assets.pandaily.com/uploads/2022/05/%E9%A3%9E%E4%B9%A620220516-220550.jpg"
+        v-if="profile.profilePicture != null"
+        :src="profile.profilePicture"
+      />
+      <img
+        v-else
+        style="
+          border-radius: 50%;
+          width: 220px;
+          height: 220px;
+          object-fit: cover;
+        "
+        src="https://profiles.ucr.edu/app/images/default-profile.jpg"
       />
     </div>
 
@@ -27,22 +41,8 @@
               letter-spacing: 0px;
             "
           >
-            <!-- Thomathus Reginald Swift -->
-            <!-- Shashank Shekhar Tripathi -->
             {{ profile.displayName }}
           </h1>
-          <!-- <h2
-            style="
-              margin-top: 0px;
-              margin-bottom: 10px;
-              font-style: normal;
-              font-weight: 400;
-              font-size: 35px;
-              /* line-height: 74px; */
-            "
-          >
-            @RealElonMask
-          </h2> -->
           <h3 style="font-style: normal; font-weight: 400; font-size: 22px">
             Junior Trader
           </h3>
@@ -304,6 +304,10 @@ export default {
   height: 190px;
 
   background: url(https://cdn.pixabay.com/photo/2021/03/14/18/25/graffiti-6095045_1280.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-position: center;
   border-radius: 10px 10px 0px 0px;
 }
 
