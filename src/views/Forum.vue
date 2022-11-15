@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <div class='page'>
   <div class="forum">
 
     <div class="welcome">
@@ -81,6 +82,7 @@
     </div> -->
 
   </div>
+</div>
 </template>
 
 <script>

@@ -8,6 +8,7 @@
 <script>
   import AddStock from '../components/AddStock.vue';
   import ProfitDisplay from '../components/ProfitDisplay.vue';
+  import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   name: "App",
@@ -15,9 +16,21 @@ export default {
     AddStock,
     ProfitDisplay,
   },
+  mounted() {
+    const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            this.user = user;
+          }
+        })
+  },
   data() {
     return {
       refreshComp: 0,
+      price: 0,
+      user: false,
+      done: false,
+      stockprice : "",
     };
   },
   methods: {
