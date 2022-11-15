@@ -91,6 +91,7 @@
                 width: 7rem;
                 height: 7rem;
                 border-radius: 9999px;
+                position: relative;
               "
             >
               <!-- conditionally render this svg and replace it with image if we can get it -->
@@ -98,11 +99,38 @@
                 style="color: #d1d5db; width: 100%; height: 100%"
                 fill="currentColor"
                 viewBox="0 0 24 24"
+                v-if="profilePictureText == '' && profile.profilePicture == ''"
               >
                 <path
                   d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
                 />
               </svg>
+              <img
+                :src="profile.profilePicture"
+                v-else-if="profilePictureText == ''"
+                style="
+                  position: absolute;
+                  top: -9999px;
+                  bottom: -9999px;
+                  left: -9999px;
+                  right: -9999px;
+                  margin: auto;
+                  width: 7rem;
+                "
+              />
+              <img
+                :src="profilePictureText"
+                v-else
+                style="
+                  position: absolute;
+                  top: -9999px;
+                  bottom: -9999px;
+                  left: -9999px;
+                  right: -9999px;
+                  margin: auto;
+                  width: 7rem;
+                "
+              />
             </span>
             <label
               style="
@@ -115,7 +143,13 @@
               "
             >
               <p>Upload a file</p>
-              <input type="file" />
+              <input
+                type="file"
+                accept=".png, .jpg, .jpeg, .gif"
+                @change="onPfpSubmit"
+                id="profilePicture"
+                v-bind:defaultValue="profilePicture"
+              />
             </label>
           </div>
         </div>
@@ -125,19 +159,8 @@
         <label className="form-row-label">Cover Photo</label>
 
         <div
-          style="
-            display: flex;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-            padding-top: 1.25rem;
-            padding-bottom: 1.5rem;
-            justify-content: center;
-            max-width: 32rem;
-            border-radius: 0.375rem;
-            border-width: 2px;
-            border-color: #9ca3af;
-            border-style: dashed;
-          "
+          id="dotted-box"
+          v-bind:style="{ backgroundImage: 'url(' + profileBannerText + ')' }"
         >
           <div style="margin-top: 0.25rem; text-align: center">
             <!-- this svg can replace with the image that u uploaded with turnary operator -->
@@ -177,8 +200,12 @@
                 <br />
                 <input
                   className="specific-input"
+                  accept=".png, .jpg, .jpeg, .gif"
                   type="file"
                   style="margin-left: 11.5rem"
+                  @change="onBannerSubmit"
+                  id="profileBanner"
+                  v-bind:defaultValue="profileBanner"
                 />
               </label>
             </div>
@@ -368,9 +395,9 @@
         <button
           className="submit-button"
           type="button"
-          v-on:click="getUserProfile()"
+          v-on:click="uploadProfilePicture()"
         >
-          Log User Profile
+          Testing Button
         </button>
       </div>
     </div>
@@ -381,6 +408,12 @@
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 export default {
   async setup() {
@@ -411,8 +444,182 @@ export default {
       github,
     };
   },
+  data() {
+    return {
+      profilePictureText: "",
+      profilePicture: null,
+      profileBannerText: "",
+      profileBanner: null,
+    };
+  },
   methods: {
-    async getUserProfile() {
+    onPfpSubmit(e) {
+      const files = e.target.files;
+      if (!files.length) return;
+
+      console.log("files[0]: " + files[0]);
+      this.profilePicture = files[0];
+
+      console.log(this.profilePicture);
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => (this.profilePictureText = reader.result);
+    },
+    onBannerSubmit(e) {
+      const files = e.target.files;
+      if (!files.length) return;
+
+      console.log("files[0]: " + files[0]);
+      this.profileBanner = files[0];
+
+      console.log(this.profileBanner);
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => (this.profileBannerText = reader.result);
+    },
+    //returns download link
+    uploadProfilePicture() {
+      return new Promise((resolve, reject) => {
+        if (!this.profilePicture) {
+          resolve("");
+        } else {
+          const storage = getStorage();
+          const metadata = {
+            contenType: "image/jpeg",
+          };
+
+          const auth = getAuth();
+          const uid = auth.currentUser.uid;
+
+          var filetype = "" + this.profilePicture.type;
+          if (!filetype.includes("image/")) {
+            console.log("invalid file type");
+            resolve("");
+          }
+          filetype = filetype.substring(6);
+          console.log("filetype: " + filetype);
+          const storageRef = ref(
+            storage,
+            "documents/profilePictures/" + uid + "." + filetype
+          );
+          const uploadTask = uploadBytesResumable(
+            storageRef,
+            this.profilePicture,
+            metadata
+          );
+
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+              console.log("Upload is " + progress + "% done");
+              switch (snapshot.state) {
+                case "paused":
+                  console.log("Upload is paused");
+                  break;
+                case "running":
+                  console.log("Upload is running");
+                  break;
+              }
+            },
+            (error) => {
+              switch (error.code) {
+                case "storage/unauthorized":
+                  // User doesn't have permission to access the object
+                  reject();
+                  break;
+                case "storage/canceled":
+                  // User canceled the upload
+                  reject();
+                  break;
+                case "storage/unknown":
+                  reject();
+                  // Unknown error occurred, inspect error.serverResponse
+                  break;
+              }
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log("File available at", downloadURL);
+                resolve(downloadURL);
+              });
+            }
+          );
+        }
+      });
+    },
+    //returns download link
+    uploadProfileBanner() {
+      return new Promise((resolve, reject) => {
+        if (!this.profileBanner) {
+          resolve("");
+        } else {
+          const storage = getStorage();
+          const metadata = {
+            contenType: "image/jpeg",
+          };
+
+          const auth = getAuth();
+          const uid = auth.currentUser.uid;
+
+          var filetype = "" + this.profileBanner.type;
+          if (!filetype.includes("image/")) {
+            console.log("invalid file type");
+            resolve("");
+          }
+          filetype = filetype.substring(6);
+          console.log("filetype: " + filetype);
+          const storageRef = ref(
+            storage,
+            "documents/profileBanners/" + uid + "." + filetype
+          );
+          const uploadTask = uploadBytesResumable(
+            storageRef,
+            this.profileBanner,
+            metadata
+          );
+
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+              console.log("Upload is " + progress + "% done");
+              switch (snapshot.state) {
+                case "paused":
+                  console.log("Upload is paused");
+                  break;
+                case "running":
+                  console.log("Upload is running");
+                  break;
+              }
+            },
+            (error) => {
+              switch (error.code) {
+                case "storage/unauthorized":
+                  // User doesn't have permission to access the object
+                  reject();
+                  break;
+                case "storage/canceled":
+                  // User canceled the upload
+                  reject();
+                  break;
+                case "storage/unknown":
+                  reject();
+                  // Unknown error occurred, inspect error.serverResponse
+                  break;
+              }
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log("File available at", downloadURL);
+                resolve(downloadURL);
+              });
+            }
+          );
+        }
+      });
+    },
+    async getUserId() {
       const auth = getAuth();
       const uid = auth.currentUser.uid;
 
@@ -426,12 +633,16 @@ export default {
         console.log("No such document!");
       }
     },
-    saveButtonHandler() {
+    async saveButtonHandler() {
       const auth = getAuth();
       const uid = auth.currentUser.uid;
 
       var displayName = document.getElementById("displayName").value;
       var about = document.getElementById("about").value;
+
+      //NEED TO HANDLE SUBMIT NO PFP
+      var profilePicture = await this.uploadProfilePicture();
+      var profileBanner = await this.uploadProfileBanner();
 
       var links = {
         linkedin: "",
@@ -500,26 +711,95 @@ export default {
       console.log("DisplayName: " + displayName);
       console.log("About: " + about);
       console.log("Links: " + links);
+      console.log("profile picture link: " + profilePicture);
 
-      setDoc(
-        doc(db, "profiles", uid),
-        {
-          displayName: displayName,
-          about: about,
-          links: links,
-        },
-        { merge: true }
-      )
-        .then(() => {
-          console.log("updated...");
-          alert("Profile Updated Successfully!");
-        })
-        .catch((error) => {
-          //error
-          console.error(
-            "oh no something went wrong with setting profile!" + error
-          );
-        });
+      //no pfp selected, do not override pfp & profile banner.
+      if (profilePicture == "" && profileBanner == "") {
+        setDoc(
+          doc(db, "profiles", uid),
+          {
+            displayName: displayName,
+            about: about,
+            links: links,
+          },
+          { merge: true }
+        )
+          .then(() => {
+            console.log("updated...");
+            alert("Profile Updated Successfully!");
+          })
+          .catch((error) => {
+            //error
+            console.error(
+              "oh no something went wrong with setting profile!" + error
+            );
+          });
+      } else if (profilePicture == "" && profileBanner != "") {
+        setDoc(
+          doc(db, "profiles", uid),
+          {
+            displayName: displayName,
+            about: about,
+            links: links,
+            profileBanner: profileBanner,
+          },
+          { merge: true }
+        )
+          .then(() => {
+            console.log("updated...");
+            alert("Profile Updated Successfully!");
+          })
+          .catch((error) => {
+            //error
+            console.error(
+              "oh no something went wrong with setting profile!" + error
+            );
+          });
+      } else if (profilePicture != "" && profileBanner != "") {
+        setDoc(
+          doc(db, "profiles", uid),
+          {
+            displayName: displayName,
+            profilePicture: profilePicture,
+            profileBanner: profileBanner,
+            about: about,
+            links: links,
+          },
+          { merge: true }
+        )
+          .then(() => {
+            console.log("updated...");
+            alert("Profile Updated Successfully!");
+          })
+          .catch((error) => {
+            //error
+            console.error(
+              "oh no something went wrong with setting profile!" + error
+            );
+          });
+      } else {
+        //there is a selected profile picture, override pfp.
+        setDoc(
+          doc(db, "profiles", uid),
+          {
+            displayName: displayName,
+            profilePicture: profilePicture,
+            about: about,
+            links: links,
+          },
+          { merge: true }
+        )
+          .then(() => {
+            console.log("updated...");
+            alert("Profile Updated Successfully!");
+          })
+          .catch((error) => {
+            //error
+            console.error(
+              "oh no something went wrong with setting profile!" + error
+            );
+          });
+      }
     },
   },
 };
@@ -562,11 +842,13 @@ async function getProfile() {
 
     await setDoc(doc(db, "profiles", uid), {
       displayName: "new user",
+      profilePicture: "",
+      profileBanner: "",
       links: links,
       about: "Hi! I'm new to FinanceBois!",
       following: [],
       followers: [],
-      favoriteStocks: []
+      favoriteStocks: [],
     })
       .then(() => {
         console.log("created new profile for user...");
@@ -594,6 +876,24 @@ form {
     rgba(161, 195, 209, 0.75),
     rgba(241, 114, 161, 0.5)
   );
+}
+
+#dotted-box {
+  display: flex;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.5rem;
+  justify-content: center;
+  max-width: 32rem;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  border-color: #9ca3af;
+  border-style: dashed;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-position: center;
 }
 
 .edit-form-row-container {
