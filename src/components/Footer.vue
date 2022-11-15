@@ -23,11 +23,12 @@
             <div class="col-2">
                 <ul>
                     <router-link class="link" to="/">Home</router-link>
-                    <router-link class="link" to="/feed">Feed</router-link>
                     <router-link class="link" to="/register"> Register </router-link>
+                    <router-link class="link" to="/stock-screener"> Stock Screener </router-link>
+                    <router-link class="link" to="/papertrading"> Paper Trading </router-link>
                     <router-link class="link" to="/news"> News </router-link>
                     <router-link class="link" to="/forum"> Forum </router-link>
-                    <router-link class="link" to="/chat"> Chat </router-link>
+                    <router-link class="link" to="/blogs"> Blogs </router-link>
                 </ul>
             </div>
         </div>
