@@ -6,7 +6,20 @@
           :index="index" />
       </li>
     </div>
-    <div class="line-chart-box" v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].activity">
+    <div class="line-chart-box" v-if="isByVolume" v-show="selectedStockIndex > -1 && isByVolume">
+      <button v-show="
+        selectedStockIndex > -1 &&
+        isByVolume
+      " @click="this.selectedStockIndex = -1">
+        Close
+      </button>
+      <line-chart v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].volume"
+        :title="'Volume changes over the past few business days'"
+        :data="selectedStockIndex > -1 && { [this.stocksInfo.Stocks[selectedStockIndex].historical.date0]: stocksInfo.Stocks[selectedStockIndex].historical.volume0, [this.stocksInfo.Stocks[selectedStockIndex].historical.date1]: stocksInfo.Stocks[selectedStockIndex].historical.volume1, [this.stocksInfo.Stocks[selectedStockIndex].historical.date2]: stocksInfo.Stocks[selectedStockIndex].historical.volume2, [this.stocksInfo.Stocks[selectedStockIndex].historical.date3]: stocksInfo.Stocks[selectedStockIndex].historical.volume3, [this.stocksInfo.Stocks[selectedStockIndex].historical.date4]: stocksInfo.Stocks[selectedStockIndex].historical.volume4, [this.stocksInfo.Stocks[selectedStockIndex].historical.date5]: stocksInfo.Stocks[selectedStockIndex].historical.volume5, [this.stocksInfo.Stocks[selectedStockIndex].historical.date6]: stocksInfo.Stocks[selectedStockIndex].historical.volume6 }"
+        :download="true" thousands="," :curve="true">
+      </line-chart>
+    </div>
+    <div v-else class="line-chart-box" v-show="selectedStockIndex > -1 && !isByVolume">
       <button v-show="
         selectedStockIndex > -1 &&
         !isByVolume
@@ -143,7 +156,7 @@ li {
   }
 }
 
-@media only screen and (max-width: 463px) {
+@media only screen and (max-width: 504px) {
   .list-box {
     display: grid;
     grid-template-columns: auto;
