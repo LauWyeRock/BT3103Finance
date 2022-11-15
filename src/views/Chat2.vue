@@ -30,11 +30,11 @@
           :key="crypto.key"
           :class="
             crypto.username == state.username
-              ? 'crypto current-user'
-              : 'crypto'
+              ? 'message current-user'
+              : 'message'
           "
         >
-          <div class="crypto-inner">
+          <div class="message-inner">
             <div class="username">{{ crypto.username }}</div>
             <div class="content">{{ crypto.content }}</div>
           </div>
@@ -65,7 +65,7 @@
       const inputMessage = ref("");
       const state = reactive({
         username: "",
-        crypto: [],
+        cryptos: [],
       });
       const Login = () => {
         if (inputUsername.value != "" || inputUsername.value != null) {
@@ -77,7 +77,7 @@
         state.username = "";
       };
       const SendMessage = () => {
-          const messagesRef = ref2(getDatabase(), "crypto");
+          const messagesRef = ref2(getDatabase(), "cryptos");
         if (inputMessage.value === "" || inputMessage.value === null) {
           return;
         }
@@ -100,7 +100,7 @@
                       content: data[key].content,
                   })
               })
-              state.crypto = cryptos;
+              state.cryptos = cryptos;
           })
   
       });

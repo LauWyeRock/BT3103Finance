@@ -30,11 +30,11 @@
           :key="beginner.key"
           :class="
             beginner.username == state.username
-              ? 'beginner current-user'
-              : 'beginner'
+              ? 'message current-user'
+              : 'message'
           "
         >
-          <div class="beginner-inner">
+          <div class="message-inner">
             <div class="username">{{ beginner.username }}</div>
             <div class="content">{{ beginner.content }}</div>
           </div>
@@ -65,7 +65,7 @@
       const inputMessage = ref("");
       const state = reactive({
         username: "",
-        beginner: [],
+        beginners: [],
       });
       const Login = () => {
         if (inputUsername.value != "" || inputUsername.value != null) {
@@ -77,7 +77,7 @@
         state.username = "";
       };
       const SendMessage = () => {
-          const messagesRef = ref2(getDatabase(), "beginner");
+          const messagesRef = ref2(getDatabase(), "beginners");
         if (inputMessage.value === "" || inputMessage.value === null) {
           return;
         }
@@ -100,7 +100,7 @@
                       content: data[key].content,
                   })
               })
-              state.beginner = beginners;
+              state.beginners = beginners;
           })
   
       });
