@@ -34,20 +34,22 @@
             style="
               margin-bottom: 0px;
               /* font-family: 'Playfair Display'; */
-              font-style: normal;
+              /* font-style: normal; */
               font-weight: 700;
               font-size: 60px;
-              /* line-height: 74px; */
-              letter-spacing: 0px;
+              line-height: 74px;
+              font-family: serif;
+              letter-spacing: -3px;
+              font-weight: bold;
             "
           >
             {{ profile.displayName }}
           </h1>
-          <h3 style="font-style: normal; font-weight: 400; font-size: 22px">
+          <!-- <h3 style="font-style: normal; font-weight: 400; font-size: 22px">
             Junior Trader
-          </h3>
+          </h3> -->
           <h3 style="font-style: normal; font-weight: 400; font-size: 22px">
-            Contribution Score : 5010101
+            Trade Bro
           </h3>
           <div style="margin-top: 10px">
             <a @click="showFollowing = true" style="cursor: pointer">
@@ -66,7 +68,8 @@
             style="
               float: right;
               background: rgba(95, 31, 95, 0.8);
-              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
               border-radius: 10px;
               margin-right: 1px;
               margin-left: 1px;
@@ -119,12 +122,14 @@
       <template #body>
         <div>
           <div v-for="follower in profile.followers" :key="follower">
-            <a
-              @click="$router.push({ path: `/profile/${follower.uid}` })"
-              style="cursor: pointer"
-            >
-              {{ follower.displayName }}
-            </a>
+            <div className="ffli">
+              <a
+                className="follower-following-li"
+                :href="'/profile/' + follower.uid"
+              >
+                {{ follower.displayName }}
+              </a>
+            </div>
           </div>
         </div>
       </template>
@@ -140,12 +145,14 @@
       <template #body>
         <div>
           <div v-for="following in profile.following" :key="following">
-            <a
-              @click="$router.push({ path: `/profile/${following.uid}` })"
-              style="cursor: pointer"
-            >
-              {{ following.displayName }}
-            </a>
+            <div className="ffli">
+              <a
+                className="follower-following-li"
+                :href="'/profile/' + following.uid"
+              >
+                {{ following.displayName }}
+              </a>
+            </div>
           </div>
         </div>
       </template>
@@ -289,6 +296,20 @@ export default {
 </script>
 
 <style>
+.follower-following-li {
+  cursor: pointer;
+  text-decoration-line: none;
+  color: black;
+}
+
+.ffli {
+  min-height: 1.5rem;
+}
+
+.ffli:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
 .Profile-Main-Card {
   position: relative;
   margin-top: 10px;

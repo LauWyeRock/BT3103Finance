@@ -9,8 +9,15 @@
       </div>
 
       <div class="searchdiv">
-        <input type="text" id="stock" class="searchbar" placeholder="Search Stock...">
-        <button class="searchbutton" type="button" v-on:click="savetofs()">Search</button>
+        <input
+          type="text"
+          id="stock"
+          class="searchbar"
+          placeholder="Search Stock..."
+        />
+        <button class="searchbutton" type="button" v-on:click="savetofs()">
+          Search
+        </button>
       </div>
 
       <div class="nav-links">
@@ -38,7 +45,7 @@
             <div class="dropdown-content">
               <a href="/">Home</a>
               <a href="/feed">TestPageNotFound</a>
-              <a href="papertrading" v-if="user">Paper Trading</a>
+              <a href="/papertrading" v-if="user">Paper Trading</a>
               <a href="/stock-screener" v-if="user">Stock Screener</a>
             </div>
           </li>
@@ -46,28 +53,29 @@
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">RESOURCES</a>
             <div class="dropdown-content">
-              <a href="news">News</a>
-              <a href="videos">Videos</a>
+              <a href="/news">News</a>
+              <a href="/videos">Videos</a>
             </div>
           </li>
 
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">COMMUNITY</a>
             <div class="dropdown-content">
-              <a href="forum">Forum</a>
-              <a href="blogs">Blogs</a>
-              <a href="chat" v-if="user">Chat</a>
-              <a href="createpost" v-if="user">Create Post</a>
+              <a href="/forum">Forum</a>
+              <a href="/blogs">Blogs</a>
+              <a href="/chat" v-if="user">Chat</a>
+              <a href="/createpost" v-if="user">Create Post</a>
             </div>
           </li>
 
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">PROFILE</a>
             <div class="dropdown-content">
-              <a href="sign-in" v-if="!user">Login</a>
-              <a href="register" v-if="!user"> Register </a>
-              <a href="profile" v-if="user">Profile</a>
-              <a href="editprofile" v-if="user">Edit Profile</a>
+              <a href="/sign-in" v-if="!user">Login</a>
+              <a href="/register" v-if="!user"> Register </a>
+              <a href="/profile" v-if="user">Profile</a>
+              <a href="/usersearch" v-if="user">User Search</a>
+              <a href="/editprofile" v-if="user">Edit Profile</a>
               <a @click.prevent="signOut" v-if="user">Sign Out</a>
             </div>
           </li>
@@ -107,13 +115,13 @@ export default {
         .catch((err) => {
           console.log(err.message);
         });
-      },
+    },
 
-      savetofs() {
-        let a = document.getElementById("stock").value;
-        this.$store.commit("updateExchangeTicker", a);
-        this.$router.push("/stocks/" + a);
-      },
+    savetofs() {
+      let a = document.getElementById("stock").value;
+      this.$store.commit("updateExchangeTicker", a);
+      this.$router.push("/stocks/" + a);
+    },
   },
 };
 </script>
