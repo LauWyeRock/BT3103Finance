@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <div class='page'>
   <div class="forum">
 
     <!-- <BlogPost :post="welcomeScreen" /> -->
@@ -91,6 +92,7 @@
     </div>
 
     </div>
+</div>
 </template>
 
 <script>
