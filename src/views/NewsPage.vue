@@ -3,7 +3,7 @@
     <div class="container">
 
         <!-- header + search bar -->
-        <div class="header">news</div>
+        <div class="header">News</div>
 
         <div class="search">
             <form @submit.prevent="fetchSearchNews">
@@ -31,12 +31,12 @@
 
         
         <!-- navbar -->
-        <div class="navheader">explore news</div>
+        <div class="navheader">Explore News</div>
         <div class="topnav">
-            <a href="#all">all</a>
-            <a href="#marketnews" @click="fetchMarketNews">market news</a>
-            <a href="#companynews" @click="fetchCompanyNews">company news</a>
-            <a href="#cryptonews" @click="fetchCryptoNews">cryptocurrency news</a>
+            <a href="#all">All</a>
+            <a href="#marketnews" @click="fetchMarketNews">Market News</a>
+            <a href="#companynews" @click="fetchCompanyNews">Company News</a>
+            <a href="#cryptonews" @click="fetchCryptoNews">Cryptocurrency News</a>
         </div>
 
         
@@ -49,7 +49,7 @@
                 </header>
                     <div class="newstitle">{{article.title}}</div>
                     <br>
-                    <button class="readmorebtn" @click="navTo(article.url)">read more</button>
+                    <button class="readmorebtn" @click="navTo(article.url)">Read More</button>
 
                 <!-- <footer>
                     <i class="fas fa-chevron-right"></i>
