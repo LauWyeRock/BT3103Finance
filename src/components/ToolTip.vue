@@ -33,7 +33,7 @@ export default {
 .tooltip {
   color: #ffffff;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px 10px;
   border-radius: 6px;
 
   width: 120px;

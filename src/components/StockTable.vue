@@ -1,7 +1,7 @@
 <template>
-  <table v-if="isByVolume">
-    <tr>
-      <th>
+  <table v-if="isByVolume" role="table">
+    <tr role="row">
+      <th role="columnheader">
         <ToolTip
           text="A resource with economic value that an individual, corporation, or country owns or controls with the expectation that it will provide a future benefit">
           <span class="header-text">Asset</span>
@@ -35,12 +35,12 @@
       </th>
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
-      <td>{{ stock.symbol }}</td>
-      <td>{{ stock.name }}</td>
-      <td>{{ numberWithCommas(stock.volume) }}</td>
-      <td>${{ stock.price }}</td>
-      <td>${{ numberWithCommas(stock.market_cap) }}</td>
-      <td>{{ recommendationConvert(stock.recommendation) }}</td>
+      <td class="by-volume-column">{{ stock.symbol }}</td>
+      <td class="by-volume-column">{{ stock.name }}</td>
+      <td class="by-volume-column">{{ numberWithCommas(stock.volume) }}</td>
+      <td class="by-volume-column">${{ stock.price }}</td>
+      <td class="by-volume-column">${{ numberWithCommas(stock.market_cap) }}</td>
+      <td class="by-volume-column">{{ recommendationConvert(stock.recommendation) }}</td>
     </tr>
   </table>
   <table v-else>
@@ -73,11 +73,11 @@
       </th>
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
-      <td>{{ stock.symbol }}</td>
-      <td>{{ numberWithCommas(stock.activity) }}</td>
-      <td>{{ numberWithCommas(stock.negative_score) }}</td>
-      <td>{{ numberWithCommas(stock.positive_score) }}</td>
-      <td>{{ numberWithCommas(stock.score) }}</td>
+      <td class="by-sentiment-column">{{ stock.symbol }}</td>
+      <td class="by-sentiment-column">{{ numberWithCommas(stock.activity) }}</td>
+      <td class="by-sentiment-column">{{ numberWithCommas(stock.negative_score) }}</td>
+      <td class="by-sentiment-column">{{ numberWithCommas(stock.positive_score) }}</td>
+      <td class="by-sentiment-column">{{ numberWithCommas(stock.score) }}</td>
     </tr>
   </table>
 </template>
@@ -124,13 +124,15 @@ table {
   width: 100%;
   margin: auto;
   margin-bottom: 2vh;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 td,
 th {
-  border: 1px solid #dddddd;
   text-align: left;
-  padding: 1vh;
+  padding: 2vh;
 }
 
 tr:nth-child(even) {
@@ -139,5 +141,102 @@ tr:nth-child(even) {
 
 .header-text {
   border-bottom: 1px dotted black;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    border-radius: 20px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+  Label the data
+  You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+  */
+  .by-volume-column:nth-of-type(1):before {
+    content: "Asset";
+  }
+
+  .by-volume-column:nth-of-type(2):before {
+    content: "Name";
+  }
+
+  .by-volume-column:nth-of-type(3):before {
+    content: "Volume";
+  }
+
+  .by-volume-column:nth-of-type(4):before {
+    content: "Price";
+  }
+
+  .by-volume-column:nth-of-type(5):before {
+    content: "Market Cap";
+  }
+
+  .by-volume-column:nth-of-type(6):before {
+    content: "Recommendation";
+  }
+
+  .by-sentiment-column:nth-of-type(1):before {
+    content: "Asset";
+  }
+
+  .by-sentiment-column:nth-of-type(2):before {
+    content: "Activity";
+  }
+
+  .by-sentiment-column:nth-of-type(3):before {
+    content: "Negative Score";
+  }
+
+  .by-sentiment-column:nth-of-type(4):before {
+    content: "Positive Score";
+  }
+
+  .by-sentiment-column:nth-of-type(5):before {
+    content: "Score";
+  }
 }
 </style>
