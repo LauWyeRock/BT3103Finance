@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <h1 class="stock-title">Stock Screener</h1>
     <div class="trending-stocks-box">
       <h2>Top Stocks</h2>
@@ -70,6 +70,14 @@ export default {
 </script>
 
 <style scoped>
+
+.page {
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
 .stock-title {
   text-align: center;
   padding-top: 2vh;

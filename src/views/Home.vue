@@ -7,7 +7,7 @@
     <div>
     <div class="vidcontainer">
       <video-background
-        :src="require(`../assets/Scientists4.mp4`)"
+        :src="require(`../assets/pexels-olya-kobruseva-5562047.mp4`)"
         poster="/images/mainfoto.jpg"
         style="max-height: 500px; height: 500px;"
         overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
