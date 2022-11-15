@@ -4,7 +4,7 @@
     <div class="container">
         <div class="left">
             <div class="col-1">
-                <router-link class="header" :to="{name : 'Home'}">tradebros</router-link>
+                <router-link class="header" :to="{name : 'Home'}">flourich</router-link>
                 <!-- <ul>
                     <li>
                         <a href="#"><uniCarWash class="svg-icon" /></a>
