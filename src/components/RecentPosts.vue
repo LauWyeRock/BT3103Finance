@@ -2,42 +2,43 @@
     <div class="body">
         <div class="container">
     
-            <div class="blog-card">
+            <a href="blog" target="_blank" class="blog-card">
+            
                 <div class="info">
-                    <h1>Dividends</h1>
+                    <h1>Amazon Is Set for Major Layoffs. Here's What It Means for the Stock</h1>
                 </div>
                 <div class="author">
-                    <h2>5073 posts</h2>
+                    <h2>9348 Likes</h2>
                 </div>
-            </div>
+            </a>
     
-            <div class="blog-card">
+            <a href="blog" target="_blank" class="blog-card">
                 <!-- <img :src="post.blogCoverPhoto" alt="" /> -->
                 <div class="info">
-                    <h1>Cryptocurrency</h1>
+                    <h1>The Best Stocks to Buy With $500 Right Now</h1>
                 </div>
                 <div class="author">
-                    <h2>6245 posts</h2>
+                    <h2>1056 Likes</h2>
                 </div>
-            </div>
+            </a>
     
-            <div class="blog-card">
+            <a href="blog" target="_blank" class="blog-card">
                 <div class="info">
-                    <h1>Beginners</h1>
+                    <h1>3 Warren Buffett Stocks That Are Screaming Buys in November</h1>
                 </div>
                 <div class="author">
-                    <h2>2967 posts</h2>
+                    <h2>7249 Likes</h2>
                 </div>
-            </div>
+            </a>
     
-            <div class="blog-card">
+            <a href="blog" target="_blank" class="blog-card">
                 <div class="info">
-                    <h1>Discussion</h1>
+                    <h1>Meta Platforms Stock: Buy, Sell, or Hold in 2023?</h1>
                 </div>
                 <div class="author">
-                    <h2>1965 posts</h2>
+                    <h2>5621 Likes</h2>
                 </div>
-            </div>
+            </a>
     
         </div>
     </div>
@@ -66,6 +67,11 @@
         margin: auto;
         justify-content: center;
     }
+
+    a {
+        text-decoration: none;
+        width:100%;
+    }
     .blog-card {
         // position: relative;
         cursor:pointer;
@@ -73,7 +79,7 @@
         flex-direction: column;
         border-radius: 8px;
         background-color: rgba(255, 245, 233, 0.897);
-        min-height: 250px;
+        height: 300px;
         width: 33%;
         transition: 0.5s ease all;
         align-items: center;
@@ -93,32 +99,26 @@
         color:#000;
         text-align: center;
         justify-content: center;
-        margin-top: 30px;
-    
-        h4 {
-            padding-bottom: 8px;
-            font-size: 18px;
-            font-weight:500;
+        margin-bottom: 50px;
+        width:90%;
+
+        h1 {
+            font-size: 25px;
         }
     
     }
 
-    h2 {
-        font-size: 20px;
-    }
-    
     .author {
         display: flex;
         flex-direction: column;
         height:100%;
         // z-index: 3;
-        // padding: 32px 16px;
         color:#000;
-        margin-bottom:0px;
-    
-        h6 {
-            font-weight: 300;
-            font-size: 15px;
+        width:90%;
+        h2 {
+            font-size: 20px;
+            text-align: center;
         }
     }
+
     </style>

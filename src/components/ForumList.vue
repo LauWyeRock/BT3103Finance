@@ -213,7 +213,7 @@
     }
     
     .subforum-title {
-        background-color:rgba(78, 52, 102, 0.384);
+        background-color:rgba(0, 0, 0, 0.801);
         padding: 5px;
         border-radius: 5px;
         margin:4px;
@@ -230,7 +230,7 @@
         padding: 10px;
         margin: 10px;
         border-radius: 5px;
-        background: rgb(251, 247, 240);
+        background: rgba(255, 245, 233, 0.897);
     }
     
     .subforum-description *{
