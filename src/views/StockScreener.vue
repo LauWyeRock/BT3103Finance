@@ -37,7 +37,7 @@ export default {
   components: {
     StockCardsAndTable,
     StockCardsAndTableSkeleton,
-  },
+},
 
   data() {
     return {
