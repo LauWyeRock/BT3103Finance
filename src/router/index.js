@@ -62,6 +62,21 @@ const router = createRouter({
       name: "Chat",
     },
     {
+      path: "/chat2",
+      component: () => import("../views/Chat2.vue"),
+      name: "Chat2",
+    },
+    {
+      path: "/chat3",
+      component: () => import("../views/Chat3.vue"),
+      name: "Chat3",
+    },
+    {
+      path: "/chat4",
+      component: () => import("../views/Chat4.vue"),
+      name: "Chat4",
+    },
+    {
       path: "/createpost",
       component: () => import("../views/CreatePost.vue"),
       name: "CreatePost",
@@ -114,6 +129,11 @@ const router = createRouter({
       component: () => import("../views/NotFound.vue"),
       name: "NotFound",
     },
+    // {
+    //   path: "/inverse",
+    //   component: () => import("../views/inverse.vue"),
+    //   name: "inverse",
+    // },
   ],
 });
 

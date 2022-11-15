@@ -1,35 +1,62 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="forum">
-    <BlogPost :post="welcomeScreen" />
-    <BlogPost
-      :post="post"
-      v-for="(post, index) in blogPostsFeed"
-      :key="index"
-    />
-    <div class="blog-card-wrap">
-      <div class="container">
-        <h3>Go to Chat</h3>
-        <div class="blog-cards">
-          <router-link class="link" :to="{ name: 'Chat' }">
-            <ChatCard />
-          </router-link>
+    <div class="forum">
+      <BlogPost :post="welcomeScreen" />
+      <BlogPost
+        :post="post"
+        v-for="(post, index) in blogPostsFeed"
+        :key="index"
+      />
+
+    <div ref="bottom" class="blog-card-wrap">
+        <div class="container">
+        <h1>Go to Chat</h1>
+
+        <div class="chatcardcontainer">
+            <div class="blog-cards">
+            <router-link class="link" :to="{ name: 'Chat' }">
+                <ChatCard/>
+            </router-link>
+            </div>
+
+            <div class="blog-cards">
+            <router-link class="link" :to="{ name: 'Chat' }">
+                <ChatCard2/>
+            </router-link>
+            </div>
+
+            <div class="blog-cards">
+            <router-link class="link" :to="{ name: 'Chat' }">
+                <ChatCard3/>
+            </router-link>
+            </div>
+
+            <div class="blog-cards">
+            <router-link class="link" :to="{ name: 'Chat' }">
+                <ChatCard4/>
+            </router-link>
+            </div>
         </div>
+
         <div>
           <br />
           <br />
         </div>
+        
         <router-link class="link" :to="{ name: 'Blogs' }">
-          <h3>View More Recent Posts</h3>
+          <h1>View More Recent Posts</h1>
         </router-link>
         <div class="blog-cards">
-          <BlogCard
+            <BlogCard
             :post="post"
             v-for="(post, index) in blogPostsCards"
             :key="index"
-          />
+            />
         </div>
       </div>
+    </div>
+    <div ref="bottom" class="forumdiv" style="margin-top:0">
+      <ForumList></ForumList>
     </div>
   </div>
 </template>
@@ -38,6 +65,10 @@
 import BlogPost from "@/components/BlogPost.vue";
 import BlogCard from "@/components/BlogCard.vue";
 import ChatCard from "@/components/ChatCard.vue";
+import ChatCard2 from "@/components/ChatCard2.vue";
+import ChatCard3 from "@/components/ChatCard3.vue";
+import ChatCard4 from "@/components/ChatCard4.vue";
+import ForumList from "@/components/ForumList.vue";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -46,16 +77,25 @@ export default {
     BlogPost,
     BlogCard,
     ChatCard,
+    ChatCard2,
+    ChatCard3,
+    ChatCard4,
+    ForumList
   },
   data() {
     return {
-      welcomeScreen: {
+        welcomeScreen: {
         title: "Welcome to Forum",
-        blogPost: "ABCDF",
+        blogPost: "Discuss and exchange knowledge within our reliable user community.",
         welcomeScreen: true,
         photo: "coding",
       },
     };
+  },
+  methods: {
+    scrollToBottom(){
+      this.$refs['bottom'].scrollIntoView({behavior: "smooth"})
+    }  
   },
   computed: {
     blogPostsFeed() {
@@ -72,11 +112,44 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.blog-card-wrap {
-  h3 {
-    font-weight: 300;
-    font-size: 28px;
-    margin-bottom: 32px;
-  }
+
+.forum {
+    background-color: rgb(70, 70, 70);
 }
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    padding-bottom: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+}
+
+.blog-card-wrap {
+    background-color: rgb(70, 70, 70);
+    h3 {
+        font-weight: 300;
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+}
+
+.chatcardcontainer {
+    margin: 0 -5px;
+}
+
+.chatcardcontainer:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.blog-cards {
+    float: left;
+    width: 25%;
+    padding: 0 0px;
+}
+
 </style>

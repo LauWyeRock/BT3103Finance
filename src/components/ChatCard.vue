@@ -1,26 +1,29 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="blog-card">
-        <div class="icons">
-            <div class="icon">
-                <h6>Go to</h6>
+
+        <router-link class="link" :to="{name: 'Chat'}">
+        
+            <div class="icons">
+                <div class="icon">
+                    <h6>Go to Chat</h6>    
+                </div>
             </div>
-            <div class="icon">
-                <h6>Chat</h6>    
+
+            <img src="..\assets\blogPhotos\stockmarket.jpg" alt=""/>
+        
+            <div class="info">
+                <h2 style="text-align:center;">Stock Market</h2>
             </div>
-        </div>
-        <!-- <img :src="post.blogCoverPhoto" alt="" /> -->
-        <div class="info">
-            <!-- <h4>{{ post.blogTitle}}</h4> -->
-            <router-link class="link" :to="{name: 'Chat'}">
-                <h6>Chat Card</h6>
-            </router-link>
-        </div>
+
+        </router-link>
+
     </div>
 </template>
 
 <script>
 export default {
-    name: "ChatCard",
+    name: "ChatCard1",
     components: {
         
     }
@@ -31,12 +34,13 @@ export default {
 .blog-card {
     position: relative;
     cursor:pointer;
-    display: flex;
+    // display: flex;
     flex-direction: column;
     border-radius: 8px;
-    background-color: #fff;
-    min-height: 420px;
+    background-color: rgba(255, 245, 233, 0.897);
+    min-height: 400px;
     transition: 0.5s ease all;
+    min-width: 300px;
 
     &:hover{
         transform:  rotateZ(-1deg) scale(1.01);
@@ -54,14 +58,23 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #fff;
+            width: 100px;
+            height: 30px;
+            border-radius: 7px;
+            background-color: rgba(255, 245, 233, 0.897);
+            color:black;
             transition: 0.5s ease all;
+            margin-top: 5px;
+
+            h4 {
+                text-align:center;
+                font-size: 15px;
+                font-weight:400;
+            }
 
             &:hover {
                 background-color: #303030;
+                color:white;
 
                 .edit,
                 .delete {
@@ -85,19 +98,19 @@ export default {
     }
 
     img {
-        display: block;
-        border-radius: 8px 8px 0 0;
+        border-radius: 20px;
         z-index: 1;
         width: 100% ;
-        min-height: 200px;
+        height: 100%;
+        padding: 10px;
         object-fit: cover;
     }
     .info {
         display: flex;
         flex-direction: column;
-        height:100%;
+        height:50%;
         z-index: 3;
-        padding: 32px 16px;
+        padding: 20px 16px;
         color:#000;
 
         h4 {

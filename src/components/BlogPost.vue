@@ -6,9 +6,15 @@
         <h2 v-else>{{ post.blogTitle }}</h2>
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else v-html="post.blogHTML"></p>
-        <router-link class="link link-right" v-if="post.welcomeScreen" to="#">
-          Login/Register 
+        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/sign-in" >
+          Login/ 
         </router-link>
+        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/register">
+          Register 
+        </router-link>
+        <!-- <button class="discoverbtn" v-if="post.welcomeScreen" @click="scrollToBottom">
+          CLICK TO DISCOVER
+        </button> -->
         <router-link class="link" v-else :to="{name: 'ViewPost', params: {blogid: this.post.blogID}}">
           View the Post
         </router-link>
@@ -35,6 +41,11 @@ export default {
   props: ["post"],
   components: {
     
+  },
+  methods: {
+    scrollToBottom(){
+      this.$refs['bottom'].scrollIntoView({behavior: "smooth"})
+    }  
   },
   computed: {
     user() {
@@ -147,5 +158,21 @@ export default {
         background-color: #303030;
         color:#fff;
     }
+}
+.discoverbtn {
+    position: absolute;
+    top: 58%;
+    left: 20%;
+    border-radius: 3px;
+    border: 1px solid white;
+    background-color: transparent;
+    color:white;
+    float:left;
+    padding: 10px;
+}
+
+.discoverbtn:hover {
+    background-color: black;
+    color:white;
 }
 </style>

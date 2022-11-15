@@ -3,7 +3,7 @@
     <div class="container">
         <div class="square">
             <div class="col-sm-6">
-                <img class="img" alt=" " v-bind:src="newsdetail.urlToImage" />
+                <img class="img" alt="" v-bind:src="newsdetail.urlToImage" />
                 <h1 class="title">{{newsdetail.title}}</h1>
                 <div>
                     <button class="readmore" @click="gotoURL()">Read More</button>
