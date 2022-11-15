@@ -33,30 +33,6 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
-    // {
-    //   path: "/forum",
-    //   component: () => import("../views/testforum.vue"),
-    //   name: "TestForum",
-    //   meta: {
-    //     requiresAuth: true,
-    //   },
-    // },
-    // {
-    //   path: "/forumposts",
-    //   component: () => import("../views/testforumposts.vue"),
-    //   name: "TestForumPosts",
-    //   meta: {
-    //     requiresAuth: true,
-    //   },
-    // },
-    // {
-    //   path: "/forumdetail",
-    //   component: () => import("../views/testforumdetail.vue"),
-    //   name: "TestForumDetail",
-    //   meta: {
-    //     requiresAuth: true,
-    //   },
-    // },
     {
       path: "/blogs",
       component: () => import("../views/Blogs.vue"),
@@ -84,6 +60,21 @@ const router = createRouter({
       path: "/chat",
       component: () => import("../views/Chat.vue"),
       name: "Chat",
+    },
+    {
+      path: "/chat2",
+      component: () => import("../views/Chat2.vue"),
+      name: "Chat2",
+    },
+    {
+      path: "/chat3",
+      component: () => import("../views/Chat3.vue"),
+      name: "Chat3",
+    },
+    {
+      path: "/chat4",
+      component: () => import("../views/Chat4.vue"),
+      name: "Chat4",
     },
     {
       path: "/createpost",
