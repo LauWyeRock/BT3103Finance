@@ -52,6 +52,11 @@
         </ToolTip>
       </th>
       <th>
+        <ToolTip text="Company's Full Name">
+          <span class="header-text">Name</span>
+        </ToolTip>
+      </th>
+      <th>
         <ToolTip text="Total likes and shares for the posts analyzed">
           <span class="header-text">Activity</span>
         </ToolTip>
@@ -74,6 +79,7 @@
     </tr>
     <tr v-for="stock in stocksInfo.Stocks" v-bind:key="stock.symbol">
       <td class="by-sentiment-column">{{ stock.symbol }}</td>
+      <td class="by-sentiment-column">{{ stock.name }}</td>
       <td class="by-sentiment-column">{{ numberWithCommas(stock.activity) }}</td>
       <td class="by-sentiment-column">{{ numberWithCommas(stock.negative_score) }}</td>
       <td class="by-sentiment-column">{{ numberWithCommas(stock.positive_score) }}</td>
@@ -143,7 +149,7 @@ tr:nth-child(even) {
   border-bottom: 1px dotted black;
 }
 
-@media only screen and (max-width: 760px),
+@media only screen and (max-width: 842px),
 (min-device-width: 768px) and (max-device-width: 1024px) {
 
   /* Force table to not be like tables anymore */
@@ -161,21 +167,19 @@ tr:nth-child(even) {
     position: absolute;
     top: -9999px;
     left: -9999px;
-    border-radius: 20px;
   }
 
   tr {
     margin: 0 0 1rem 0;
   }
 
-  tr:nth-child(odd) {
-    background: #ccc;
+  tr:nth-child(even) {
+    background: #f2f2f2;
   }
 
   td {
     /* Behave  like a "row" */
     border: none;
-    border-bottom: 1px solid #eee;
     position: relative;
     padding-left: 50%;
   }
@@ -196,46 +200,68 @@ tr:nth-child(even) {
   You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
   */
   .by-volume-column:nth-of-type(1):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Asset";
   }
 
   .by-volume-column:nth-of-type(2):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Name";
   }
 
   .by-volume-column:nth-of-type(3):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Volume";
   }
 
   .by-volume-column:nth-of-type(4):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Price";
   }
 
   .by-volume-column:nth-of-type(5):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Market Cap";
   }
 
   .by-volume-column:nth-of-type(6):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Recommendation";
   }
 
   .by-sentiment-column:nth-of-type(1):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Asset";
   }
 
   .by-sentiment-column:nth-of-type(2):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Activity";
   }
 
   .by-sentiment-column:nth-of-type(3):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Negative Score";
   }
 
   .by-sentiment-column:nth-of-type(4):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Positive Score";
   }
 
   .by-sentiment-column:nth-of-type(5):before {
+    padding: 2vh;
+    font-weight: bold;
     content: "Score";
   }
 }
