@@ -1,37 +1,37 @@
 <template>
-  <div className="Watch-List-Outer">
-    <h1 className="Watch-List-Title">Favourite Stocks/Cryptocurrencies</h1>
-    <div className="Watch-List-Content">
-      <div className="Long-Card-Buttons" v-for="item in favorites" :key = "item">
-        <StockTickerCard :ticker="item"/>
-      </div>
-    </div>
-    <div className="Long-Card-Buttons">
-        <button @click = "open()">Add Stock</button>
-        <button @click = "open2()"> Remove Stocks</button>
-    </div>
-    <teleport to = "body">
+	<div className="Watch-List-Outer">
+		<h1 className="Watch-List-Title">Favourite Stocks/Cryptocurrencies</h1>
+		<div className="Watch-List-Content">
+			<div className="Long-Card-Buttons" v-for="item in favorites" :key = "item">
+				<StockTickerCard :ticker="item"/>
+			</div>
+		</div>
+		<div className="Long-Card-Buttons">
+			<button @click = "open()">Add Stock</button>
+			<button @click = "open2()"> Remove Stocks</button>
+		</div>
+		<teleport to = "body">
 			<div class = "modal" v-if="isOpen">
-        <div class = "box"> 
-          <h2> Add a stock here </h2><br>
-          <div class="searchdiv">
-            <input type="text" id= "stockSearch" class="searchbar" placeholder="Search Stock..." />
-          </div>
-          <button class = "confirm" @click = "savetofs()"> Confirm </button>
-          <button class = "close" @click = close()> Close </button>
-        </div>
-      </div>
-    </teleport>
-    <teleport to = "body">
+				<div class = "box"> 
+					<h2> Add a stock here </h2><br>
+					<div class="searchdiv">
+						<input type="text" id= "stockSearch" class="searchbar" placeholder="Search Stock..." />
+					</div>
+					<button class = "confirm" @click = "savetofs()"> Confirm </button>
+					<button class = "close" @click = close()> Close </button>
+				</div>
+			</div>
+		</teleport>
+		<teleport to = "body">
 			<div class = "modal" v-if="isOpen2"> 
-        <div class = "box">
+				<div class = "box">
 					<h2> Are you sure? </h2><br>
-          <button class = "confirm" @click = "removeStocks()"> Yes </button>
-          <button class = "close" @click = "close2()"> No </button>
-        </div>
-      </div>
-    </teleport>
-  </div>
+					<button class = "confirm" @click = "removeStocks()"> Yes </button>
+					<button class = "close" @click = "close2()"> No </button>
+				</div>
+			</div>
+		</teleport>
+	</div>
 </template>
 
 <script>
@@ -40,146 +40,157 @@ import StockTickerCard from "./StockTickerCard.vue";
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
+import axios from 'axios';
 export default { 
-  components: { StockTickerCard},
-  async created() {
-    this.toDelete = await this.getFavStocks()
-    this.favorites = await this.getFavStocks();
-  },
-  data() {
-    return {
-        isOpen: ref(false),
-        isOpen2: ref(false),
-        toDelete: [], //array of strings
-        favorites: [],
-    }
-  },
-  methods: {
-    open() { this.isOpen = true },
+	components: { StockTickerCard},
+	async created() {
+		this.toDelete = await this.getFavStocks()
+		this.favorites = await this.getFavStocks();
+	},
+	data() {
+		return {
+			isOpen: ref(false),
+			isOpen2: ref(false),
+			toDelete: [], //array of strings
+			favorites: [],
+		}
+	},
+	methods: {
+		open() { this.isOpen = true },
 		close() { this.isOpen = false },
-    open2() { this.isOpen2 = true },
+		open2() { this.isOpen2 = true },
 		close2() { this.isOpen2 = false },
-    async getFavStocks() {
-      let b = await this.getUserId();
-      let docRef = doc(db, "profiles", b);
-      let docSnap = await getDoc(docRef);
-      let c = docSnap.data().favoriteStocks;
-      console.log(c);
-      return c;
-    },
-    async savetofs() {
-        let uid = document.getElementById("stockSearch").value;
-        if (uid == "") {
-          alert("Stock cannot be empty")
-          return
-        } else {
-          let b = await this.getUserId();
-          let docRef = doc(db, "profiles", b);
-          let docSnap = await getDoc(docRef);
-          let c = docSnap.data().favoriteStocks;
-          let ticker = uid.toUpperCase();
-          if (c.includes(ticker)) {
-            alert("Favorites list already has ticker")
-            return
-          }
-          c.push(ticker);
-          setDoc(
-            doc(db, "profiles", b),
-            {
-              favoriteStocks: c
-            },
-            { merge: true }
-          )
-            .then(() => {
-              console.log("updated...");
-              alert("Profile Updated Successfully!");
-              location.reload();
-            })
-            .catch((error) => {
-              //error
-              console.error(
-                "oh no something went wrong with setting favorite stocks!" + error
-              );
-            });
-        }
-    },
-    getUserId() {
-      return new Promise((resolve, reject) => {
-        getAuth().onAuthStateChanged((user) => {
-          if (user) {
-            const uid = user.uid;
-            console.log("1st uid:" + uid);
-            resolve(uid);
-          } else {
-            console.log("sad didnt work.");
-            reject();
-          }
-        });
-      });
-    },
-    async removeStocks() {
-        let toDelete = this.$store.state.stocksToDelete;
-        let currentStocks = await this.getFavStocks();
-        if (toDelete.length < 1) {
-          alert("No stocks to delete! Click on the ticker and highlight the stocks to delete.");
-          this.close2();
-          return
-        }
-        for (let i = 0; i < toDelete.length; i++) {
-          let index = currentStocks.indexOf(toDelete[i]);
-          currentStocks.splice(index, 1);
-        }
-        console.log(currentStocks);
-        let b = await this.getUserId();
-        setDoc(
-            doc(db, "profiles", b),
-            {
-              favoriteStocks: currentStocks
-            },
-            { merge: true }
-          )
-            .then(() => {
-              console.log("updated...");
-              alert("Stocks Removed!");
-              location.reload();
-            })
-            .catch((error) => {
-              //error
-              console.error(
-                "oh no something went wrong with setting favorite stocks!" + error
-              );
-            });
-    }
-  }
+		async getFavStocks() {
+			let b = await this.getUserId();
+			let docRef = doc(db, "profiles", b);
+			let docSnap = await getDoc(docRef);
+			let c = docSnap.data().favoriteStocks;
+			console.log(c);
+			return c;
+		},
+		async savetofs() {
+			let uid = document.getElementById("stockSearch").value;
+			let stockCheck = this.pullData(uid);
+			if (!stockCheck) {
+				alert("Invalid stock ticker")
+				return
+			}
+			if (uid == "") {
+				alert("Stock cannot be empty")
+				return
+			} else {
+				let b = await this.getUserId();
+				let docRef = doc(db, "profiles", b);
+				let docSnap = await getDoc(docRef);
+				let c = docSnap.data().favoriteStocks;
+				let ticker = uid.toUpperCase();
+				if (c.includes(ticker)) {
+					alert("Favorites list already has ticker")
+					return
+				}
+				c.push(ticker);
+				setDoc(
+				doc(db, "profiles", b),
+				{
+					favoriteStocks: c
+				},
+				{ merge: true }
+				)
+				.then(() => {
+					console.log("updated...");
+					alert("Profile Updated Successfully!");
+					location.reload();
+				})
+				.catch((error) => {
+					//error
+					console.error(
+					"oh no something went wrong with setting favorite stocks!" + error
+					);
+				});
+			}
+		},
+		getUserId() {
+			return new Promise((resolve, reject) => {
+				getAuth().onAuthStateChanged((user) => {
+					if (user) {
+						const uid = user.uid;
+						console.log("1st uid:" + uid);
+						resolve(uid);
+					} else {
+						console.log("sad didnt work.");
+						reject();
+					}
+				});
+			});
+		},
+		async removeStocks() {
+			let toDelete = this.$store.state.stocksToDelete;
+			let currentStocks = await this.getFavStocks();
+			if (toDelete.length < 1) {
+				alert("No stocks to delete! Click on the ticker and highlight the stocks to delete.");
+				this.close2();
+				return
+			}
+			for (let i = 0; i < toDelete.length; i++) {
+				let index = currentStocks.indexOf(toDelete[i]);
+				currentStocks.splice(index, 1);
+			}
+			console.log(currentStocks);
+			let b = await this.getUserId();
+			setDoc(
+			doc(db, "profiles", b),
+			{
+				favoriteStocks: currentStocks
+			},
+			{ merge: true }
+			)
+			.then(() => {
+				console.log("updated...");
+				alert("Stocks Removed!");
+				location.reload();
+			})
+			.catch((error) => {
+				//error
+				console.error(
+				"oh no something went wrong with setting favorite stocks!" + error
+				);
+			});
+		},
+		async pullData(stock) {
+			var url = 'https://www.alphavantage.co/query?function=OVERVIEW&symbol=' + stock + '&apikey=' + 'YYDJ5HRF9K8DOGJE';
+			let stockData = await axios.get(url).then(res => res.data);
+			return stockData['Price']
+		}
+	}
 };
 </script>
 
 <style>
 .Watch-List-Outer {
-  border-radius: 10px;
-  border: 1px solid black;
-  margin-right: 2.5%;
-  margin-left: 2.5%;
-  margin-bottom: 10px;
-  width: 95%;
-  padding: 1%;
+	border-radius: 10px;
+	border: 1px solid black;
+	margin-right: 2.5%;
+	margin-left: 2.5%;
+	margin-bottom: 10px;
+	width: 95%;
+	padding: 1%;
 }
 
 .Watch-List-Title {
-  margin-left: 5%;
+	margin-left: 5%;
 }
 
 .Long-Card-Buttons {
-  margin-left: 5%;
+	margin-left: 5%;
 }
 
 .Watch-List-Content {
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	margin-top: 2%;
+	margin-left: 5%;
+	margin-right: 5%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .modal {
@@ -193,13 +204,13 @@ export default {
 	justify-content: center;
 	align-items: center;
 	padding: 50px;
-  border-radius: 10px
+	border-radius: 10px
 }
 
 .box{
-  background-color: blanchedalmond;
-  padding: 50px;
-  border-radius: 10px;
-  border-color: black
+	background-color: blanchedalmond;
+	padding: 50px;
+	border-radius: 10px;
+	border-color: black
 }
 </style>
