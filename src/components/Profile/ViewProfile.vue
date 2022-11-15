@@ -10,7 +10,7 @@
       <AboutMeCard :profile="profile" />
       <SocialsCard :profile="profile" :ownPage="ownPage" />
     </div>
-    <MyWatchList :profile="profile" :ownPage="ownPage" />
+    <MyWatchList :profile="profile" :ownPage="ownPage" :uid="profileUid" />
     <AchievementListCard :uid="profileUid" />
   </div>
   <div v-else>
