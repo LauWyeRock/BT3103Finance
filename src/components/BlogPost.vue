@@ -6,12 +6,12 @@
         <h2 v-else>{{ post.blogTitle }}</h2>
         <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else v-html="post.blogHTML"></p>
-        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/sign-in" >
-          Login/ 
+        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/blogs" >
+          See more posts
         </router-link>
-        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/register">
+        <!-- <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/register">
           Register 
-        </router-link>
+        </router-link> -->
         <!-- <button class="discoverbtn" v-if="post.welcomeScreen" @click="scrollToBottom">
           CLICK TO DISCOVER
         </button> -->
