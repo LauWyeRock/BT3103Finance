@@ -9,19 +9,21 @@
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
 
-		<!-- Intro -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Investing')">An Introduction to the Stock Market</button>
-		</div>
+		<div class="vidheaders">
+			<!-- Intro -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Investing')">An Introduction to the Stock Market</button>
+			</div>
 
-		<!-- Crypto -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Cryptocurrencies')">Cryptocurrencies and What They Do</button>
-		</div>
+			<!-- Crypto -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Cryptocurrencies')">Cryptocurrencies and What They Do</button>
+			</div>
 
-		<!-- Stocks -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Stocks')">Solidifying your Investing Foundations</button>
+			<!-- Stocks -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Stocks')">Solidifying your Investing Foundations</button>
+			</div>
 		</div>
 
 		<div class="vidresults">
@@ -94,7 +96,7 @@ export default {
 	}
 	.container-fluid {
 		background-image: repeating-linear-gradient(
-		rgb(77, 109, 98), 
+		rgba(240, 235, 244, 1), 
 		rgba(161, 195, 209, 0.5), 
 		rgba(241, 114, 161, 0.5)
 		);
@@ -104,7 +106,6 @@ export default {
 		padding: 0;
 		width: 100%;
 	}
-
 	.header {
 		font-family: serif;
 		font-size: 480%;
@@ -134,13 +135,20 @@ export default {
 		letter-spacing: 0px;
 	}
 
+	.vidheaders {
+		display:flex;
+		width: 80%;
+		flex-basis: 30%;
+		margin:auto;
+		gap: 10px;
+	}
 	.vidheader {
 		padding-top: 0px;
-		width: 100px;
+		width: 80px;
 		text-align:left;
 		margin: auto;
 		width: 80%;
-		font-size: 30px;
+		font-size: 20px;
 		letter-spacing: -1px;
 		font-weight: bold;
 		text-decoration: underline;
