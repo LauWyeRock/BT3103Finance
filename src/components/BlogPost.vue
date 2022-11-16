@@ -28,7 +28,7 @@
         v-if="post.welcomeScreen"
         :src="require(`../assets/blogPhotos/${post.photo}.png`)"
         alt=""
-        style="width: 800px"
+        style="width: 800px; height: 700px"
       />
       <img
         v-else

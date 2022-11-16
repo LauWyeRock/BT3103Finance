@@ -88,13 +88,13 @@ export default {
 		font-weight: bold;
 		border-radius: 4px;
 		color:black;
-		background-color: rgba(255, 225, 200, 1);
+		background-color: rgb(250, 236, 232);
 		padding: 10px 10px 10px 10px;
 		/* text-transform: lowercase;  */
 	}
 	.container-fluid {
 		background-image: repeating-linear-gradient(
-		rgba(240, 235, 244, 1), 
+		rgb(77, 109, 98), 
 		rgba(161, 195, 209, 0.5), 
 		rgba(241, 114, 161, 0.5)
 		);

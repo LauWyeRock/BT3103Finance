@@ -415,7 +415,34 @@
   
 <!--------- CONTACT US ---------->
 
-    <div class="aboutus">
+<div class="contactus">
+
+  <div class="leftside">
+    <div class="textbox">
+      <h1 style="font-size: 80px; font-family: serif; color:rgb(44, 78, 66)">Ask Us.</h1>
+      <h4 style="font-size: 30px; font-family: serif; color:rgb(77, 109, 98); font-weight: 400">Send us a note, <br/> contact us.</h4>
+    </div>
+  </div>
+
+  <div class="verticalline">
+
+    <div class="rightside">
+      <div>
+        <h1 class="contactheader">OFFICE NUMBER</h1> <br/>
+        <h4 class="contactinfo">+65 6398 5038</h4>
+      </div>
+      <div class="second">
+        <h1 style="padding-top: 20px" class="contactheader">EMAIL ADDRESS</h1> <br/>
+        <h4 class="contactinfo">help@flourish.com</h4>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+    <!-- <div class="aboutus">
         <h1 style="font-size: 60px; font-variant: small-caps; font-family: serif; text-align: center; margin-bottom: 50px">The Flourish Team
           <br/>
           <p style="font-size: 20px; text-align: center; font-weight:400; margin-top: 60px; margin-bottom: 20px; font-variant:normal">
@@ -427,36 +454,13 @@
               <br/>If you have any enquiries, feel free to contact us via the form below. Cheers!
           </p>
         </h1>
+    </div> -->
 
-        <div class="formcontainer">
-          <form action="action_page.php">
-
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-            <label for="country">Country</label>
-            <select id="country" name="country">
-              <option value="australia">Singapore</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
-            </select>
-
-            <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
-
-            <!-- <input type="submit" value="Submit"> -->
-
-            <div class="popup" onclick="myFunction()">Submit
-              <span class="popuptext" id="myPopup">Popup text...</span>
-            </div>
-
-          </form>
-        </div>
-    </div>
 
   </div>
-  </div>
-  </div>
+</div>
+</div>
+
 </template>
 
 <script>
@@ -474,10 +478,6 @@ export default defineComponent({
     openss() {
         window.open("/stock-screener", '_blank');
       },
-    myFunction() {
-      var popup = document.getElementById("myPopup");
-      popup.classList.toggle("show");
-    }
   },
   mounted() {
     if (localStorage.getItem("reloaded")) {
@@ -563,6 +563,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+
 .body {
   scroll-behavior: smooth;
 }
@@ -759,31 +761,6 @@ p {
   font-size: 20px;
 }
 
-.aboutus {
-  scroll-snap-align: start;
-  height:100vh;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  width:80%;
-  margin:auto;
-  position: relative;
-}
-
-.contactus {
-  margin: auto;
-  background-color: rgb(252, 248, 243);
-  color: rgb(192, 140, 205);
-  border-radius: 5px;
-  padding: 10px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-.contactus:hover {
-  background-color: rgb(192, 140, 205);
-  color: rgb(252, 248, 243);
-}
-
 /* TEST NEW SECTION */
 
 .campus {
@@ -843,7 +820,63 @@ p {
   opacity: 1;
 }
 
-input[type=text], select, textarea {
+.aboutus {
+  scroll-snap-align: start;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  width:80%;
+  margin:auto;
+  position: relative;
+}
+
+.contactus {
+  background-color: transparent;
+  display: flex;
+  gap: 90px;
+  scroll-snap-align: start;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  width:100%;
+  margin:auto;
+  position: relative;
+}
+
+.leftside {
+  float:left;
+}
+
+.rightside {
+  float:right;
+  margin-left: 50px;
+}
+
+.verticalline {
+  border-left: solid rgb(44, 78, 66);
+  height: 200px;
+}
+
+.contactheader {
+  text-transform: capitalize;
+  font-family: serif;
+  font-size: 40px;
+  float:left;
+  color: rgb(44, 78, 66);
+  font-variant: small-caps;
+}
+
+.contactinfo {
+  float: left;
+  font-size: 30px;
+  color: rgb(77, 109, 98);
+  font-family: serif
+}
+
+
+/* input[type=text], select, textarea {
   width: 100%;
   padding: 12px; 
   border: 1px solid #ccc; 
@@ -865,8 +898,8 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: #45a049;
-}
-.formcontainer {
+} */
+/* .formcontainer {
   border-radius: 5px;
   background-color: transparent;
   padding: 20px;
@@ -913,9 +946,7 @@ input[type=submit]:hover {
 
 .popup .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
-}
+} */
 
 
 </style>
