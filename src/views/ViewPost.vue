@@ -23,7 +23,7 @@
 import { db } from '@/firebase/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import {doc,  getDoc , collection, addDoc} from "@firebase/firestore";
+import {doc,  getDoc , collection, addDoc, query, getDocs} from "@firebase/firestore";
 
 
 export default {
@@ -38,6 +38,13 @@ export default {
         }
     },
     async mounted() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            this.user = user;
+          }
+        })
+
         const id = this.$route.params.blogid
         this.webid = id;
         const docRef = doc(db, "blogPosts", id)
@@ -45,12 +52,12 @@ export default {
         this.currentBlog = docSnap;
         this.loading = false
 
-        const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            this.user = user;
-          }
+        const docRef2 = query(collection(db,"blogPosts", id, "comments"))
+        const querySnapshot = await getDocs(docRef2)
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data())
         })
+
     },
     methods: {
         async commentSend(e) {
@@ -60,7 +67,7 @@ export default {
                         this.docRef = await addDoc(dataBase, {
                             date:timestamp,
                             comment: this.comment,
-                            // username: this.user.username,
+                            username: this.user.username,
                         })
         }
     },
