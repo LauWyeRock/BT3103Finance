@@ -9,12 +9,18 @@
 <div>
 
 </div>
-    <form @submit="commentSend">
+    <form ref= "commentField " @submit="commentSend">
     <div class="commentformspace">
       <input type="text" v-model="comment" placeholder="Comment Here"/>
       <button type="submit">Send</button>
     </div>
     </form>
+</div>
+
+<div v-if="!loading" class="commentSection">
+    <div v-for="(comment,date,id) in comments" v-bind:key="id">
+        User : {{comment}} on {{date}}
+    </div>
 </div>
   
 </template>
@@ -35,6 +41,7 @@ export default {
             user: false,
             comment: null,
             webid: null,
+            comments: [],
         }
     },
     async mounted() {
@@ -50,13 +57,14 @@ export default {
         const docRef = doc(db, "blogPosts", id)
         const docSnap = await getDoc(docRef)
         this.currentBlog = docSnap;
-        this.loading = false
 
         const docRef2 = query(collection(db,"blogPosts", id, "comments"))
         const querySnapshot = await getDocs(docRef2)
         querySnapshot.forEach((doc) => {
-            console.log(doc.data())
+            this.comments.push([doc.data().comment,doc.data().date, doc.id])
         })
+
+        this.loading = false
 
     },
     methods: {
@@ -69,7 +77,9 @@ export default {
                             comment: this.comment,
                             // username: this.user.username,
                         })
+            this.comment="";
         }
+        
     },
     computed: {
         blogPostsFeed() {
