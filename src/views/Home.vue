@@ -703,7 +703,7 @@ p {
 }
 
 .header {
-  margin-top: 55px;
+  margin-top: 8%;
   margin-left: 20px;
   font-size: 60px;
   color: white;
