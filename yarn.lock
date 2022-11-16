@@ -1486,10 +1486,6 @@
   "resolved" "https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
-"@iconscout/vue-unicons@^0.0.3":
-  "integrity" "sha512-wVYaEPNXNCqYoyrhEMoYAm8rxFnPmXLduzH3WmROTdU0D1qcuHj5AjxSCJ+OOs9+Tz3woUjDRjINlZHQmdiPBw=="
-  "resolved" "https://registry.npmjs.org/@iconscout/vue-unicons/-/vue-unicons-0.0.3.tgz"
-  "version" "0.0.3"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
@@ -10464,23 +10460,7 @@
   "resolved" "https://registry.npmmirror.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.1.0.tgz"
   "version" "2.1.0"
 
-"unicons@github:antonreshetov/unicons#master":
-  "resolved" "git+ssh://git@github.com/antonreshetov/unicons.git#406697f226ca9469fc1a73825f12cae2d676d846"
-  "version" "2.0.0"
-  dependencies:
-    "async" "^2.6.1"
-    "axios" "^0.19.0"
-    "cheerio" "^1.0.0-rc.2"
-    "fontello-cli" "^0.5.0"
-    "fs-plus" "^3.1.1"
-    "glob" "^7.1.3"
-    "lodash" "^4.17.15"
-    "parse-svg-path" "^0.1.2"
-    "scale-svg-path" "0.0.1"
-    "serialize-svg-path" "^0.1.0"
-    "svgo" "^1.1.1"
-    "svgstore" "^3.0.0-2"
-    "uuid" "^3.3.2"
+
 
 "unique-filename@^1.1.1":
   "integrity" "sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ=="
@@ -10764,15 +10744,6 @@
   "resolved" "https://registry.npmjs.org/vue-tradingview-widgets/-/vue-tradingview-widgets-1.2.0.tgz"
   "version" "1.2.0"
 
-"vue-unicons@^2.1.0":
-  "integrity" "sha512-EBl+dSZvbGUFTLrPpjC4sVqzL28RzxuljNUbyjmjVugIPCrnpgZxAPAMH2CIjqt3ttzkQzaejqMrTvEQCkjnrA=="
-  "resolved" "https://registry.npmjs.org/vue-unicons/-/vue-unicons-2.1.0.tgz"
-  "version" "2.1.0"
-  dependencies:
-    "prismjs" "^1.15.0"
-    "unicons" "github:antonreshetov/unicons#master"
-    "vue" "^2.5.22"
-    "vue-analytics" "^5.16.2"
 
 "vue-youtube-embed@^2.2.2":
   "integrity" "sha512-l/EJuFMRK43AN73N+qxJnN0LB3uPl2xAghmr3dCvODWGCRWGjmGfrHaOtD93fu9J4co+CZLv1KP3akAsldC1aw=="
