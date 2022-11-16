@@ -114,7 +114,11 @@ export default {
 <style lang="scss" scope>
 
 .forum {
-    background-color: rgb(70, 70, 70);
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1), 
+    rgba(161, 195, 209, 0.5), 
+    rgba(241, 114, 161, 0.5)
+  );
 }
 
 h1 {
@@ -128,7 +132,7 @@ h1 {
 }
 
 .blog-card-wrap {
-    background-color: rgb(70, 70, 70);
+    background-color: transparent;
     h3 {
         font-weight: 300;
         font-size: 28px;

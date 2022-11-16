@@ -3,8 +3,8 @@
   <header>
     <nav class="container">
       <div class="branding">
-        <a href="/" class="header">Flourich</a>
-        <!-- <router-link class="header" :to="{ name: 'Home' }">Flourich</router-link> -->
+        <a href="/" class="header">Flourish</a>
+        <!-- <router-link class="header" :to="{ name: 'Home' }">Flourish</router-link> -->
         <!-- this path name is referenced to index.js in router -->
       </div>
 

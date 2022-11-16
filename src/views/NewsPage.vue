@@ -247,7 +247,7 @@
         }
     }
     .navheader {
-        padding-left: 140px;
+        padding-left: 225px;
         font-family: serif;
         letter-spacing: -1px;
         color: black;

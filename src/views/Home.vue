@@ -12,7 +12,7 @@
         style="max-height: 500px; height: 500px;"
         overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
       >
-        <h1 class="header">Flourich: <br/> Where Stock <br/> Enthusiasts Gather</h1>
+        <h1 style="font-size:70px; font-variant: small-caps; font-family:serif; font-weight:300; margin-bottom: 30px" class="header">Flourish: <br/> Where Stock <br/> Enthusiasts Gather</h1>
       </video-background>
     </div>
 
@@ -311,7 +311,7 @@
       <div class="paragraph">
         <p> Want to start investing but not sure how to begin and who to ask for help? <br/>
           <br/>
-          Flourich aims to provide a broad starting point for beginners in the investing field by building a 
+          Flourish aims to provide a broad starting point for beginners in the investing field by building a 
           portfolio management tool that would assist them in creating a decision making framework, based within 
           an immersive and interactive community-centric system that is fun and engaging to use at the same time.
           <br/>
@@ -326,7 +326,7 @@
 
       <div class="aboutus">
       <section class="campus">
-        <h1 style="font-size:35px; margin-bottom: 30px">Explore Our Resources</h1>
+        <h1 style="font-size:40px; font-variant: small-caps; font-family:serif; font-weight:300; margin-bottom: 30px">Explore Our Resources</h1>
 
         <div class="row">
 
@@ -364,8 +364,8 @@
 <!--------- TERM OF THE DAY ---------->
   
     <div class="termoftheday">
-      <h1 class="totd">Term of the day</h1> <br/>
-      <h2 class="pnd">Pump and Dump (PnD)</h2> <br/>
+      <h1 class="totd" style="font-size:50px; font-family:serif; font-variant: small-caps; font-weight:300">Term of the day</h1> <br/>
+      <h2 style="font-family: serif" class="pnd">Pump and Dump (PnD)</h2> <br/>
       <h4 class="explanation">Pump-and-dump is a manipulative scheme that attempts to boost the price of a stock or security 
         through fake recommendations. These recommendations are based on false, misleading, or greatly 
         exaggerated statements. The perpetrators of a pump-and-dump scheme already have an established position 
@@ -381,7 +381,7 @@
 
       <div class="trdgstockscontainer">
 
-      <h1 style="font-size: 40px; text-align: center; margin-top:30px; margin-bottom: 50px">
+      <h1 style="font-size: 40px; font-variant: small-caps; font-family: serif; text-align: center; margin-top:30px; margin-bottom: 50px">
       Track Market Trends And The Best Stocks To Watch</h1>
 
       <div class="contentdiv">
@@ -403,7 +403,7 @@
 <!--------- TESTIMONIALS ---------->
 
     <div class="reviewdiv">
-        <h1 style="font-size: 30px; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about Flourich</h1>  
+        <h1 style="font-size: 40px; font-family: serif; font-variant: small-caps; text-align: center; margin-top:30px; margin-bottom: 50px">What users are saying about Flourish</h1>  
         <div class="reviewcardscontainer">
           <div class="reviewcards">
                 <ReviewCard>
@@ -416,22 +416,41 @@
 <!--------- CONTACT US ---------->
 
     <div class="aboutus">
-        <h1 style="font-size: 40px; text-align: center; margin-bottom: 50px">The Flourich Team
+        <h1 style="font-size: 60px; font-variant: small-caps; font-family: serif; text-align: center; margin-bottom: 50px">The Flourish Team
           <br/>
-          <p style="font-size: 20px; text-align: center; font-weight:300; margin-top: 60px; margin-bottom: 20px">
-            At Flourich, we believe that financial knowledge is an 
+          <p style="font-size: 20px; text-align: center; font-weight:400; margin-top: 60px; margin-bottom: 20px; font-variant:normal">
+            At Flourish, we believe that financial knowledge is an 
             extremely powerful tool in today's society.
               <br/>With the right information, tools and community, anyone can learn how
               to invest wisely.
               <br/>That is why we would like to share these same things with you.
-              <br/>If you have any enquiries, feel free to contact us via the button below. Cheers!
+              <br/>If you have any enquiries, feel free to contact us via the form below. Cheers!
           </p>
         </h1>
 
-        <div class="center">
-          <button class="contactus" type="button">
-            Contact Us
-          </button>
+        <div class="formcontainer">
+          <form action="action_page.php">
+
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="australia">Singapore</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
+
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
+
+            <!-- <input type="submit" value="Submit"> -->
+
+            <div class="popup" onclick="myFunction()">Submit
+              <span class="popuptext" id="myPopup">Popup text...</span>
+            </div>
+
+          </form>
         </div>
     </div>
 
@@ -455,6 +474,10 @@ export default defineComponent({
     openss() {
         window.open("/stock-screener", '_blank');
       },
+    myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
   },
   mounted() {
     if (localStorage.getItem("reloaded")) {
@@ -573,7 +596,7 @@ export default defineComponent({
     rgba(241, 114, 161, 0.5)
   );
   height:100vh;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
 }
 .hello::-webkit-scrollbar {
@@ -747,14 +770,6 @@ p {
   position: relative;
 }
 
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
 .contactus {
   margin: auto;
   background-color: rgb(252, 248, 243);
@@ -827,5 +842,80 @@ p {
   bottom: 49%;
   opacity: 1;
 }
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.formcontainer {
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 20px;
+  width: 60%;
+  margin-top: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
 
 </style>

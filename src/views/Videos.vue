@@ -3,9 +3,9 @@
 	<div class="container-fluid">
 
 		<!-- header + search bar -->
-        <div class="header">videos</div>
+        <div class="header">Videos</div>
 		<div class="subheader">Not sure where to start?</div>
-		<div class="description"> Flourich has carefully curated a list of investing educational videos below,
+		<div class="description"> Flourish has carefully curated a list of investing educational videos below,
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
 
@@ -87,8 +87,8 @@ export default {
 		font-size: 20px;
 		font-weight: bold;
 		border-radius: 4px;
-		color:black;
-		background-color: rgba(240, 235, 244, 1);
+		color:rgb(114, 103, 81);
+		background-color: rgb(252, 243, 233);
 		padding: 10px 10px 10px 10px;
 		/* text-transform: lowercase;  */
 	}
