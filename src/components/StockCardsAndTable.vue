@@ -16,7 +16,7 @@
       <line-chart v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].volume"
         :title="'Volume changes over the past few business days'"
         :data="selectedStockIndex > -1 && { [this.stocksInfo.Stocks[selectedStockIndex].historical.date0]: stocksInfo.Stocks[selectedStockIndex].historical.volume0, [this.stocksInfo.Stocks[selectedStockIndex].historical.date1]: stocksInfo.Stocks[selectedStockIndex].historical.volume1, [this.stocksInfo.Stocks[selectedStockIndex].historical.date2]: stocksInfo.Stocks[selectedStockIndex].historical.volume2, [this.stocksInfo.Stocks[selectedStockIndex].historical.date3]: stocksInfo.Stocks[selectedStockIndex].historical.volume3, [this.stocksInfo.Stocks[selectedStockIndex].historical.date4]: stocksInfo.Stocks[selectedStockIndex].historical.volume4, [this.stocksInfo.Stocks[selectedStockIndex].historical.date5]: stocksInfo.Stocks[selectedStockIndex].historical.volume5, 'Most Recent': stocksInfo.Stocks[selectedStockIndex].volume }"
-        :download="true" thousands="," :curve="true">
+        :download="true" thousands="," :curve="false">
       </line-chart>
     </div>
     <div v-else class="line-chart-box" v-show="selectedStockIndex > -1 && !isByVolume">
@@ -29,7 +29,7 @@
       <line-chart v-show="selectedStockIndex > -1 && stocksInfo.Stocks[selectedStockIndex].activity"
         :title="'Activity over the past week'"
         :data="selectedStockIndex > -1 && { 'Six Days Ago': stocksInfo.Stocks[selectedStockIndex].activity0, 'Five Days Ago': stocksInfo.Stocks[selectedStockIndex].activity1, 'Four Days Ago': stocksInfo.Stocks[selectedStockIndex].activity2, 'Three Days Ago': stocksInfo.Stocks[selectedStockIndex].activity3, 'Two Days Ago': stocksInfo.Stocks[selectedStockIndex].activity4, 'One Day Ago': stocksInfo.Stocks[selectedStockIndex].activity }"
-        :download="true" thousands="," :curve="true">
+        :download="true" thousands="," :curve="false">
       </line-chart>
     </div>
     <div class="table-box">
