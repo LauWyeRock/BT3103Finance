@@ -1,6 +1,7 @@
 <template>
+  <div class="main">
   <div class="blog-wrapper" :class="{'no-user': !user}">
-    <div class="blog-content">
+    <div style="background-color:transparent" class="blog-content">
       <div>
         <h2 style="color:black" v-if="post.welcomeScreen">{{ post.title }}</h2>
         <h2 v-else>{{ post.blogTitle }}</h2>
@@ -25,8 +26,9 @@
     <div class="blog-photo">
       <img
         v-if="post.welcomeScreen"
-        :src="require(`../assets/blogPhotos/${post.photo}.jpg`)"
+        :src="require(`../assets/blogPhotos/${post.photo}.png`)"
         alt=""
+        style="width: 800px; height: 700px"
       />
       <img
         v-else
@@ -35,6 +37,7 @@
       />
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -58,12 +61,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.main {
+  background-image: transparent;
+}
 .blog-wrapper {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 6px -1px rgb(0, 0, 0),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  // box-shadow: 0 4px 6px -1px rgb(0, 0, 0),
+  //   0 2px 4px -1px rgba(0, 0, 0, 0.06);
   @media (min-width: 700px) {
     min-height: 650px;
     max-height: 650px;
@@ -139,8 +145,8 @@ export default {
   .blog-photo {
     order: 1;
     flex: 3;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    // box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    //   0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     @media (min-width: 700px) {
       order: 2;
