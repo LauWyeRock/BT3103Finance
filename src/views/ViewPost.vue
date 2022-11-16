@@ -2,10 +2,28 @@
   <div v-if="!loading" class="post-view">
     <div class="container quillWrapper">
       <h2>{{ this.currentBlog.data().blogTitle }}</h2>
-      <h4>
-        Posted on:
-        {{ this.date }}
-      </h4>
+
+      <div style="display: flex; flex-direction: row">
+        <img
+          style="
+            width: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+          "
+          :src="blogPoster.profilePicture"
+        />
+        <span style="margin-left: 5px">
+          <h3 style="margin-bottom: 5px">
+            {{ this.blogPoster.displayName }}
+          </h3>
+          <h4>
+            Posted on:
+            {{ this.date }}
+          </h4>
+        </span>
+      </div>
+
       <img :src="this.currentBlog.data().blogCoverPhoto" alt="" />
       <div
         class="post-content ql-editor"
@@ -72,6 +90,7 @@ export default {
   data() {
     return {
       currentBlog: null,
+      blogPoster: null,
       date: null,
       loading: true,
       user: false,
@@ -110,6 +129,8 @@ export default {
 
     this.date = this.timeConverter(this.currentBlog.data().date);
     console.log(this.date);
+
+    this.blogPoster = await this.getProfile(this.currentBlog.data().profileId);
     this.loading = false;
   },
   methods: {
@@ -170,6 +191,8 @@ export default {
           this.myUid
       );
       this.comment = "";
+      alert("Comment Posted!");
+      location.reload();
     },
   },
   computed: {
