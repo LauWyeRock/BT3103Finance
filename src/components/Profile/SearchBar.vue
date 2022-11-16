@@ -1,6 +1,6 @@
 <template>
   <div id="bg-container">
-    <!-- <h1>Find a Trade Bro</h1> -->
+    <!-- <h1>Find a Friend</h1> -->
     <!-- <div>
       <input id="searchQuery" type="text" placeholder="Search For Users..." />
       <button v-on:click="searchForUser()">Search</button>
@@ -13,7 +13,7 @@
               type="text"
               id="searchQuery"
               @keyup.enter="searchForUser()"
-              placeholder="Find a Trade Bro"
+              placeholder="Find a Friend"
               required
             />
           </div>
