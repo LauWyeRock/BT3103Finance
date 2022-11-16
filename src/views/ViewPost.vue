@@ -18,8 +18,8 @@
 </div>
 
 <div v-if="!loading" class="commentSection">
-    <div v-for="(comment,date,id) in comments" v-bind:key="id">
-        User : {{comment}} on {{date}}
+    <div v-for="(comment,id) in comments" v-bind:key="id">
+        User : {{comment[0]}}
     </div>
 </div>
   
