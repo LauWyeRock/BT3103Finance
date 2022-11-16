@@ -9,10 +9,12 @@
 <div>
 
 </div>
+
     <form ref= "commentField" @submit="commentSend">
     <div class="commentformspace">
       <input type="text" v-model="comment" style="height: 35px" placeholder="Comment Here"/>
       <button type="submit">Send</button>
+
     </div>
     </form>
 

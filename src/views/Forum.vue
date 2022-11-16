@@ -43,7 +43,9 @@
           <br />
         </div>
        
+
         <div class="viewmoreblogs">
+
         <router-link class="link" :to="{ name: 'Blogs' }">
           <h1>View More Recent Posts</h1>
         </router-link>
@@ -56,10 +58,12 @@
           </div>
         </div>
 
+
         <ForumList></ForumList>
         
       
       <!-- <ForumList></ForumList> -->
+
   </div>
   </div>
 </div>
@@ -171,6 +175,7 @@ h1 {
 .blog-cards2 {
     float: left;
     width: 22%;
+
     padding: 0 0px;
     margin-left: 20px;
     margin-right: 20px;
