@@ -67,7 +67,7 @@ export default {
                         this.docRef = await addDoc(dataBase, {
                             date:timestamp,
                             comment: this.comment,
-                            username: this.user.username,
+                            // username: this.user.username,
                         })
         }
     },
