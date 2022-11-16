@@ -31,9 +31,10 @@ export default {
   border-radius: 10px;
   margin-right: 0px;
   margin-left: 1.5%;
-  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 48.5%;
   float: left;
   padding: 1%;
+  background-color: white;
 }
 </style>
