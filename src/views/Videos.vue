@@ -94,7 +94,7 @@ export default {
 	}
 	.container-fluid {
 		background-image: repeating-linear-gradient(
-		rgb(77, 109, 98), 
+		rgba(240, 235, 244, 1), 
 		rgba(161, 195, 209, 0.5), 
 		rgba(241, 114, 161, 0.5)
 		);
