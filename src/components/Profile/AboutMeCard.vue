@@ -25,7 +25,7 @@ export default {
   width: 48.5%;
   float: left;
   padding: 1%;
-  background-color: rgba(255, 239, 211, 0.765);
+  background-color: rgba(253, 251, 247, 0.765);
 }
 .Sub-Card-Title {
   margin-bottom: 1%;
