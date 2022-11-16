@@ -1,9 +1,9 @@
 <template>
   <div class="main-box">
-    <h1 class="stock-title">stock screener</h1>
+    <h1 class="stock-title">Stock Screener</h1>
     <div class="trending-stocks-box">
-      <h2 class="title">trending stocks</h2>
-      <h3 class="subtitle">by volume</h3>
+      <h2 class="title">Trending Stocks</h2>
+      <h3 class="subtitle">By Volume</h3>
       <Suspense>
         <template #default>
           <StockCardsAndTable :isByVolume="true" />
@@ -14,8 +14,8 @@
       </Suspense>
     </div>
     <div class="trending-stocks-box">
-      <h2 class="title">trending stocks</h2>
-      <h3 class="subtitle">by social sentiments</h3>
+      <h2 class="title">Trending Stocks</h2>
+      <h3 class="subtitle">By Social Sentiments</h3>
       <Suspense>
         <template #default>
           <StockCardsAndTable :isByVolume="false" />
