@@ -3,25 +3,27 @@
 	<div class="container-fluid">
 
 		<!-- header + search bar -->
-        <div class="header">videos</div>
+        <div class="header">Videos</div>
 		<div class="subheader">Not sure where to start?</div>
-		<div class="description"> Flourich has carefully curated a list of investing educational videos below,
+		<div class="description"> Flourish has carefully curated a list of investing educational videos below,
 			ranging from easy to difficult concepts for investors or traders of all levels.
 		</div>
 
-		<!-- Intro -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Investing')">An Introduction to the Stock Market</button>
-		</div>
+		<div class="vidheaders">
+			<!-- Intro -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Investing')">An Introduction to the Stock Market</button>
+			</div>
 
-		<!-- Crypto -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Cryptocurrencies')">Cryptocurrencies and What They Do</button>
-		</div>
+			<!-- Crypto -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Cryptocurrencies')">Cryptocurrencies and What They Do</button>
+			</div>
 
-		<!-- Stocks -->
-		<div class="vidheader">
-			<button v-on:click="onSearchTermChange('Stocks')">Solidifying your Investing Foundations</button>
+			<!-- Stocks -->
+			<div class="vidheader">
+				<button v-on:click="onSearchTermChange('Stocks')">Solidifying your Investing Foundations</button>
+			</div>
 		</div>
 
 		<div class="vidresults">
@@ -88,7 +90,7 @@ export default {
 		font-weight: bold;
 		border-radius: 4px;
 		color:black;
-		background-color: rgba(240, 235, 244, 1);
+		background-color: rgb(250, 236, 232);
 		padding: 10px 10px 10px 10px;
 		/* text-transform: lowercase;  */
 	}
@@ -104,7 +106,6 @@ export default {
 		padding: 0;
 		width: 100%;
 	}
-
 	.header {
 		font-family: serif;
 		font-size: 480%;
@@ -134,13 +135,20 @@ export default {
 		letter-spacing: 0px;
 	}
 
+	.vidheaders {
+		display:flex;
+		width: 80%;
+		flex-basis: 30%;
+		margin:auto;
+		gap: 10px;
+	}
 	.vidheader {
 		padding-top: 0px;
-		width: 100px;
+		width: 80px;
 		text-align:left;
 		margin: auto;
 		width: 80%;
-		font-size: 30px;
+		font-size: 20px;
 		letter-spacing: -1px;
 		font-weight: bold;
 		text-decoration: underline;

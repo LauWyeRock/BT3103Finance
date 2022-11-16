@@ -45,7 +45,7 @@ export default {
 
 <style>
 .Achieve-Card-Outer {
-  background-color: white;
+  background-color: rgba(255, 239, 211, 0.765);
   border-radius: 10px;
   border: 1px solid #dddddd;
   margin-right: 2.5%;

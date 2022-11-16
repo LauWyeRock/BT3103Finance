@@ -233,13 +233,13 @@
           outline: none;
           background: none;
   
-          color: #fff;
+          color:black;
           font-size: 18px;
           margin-bottom: 10px;
           text-align: right;
         }
         h1 {
-          color: #fff;
+          color: black;
         }
       }
       .chat-box {

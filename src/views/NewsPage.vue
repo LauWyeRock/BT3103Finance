@@ -4,7 +4,7 @@
 
         <!-- header + search bar -->
         <div class="header">News</div>
-
+        <br />
         <div class="search">
             <form @submit.prevent="fetchSearchNews">
                 <input type="text" class="searchbar" placeholder="Search for news..." v-model="searchword"/>
@@ -31,7 +31,8 @@
 
         
         <!-- navbar -->
-        <div class="navheader">Explore News</div>
+
+        <div class="navheader">Explore News</div><br />
         <div class="topnav">
             <a href="#all">All</a>
             <a href="#marketnews" @click="fetchMarketNews">Market News</a>
@@ -247,7 +248,7 @@
         }
     }
     .navheader {
-        padding-left: 140px;
+        padding-left: 225px;
         font-family: serif;
         letter-spacing: -1px;
         color: black;
