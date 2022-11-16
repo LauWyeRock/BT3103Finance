@@ -5,7 +5,7 @@
             
             <div class="subforum">
                 <div class="subforum-title">
-                    <h1>Investing</h1>
+                    <h1 style="color: white">Investing</h1>
                 </div>
                 <div class="subforum-row">
                     <!-- <div class="subforum-icon subforum-column center">
@@ -88,7 +88,7 @@
             
             <div class="subforum">
                 <div class="subforum-title">
-                    <h1>Stocks</h1>
+                    <h1 style="color: white">Stocks</h1>
                 </div>
                 <div class="subforum-row">
                     <!-- <div class="subforum-icon subforum-column center">

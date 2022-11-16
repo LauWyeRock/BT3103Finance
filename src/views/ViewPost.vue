@@ -9,19 +9,32 @@
 <div>
 
 </div>
-    <form ref= "commentField " @submit="commentSend">
+    <form ref= "commentField" @submit="commentSend">
     <div class="commentformspace">
-      <input type="text" v-model="comment" placeholder="Comment Here"/>
+      <input type="text" v-model="comment" style="height: 35px" placeholder="Comment Here"/>
       <button type="submit">Send</button>
     </div>
     </form>
-</div>
 
-<div v-if="!loading" class="commentSection">
-    <div v-for="(comment,id) in comments" v-bind:key="id">
-        User : {{comment[0]}}
+    <div class="commentsection">
+
+        <div v-if="!loading" class="posts-table">
+
+            <div class="table-head">
+                <div class="subjects">Comments</div>
+            </div>
+
+            <div class="table-row" v-for="(comment,id) in comments" v-bind:key="id">
+                User : {{comment[0]}}
+            </div>
+
+        </div>
+
     </div>
-</div>
+
+
+    </div>
+
   
 </template>
 
@@ -120,5 +133,74 @@ export default {
         font-size: 14px;
         margin-bottom: 24px;
     }
+}
+
+.submit {
+    border-radius: 2px;
+    background-color: rgb(245, 235, 220);
+    color: black;
+}
+
+.commentsection {
+    justify-content:center;
+    align-self: center;
+    position: relative;
+    margin:auto;
+    width: 60%;
+
+}
+
+.commentformspace {
+    width:60%;
+    justify-content: center;
+    margin:auto;
+}
+
+
+.table-head{
+    display: flex;
+}
+
+.table-head div{
+    padding: 5px;
+    margin: 2px;
+    background-color: #c2c2c2;
+    font-weight: bold;
+}
+
+.table-head .subjects{
+    flex: 70%;
+}
+
+/* posts table's body  */
+
+.table-row{
+    display: flex;
+    background-color: #d6d6d6;
+    padding: 5px;
+    margin: 3px;
+}
+
+.table-row .status, .table-row .subjects {
+    padding: 5px;
+    margin: 2px;
+}
+
+.table-row .status{
+    flex: 5%;
+    font-size: 30px;
+    text-align: center;
+}
+
+.table-row .subjects{
+    flex: 70%;
+}
+
+.table-row .replies{
+    flex: 10%;
+}
+
+.table-row .last-reply{
+    flex: 15%;
 }
 </style>
