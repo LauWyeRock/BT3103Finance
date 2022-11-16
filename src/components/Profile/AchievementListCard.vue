@@ -5,8 +5,10 @@
     <div className="Achievement-List">
       <h2 v-if="posts.length == 0">No Forum Posts.</h2>
     </div>
-    <div className="Achievement-List" v-for="post in posts" v-bind:key="post">
-      <AchievementCard :post="post" />
+    <div className="Achievement-List-Container">
+      <div className="Achievement-List" v-for="post in posts" v-bind:key="post">
+        <AchievementCard style="width: 100%" :post="post" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,13 +45,15 @@ export default {
 
 <style>
 .Achieve-Card-Outer {
+  background-color: white;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid #dddddd;
   margin-right: 2.5%;
   margin-left: 2.5%;
   margin-bottom: 10px;
   width: 95%;
   padding: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .Achievement-Card-Title {
   margin-left: 5%;
@@ -59,10 +63,14 @@ export default {
 }
 .Achievement-List {
   margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  display: flex;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  /* display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+}
+.Achievement-List-Container {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 </style>

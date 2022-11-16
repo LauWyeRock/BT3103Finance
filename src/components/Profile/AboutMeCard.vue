@@ -19,12 +19,13 @@ export default {
 .About-Card-Outer {
   text-align: center;
   border-radius: 10px;
-  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-right: 1.5%;
   margin-left: 0px;
   width: 48.5%;
   float: left;
   padding: 1%;
+  background-color: white;
 }
 .Sub-Card-Title {
   margin-bottom: 1%;

@@ -4,14 +4,21 @@
   2. Connect profile to backend
  -->
 <template>
-  <div v-if="userFound">
+  <div v-if="userFound" id="view-profile-container">
     <ProfileCard :profile="profile" :ownPage="ownPage" :uid="profileUid" />
     <div className="cards">
       <AboutMeCard :profile="profile" />
       <SocialsCard :profile="profile" :ownPage="ownPage" />
     </div>
-    <MyWatchList :profile="profile" :ownPage="ownPage" />
-    <AchievementListCard :uid="profileUid" />
+    <div className="long-cards">
+      <MyWatchList
+        style="margin-bottom: 1rem"
+        :profile="profile"
+        :ownPage="ownPage"
+        :uid="profileUid"
+      />
+      <AchievementListCard style="margin-bottom: 1rem" :uid="profileUid" />
+    </div>
   </div>
   <div v-else>
     <span>NO USER FOUND</span>
@@ -140,9 +147,16 @@ async function getProfileByUid(uid) {
 </script>
 
 <style>
+#view-profile-container {
+  background-image: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
 .cards {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: row;
   margin-left: 2.5%;

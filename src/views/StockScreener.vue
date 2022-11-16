@@ -37,7 +37,7 @@ export default {
   components: {
     StockCardsAndTable,
     StockCardsAndTableSkeleton,
-  },
+},
 
   data() {
     return {
@@ -70,14 +70,12 @@ export default {
 </script>
 
 <style scoped>
-
 .main-box {
-  background-image: repeating-linear-gradient(
-    rgba(240, 235, 244, 1), 
-    rgba(161, 195, 209, 0.75), 
-    rgba(241, 114, 161, 0.5)
-    );
+  background-image: repeating-linear-gradient(rgba(240, 235, 244, 1),
+      rgba(161, 195, 209, 0.75),
+      rgba(241, 114, 161, 0.5));
 }
+
 .stock-title {
   margin: auto;
   text-align: center;
