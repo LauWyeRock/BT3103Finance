@@ -13,7 +13,7 @@
           type="text"
           id="stock"
           class="searchbar"
-          placeholder="Search Stock..."
+          placeholder=" Search Stock..."
         />
         <button class="searchbutton" type="button" v-on:click="savetofs()">
           Search
