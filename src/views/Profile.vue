@@ -1,6 +1,6 @@
 <template>
-  <Suspense>
-    <template #default>
+  <Suspense id="load">
+    <template #default >
       <ViewProfile></ViewProfile>
     </template>
     <template #fallback>
@@ -28,6 +28,19 @@ export default {
 <style>
 #profile-skeleton {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 0px;
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
+}
+
+#load, #default, #fallback {
+  background: repeating-linear-gradient(
+    rgba(240, 235, 244, 1),
+    rgba(161, 195, 209, 0.75),
+    rgba(241, 114, 161, 0.5)
+  );
 }
 </style>

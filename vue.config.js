@@ -22,5 +22,9 @@ module.exports = defineConfig({
         chunks: "all",
       },
     },
+    externals: {
+      bufferutil: "bufferutil",
+      "utf-8-validate": "utf-8-validate",
+    }
   },
 });

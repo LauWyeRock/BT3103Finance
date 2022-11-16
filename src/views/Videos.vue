@@ -87,8 +87,8 @@ export default {
 		font-size: 20px;
 		font-weight: bold;
 		border-radius: 4px;
-		color:rgb(114, 103, 81);
-		background-color: rgb(252, 243, 233);
+		color:black;
+		background-color: rgba(255, 225, 200, 1);
 		padding: 10px 10px 10px 10px;
 		/* text-transform: lowercase;  */
 	}

@@ -9,7 +9,7 @@
       <video-background
         :src="require(`../assets/pexels-olya-kobruseva-5562047.mp4`)"
         poster="/images/mainfoto.jpg"
-        style="max-height: 500px; height: 500px;"
+        style="max-height: 900px; height: 1000px;"
         overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
       >
         <h1 style="font-size:70px; font-variant: small-caps; font-family:serif; font-weight:300; margin-bottom: 30px" class="header">Flourish: <br/> Where Stock <br/> Enthusiasts Gather</h1>
