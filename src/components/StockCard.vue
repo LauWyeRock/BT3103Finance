@@ -7,20 +7,13 @@
           alt="stock_logo" class="stock-logo" />
       </div>
       <div class="stock-info">
-        <h2>{{ stock.symbol }}</h2>
-        <h3>
+        <h2 style="font-family: serif;letter-spacing: -1px; font-weight: bold;">{{ stock.symbol }}</h2>
+        <h3 style="font-weight: 100">
           {{ stock.volume && numberWithCommas(stock.volume) + "\nshares traded" }}
         </h3>
-        <h3>
+        <h3 style="font-weight: 100">
           {{
               stock.activity && numberWithCommas(stock.activity) + "\nlikes and shares"
-          }}
-        </h3>
-        <h3>
-          {{
-              stock.twitter_total_mentions || stock.twitter_total_mentions >= 0
-                ? numberWithCommas(stock.twitter_total_mentions) + " twitter"
-                : ""
           }}
         </h3>
 
