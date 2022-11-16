@@ -1,13 +1,5 @@
 <template>
     <div class="blog-card">
-        <div class="icons">
-            <div class="icon">
-                <h6>Placeholder</h6>
-            </div>
-            <div class="icon">
-                <h6>Placeholder</h6>    
-            </div>
-        </div>
         <img :src="post.blogCoverPhoto" alt="" />
         <div class="info">
             <h4>{{ post.blogTitle}}</h4>
@@ -30,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .blog-card {
     position: relative;
     cursor:pointer;
@@ -37,7 +30,7 @@ export default {
     flex-direction: column;
     border-radius: 8px;
     background-color: #fff;
-    min-height: 420px;
+    height: 420px;
     transition: 0.5s ease all;
 
     &:hover{
@@ -56,14 +49,18 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #fff;
+            width: 100px;
+            height: 30px;
+            border-radius: 7px;
+            background-color: rgba(255, 245, 233, 0.897);
+            color:black;
             transition: 0.5s ease all;
+            margin-top: 5px;
+
 
             &:hover {
                 background-color: #303030;
+                color:white;
 
                 .edit,
                 .delete {

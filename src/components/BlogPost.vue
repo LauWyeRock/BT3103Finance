@@ -2,11 +2,13 @@
   <div class="blog-wrapper" :class="{'no-user': !user}">
     <div class="blog-content">
       <div>
-        <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
+        <h2 style="color:black" v-if="post.welcomeScreen">{{ post.title }}</h2>
         <h2 v-else>{{ post.blogTitle }}</h2>
-        <p v-if="post.welcomeScreen">{{ post.blogPost }}</p>
+        <p style="color:black" v-if="post.welcomeScreen">{{ post.blogPost }}</p>
         <p class="content-preview" v-else v-html="post.blogHTML"></p>
-        <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/blogs" >
+
+        <router-link style="color: black" class="link link-right" v-if="post.welcomeScreen" to="/blogs" >
+
           See more posts
         </router-link>
         <!-- <router-link style="color: white" class="link link-right" v-if="post.welcomeScreen" to="/register">
@@ -56,10 +58,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .blog-wrapper {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  box-shadow: 0 4px 6px -1px rgb(0, 0, 0),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   @media (min-width: 700px) {
     min-height: 650px;
@@ -73,6 +76,7 @@ export default {
     align-items: center;
     flex: 4;
     order: 2;
+  background-color:   rgba(252, 235, 217, 0.897);
     @media (min-width: 700px) {
       order: 1;
     }

@@ -43,24 +43,30 @@
           <br />
         </div>
        
+
+        <div class="viewmoreblogs">
+
         <router-link class="link" :to="{ name: 'Blogs' }">
           <h1>View More Recent Posts</h1>
         </router-link>
-        <div class="blog-cards">
-            <BlogCard
-            :post="post"
-            v-for="(post, index) in blogPostsCards"
-            :key="index"
-            />
+          <div class="blog-cards">
+              <BlogCard
+              :post="post"
+              v-for="(post, index) in blogPostsCards"
+              :key="index"
+              />
+          </div>
         </div>
+
+
+        <ForumList></ForumList>
         
-      </div>
       
-    </div>
-    <div ref="bottom" class="forumdiv" style="margin-top:0">
-      <ForumList></ForumList>
-    </div>
+      <!-- <ForumList></ForumList> -->
+
   </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -115,6 +121,10 @@ export default {
 
 <style lang="scss" scope>
 
+.viewmoreblogs {
+  margin-bottom: 500px;
+}
+
 .forum {
   background-image: repeating-linear-gradient(
     rgba(240, 235, 244, 1), 
@@ -164,8 +174,11 @@ h1 {
 
 .blog-cards2 {
     float: left;
-    width: 25%;
+    width: 22%;
+
     padding: 0 0px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 </style>
