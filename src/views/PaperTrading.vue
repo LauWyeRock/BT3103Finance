@@ -9,7 +9,9 @@
   import AddStock from '../components/AddStock.vue';
   import ProfitDisplay from '../components/ProfitDisplay.vue';
   import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+  // import { db } from "@/firebase/firebase";
+  // import { collection, query, where, getDocs } from "firebase/firestore";
+ 
 export default {
   name: "App",
   components: {
@@ -27,6 +29,17 @@ export default {
         })
         
   },
+  // async mounted() {
+
+  //   let user = false;
+  //   const auth = getAuth();
+  //   onAuthStateChanged(auth, (get_user) => {
+  //     if (get_user) {
+  //       user = get_user;
+  //     }
+  //   })
+  //   return { user }
+  // },
   data() {
     return {
       refreshComp: 0,
