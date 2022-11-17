@@ -3,75 +3,49 @@
     <form id="myform">
       <h2>Add Stocks</h2>
       <div class="search">
-        <input
-          type="text"
-          class="search"
-          placeholder="Search for stock"
-          v-model="ticker"
-          @keyup.enter="onEnter(ticker)"
-        />
-        <div
-          class="close-button"
-          @click="
-            resetTicker();
-            onEnter(ticker);
-          "
-          v-show="ticker.length !== 0"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="{1.5}"
-            stroke="currentColor"
-            className="w-6 h-6"
-            width="24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
+        <input type="text" class="search" placeholder="Search for stock" v-model="ticker"
+          @keyup.enter="onEnter(ticker)" />
+        <div class="close-button" @click="
+  resetTicker();
+onEnter(ticker);
+        " v-show="ticker.length !== 0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="{1.5}"
+            stroke="currentColor" className="w-6 h-6" width="24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
         <div class="search-button" @click="onEnter(ticker)">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="{1.5}"
-            stroke="currentColor"
-            className="w-6 h-6"
-            width="20"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="{1.5}"
+            stroke="currentColor" className="w-6 h-6" width="20">
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>
         </div>
       </div>
-      <h1 v-if="isLoading">LOADING...</h1>
+      <div v-if="isLoading"
+        style="width: 100%; display: flex; margin: auto; align-items: center; justify-content: center;">
+        <StockCardSkeleton />
+      </div>
+      <div v-show="!isLoading && stockInfo.length === 0"
+        style="padding: 40px; margin: 10px; margin: 10px auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="150"
+          className="w-6 h-6" style="background-color: #eff0f5; border-radius: 50%; padding: 20px; border: 1px dashed black;">
+          <path strokeLinecap="round" strokeLinejoin="round"
+            d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+          </svg>
+          <p style="margin: 10px;">Please search for a valid stock</p>
+      </div>
       <div class="formli">
-        <AddStockCard
-          :stockInfo="stockInfo"
-          v-show="!isLoading && stockInfo.length !== 0"
-          @updateQuantity="updateQuantity($event)"
-        />
-        <h1
-          style="
+        <AddStockCard :stockInfo="stockInfo" v-show="!isLoading && stockInfo.length !== 0"
+          @updateQuantity="updateQuantity($event)" />
+        <h1 style="
             text-align: center;
             font-family: serif;
             letter-spacing: -1px;
             font-weight: bold;
-          "
-          v-show="!isLoading && stockInfo.length !== 0"
-        >
+          " v-show="!isLoading && stockInfo.length !== 0">
           Total Price:
-          <span
-            style="font-family: serif; letter-spacing: -1px; font-weight: 100"
-          >
+          <span style="font-family: serif; letter-spacing: -1px; font-weight: 100">
             ${{ calculateTotalPrice() }}
           </span>
         </h1>
@@ -96,9 +70,10 @@ import {
 } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AddStockCard from "./AddStockCard.vue";
+import StockCardSkeleton from "../StockCardSkeleton.vue";
 
 export default {
-  components: { AddStockCard },
+  components: { AddStockCard, StockCardSkeleton },
   props: {
     myUid: String,
     money: Number,
@@ -236,7 +211,7 @@ export default {
       this.isLoading = true;
       this.stockInfo = await fetch(
         `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
-          ticker.toUpperCase()
+        ticker.toUpperCase()
       )
         .then((res) => res.json())
         .catch(() => []);
@@ -293,7 +268,7 @@ export default {
   border-right: 0px;
 }
 
-.search input:focus + .close-button {
+.search input:focus+.close-button {
   border: 1px solid #f172a1;
   border-left: 0px;
 }
