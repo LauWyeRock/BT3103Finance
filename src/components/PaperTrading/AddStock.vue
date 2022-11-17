@@ -211,6 +211,26 @@ export default {
       console.log(
         "saved transaction to history! " + this.stockInfo.name + " " + docref2
       );
+
+      //3. deduct money.
+      const newMoneyBalance = this.money - totalPrice;
+      await setDoc(
+        doc(db, "portfolio", this.myUid),
+        {
+          money: newMoneyBalance,
+        },
+        { merge: true }
+      ).then(() => {
+        console.log("money deducted: " + this.money + " => " + newMoneyBalance);
+      });
+      alert(
+        "Purchased " +
+          this.stockQuantity +
+          " " +
+          this.stockInfo.name +
+          "stocks!"
+      );
+      location.reload();
     },
     async onEnter(ticker) {
       this.isLoading = true;
