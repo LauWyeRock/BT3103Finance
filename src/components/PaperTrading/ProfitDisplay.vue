@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { computed, ref } from 'vue';
-import axios from 'axios';
+import { computed, ref } from "vue";
+import axios from "axios";
 
 export default {
   data() {
@@ -43,9 +43,7 @@ export default {
     // });
 
     async function display(user) {
-      let z = await getDocs(
-        collection(db, "stocks", user.uid, "allStocks")
-      );
+      let z = await getDocs(collection(db, "stocks", user.uid, "allStocks"));
 
       let ind = 1;
       var tp = 0;
@@ -93,26 +91,30 @@ export default {
         async function val(ticker) {
           let stockSymbol = ref(ticker);
           let AlphaVantageApi_URL_LINK = computed(() => {
-            return "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stockSymbol.value +"&interval=5min&apikey=T8KDAAX3DMF90GU8"
-          })
-          await axios.get(AlphaVantageApi_URL_LINK).then(response => {
-            console.log(response.data["Time Series (5min)"])
+            return (
+              "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
+              stockSymbol.value +
+              "&interval=5min&apikey=T8KDAAX3DMF90GU8"
+            );
+          });
+          await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
+            console.log(response.data["Time Series (5min)"]);
 
             for (const property in response.data["Time Series (5min)"]) {
-              let price = response.data["Time Series (5min)"][property]["4. close"];
+              let price =
+                response.data["Time Series (5min)"][property]["4. close"];
               cell6.innerHTML = price;
               cell7.innerHTML = Math.round(
                 quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
-              )
+              );
               tp = tp + parseFloat(cell7.innerHTML);
-              document.getElementById("totalProfit").innerHTML = 
-              " Total Profit is " + String(tp);
-              console.log(price)
-              break
+              document.getElementById("totalProfit").innerHTML =
+                " Total Profit is " + String(tp);
+              console.log(price);
+              break;
             }
             ind += 1;
-          })
-
+          });
         }
       });
     }
@@ -122,7 +124,9 @@ export default {
     async function deleteInstrument2(stock) {
       var x = stock;
       alert("You are going to delete " + x);
-      await deleteDoc(doc(db, "stocks", "Hi3Tx6xdc2OvBG1EeAfBYIz2P2c2","allStocks", x));
+      await deleteDoc(
+        doc(db, "stocks", "Hi3Tx6xdc2OvBG1EeAfBYIz2P2c2", "allStocks", x)
+      );
       console.log("Document successfully created", x);
       let tb = document.getElementById("table");
       while (tb.rows.length > 1) {

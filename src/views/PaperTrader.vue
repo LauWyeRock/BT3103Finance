@@ -1,7 +1,7 @@
 <template>
   <Suspense id="doesntmatter">
     <template #default>
-      <!-- insert paper trader here -->
+      <PaperTrading />
     </template>
     <template #fallback>
       <div id="trader-skeleton">
@@ -18,9 +18,12 @@
 </template>
 
 <script>
+import PaperTrading from "../components/PaperTrading/PaperTrading.vue";
 export default {
   name: "PaperTrader",
-  components: {},
+  components: {
+    PaperTrading,
+  },
 };
 </script>
 

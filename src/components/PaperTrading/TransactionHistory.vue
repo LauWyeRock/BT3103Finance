@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { db } from "../firebase/firebase";
+import { db } from "@/firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 
 export default {
@@ -23,8 +23,8 @@ export default {
     myUid: String,
   },
   async mounted() {
-    async function display() {
-      const docRef = query(collection(db, "portfolio", this.myUid, "history"));
+    async function display(uid) {
+      const docRef = query(collection(db, "portfolio", uid, "history"));
       const querySnapshot = await getDocs(docRef);
 
       let idx = 1;
@@ -57,9 +57,11 @@ export default {
         cell6.innerHTML = quantity;
         cell7.innerHTML = price;
       });
+      console.log("display complete.");
     }
 
-    display();
+    console.log("myuid:" + this.myUid);
+    display(this.myUid);
   },
   methods: {
     timeConverter(timestamp) {
