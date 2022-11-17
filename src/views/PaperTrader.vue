@@ -45,6 +45,7 @@ export default {
 } */
 
 .main-box {
+  text-align: center;
   background-image: repeating-linear-gradient(rgba(240, 235, 244, 1),
       rgba(161, 195, 209, 0.75),
       rgba(241, 114, 161, 0.5));
