@@ -485,7 +485,7 @@ export default {
         } else {
           const storage = getStorage();
           const metadata = {
-            contenType: "image/jpeg",
+            contentType: "image/jpeg",
           };
 
           const auth = getAuth();
@@ -496,6 +496,7 @@ export default {
             console.log("invalid file type");
             resolve("");
           }
+          
           filetype = filetype.substring(6);
           console.log("filetype: " + filetype);
           const storageRef = ref(
