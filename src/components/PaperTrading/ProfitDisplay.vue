@@ -1,7 +1,7 @@
 <template>
   <h2 class="subtitle">Current Portfolio</h2>
   <!-- <h1 id="Current">Current Portfolio</h1> -->
-  <table id="table" class="auto-index">
+  <table id="stocksTable" class="auto-index">
     <tr>
       <th>S.No</th>
       <th>Stock</th>
@@ -33,8 +33,20 @@
             <span class="header-text">Investment Value</span>
           </ToolTip>
         </th>
+        <th>
+          <ToolTip text="Value of investment">
+            <span class="header-text">Current Value</span>
+          </ToolTip>
+        </th>
+        <th>
+          <ToolTip text="Value of investment">
+            <span class="header-text">Profit</span>
+          </ToolTip>
+        </th>
       </tr>
       <tr class="information-table-row">
+        <td>$1,000,000</td>
+        <td>$1,000,000</td>
         <td>$1,000,000</td>
         <td>$1,000,000</td>
         <td>$1,000,000</td>
@@ -226,7 +238,7 @@ th {
   border-bottom-left-radius: 20px;
 }
 
-.information-table-row :nth-child(3) {
+.information-table-row :nth-child(5) {
   border-bottom-right-radius: 20px;
 }
 
