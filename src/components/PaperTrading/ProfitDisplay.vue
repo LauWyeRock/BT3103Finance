@@ -66,6 +66,7 @@ import {
   deleteDoc,
   query,
   setDoc,
+  addDoc,
 } from "firebase/firestore";
 // import { computed, ref } from "vue";
 // import axios from "axios";
@@ -118,6 +119,7 @@ export default {
         const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
         const profit = Math.round((price - currentPrice) * 100) / 100;
         cell1.innerHTML = idx;
+        idx++;
         cell2.innerHTML = stockName;
         cell3.innerHTML = ticker;
         cell4.innerHTML = "$" + price;
@@ -182,6 +184,20 @@ export default {
           );
         });
       }
+      //3. push to history.
+      const timestamp = Date.now();
+      const databaseHist = collection(db, "portfolio", uid, "history");
+      const docref2 = await addDoc(databaseHist, {
+        date: timestamp,
+        stock: stock.stock,
+        ticker: stock.ticker,
+        trasactionType: "SELL",
+        price: stock.price,
+        quantity: stock.quantity,
+      });
+      console.log(
+        "saved transaction to history! " + stock.name + " " + docref2
+      );
 
       //3. add money to your account.
       const newMoneyBalance = money + stock.quantity * stock.price;
