@@ -209,6 +209,9 @@ export default {
         }
     }
 
+    .publishbtn {
+        margin-top:0;
+    }
     .titlebox {
         height: 60px;
         font-size: 30px;
