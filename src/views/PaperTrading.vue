@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
   <AddStock @added="change" />
-  <ProfitDisplay :key="refreshComp" />
+  <ProfitDisplay :key="refreshComp" :user="user" />
 </div>
 </template>
 
@@ -17,12 +17,15 @@ export default {
     ProfitDisplay,
   },
   mounted() {
+    // let user = false
     const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
           if (user) {
             this.user = user;
+            console.log(this.user)
           }
         })
+        
   },
   data() {
     return {

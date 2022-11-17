@@ -1,6 +1,5 @@
 <template>
   <h1 id="Current">Current Portfolio</h1>
-
   <table id="table" class="auto-index">
     <tr>
       <th>S.No</th>
@@ -21,29 +20,29 @@
 import { db } from "../firebase/firebase";
 import ccxt from "ccxt";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   data() {
     return {
-      user: false,
+      // user: false,
       stockprice: "",
       loading: false,
     };
   },
+  props: ["user"],
+  beforeUpdate() {
+    // const auth = getAuth();
 
-  mounted() {
-    const auth = getAuth();
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user;
-      }
-    });
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     this.user = user;
+    //   }
+    // });
 
     async function display(user) {
       let z = await getDocs(
-        collection(db, "stocks", String(user), "allStocks")
+        collection(db, "stocks", user.uid, "allStocks")
       );
       let ind = 1;
       var tp = 0;
@@ -103,7 +102,7 @@ export default {
       });
     }
 
-    display();
+    display(this.user);
 
     async function deleteInstrument2(stock) {
       var x = stock;
