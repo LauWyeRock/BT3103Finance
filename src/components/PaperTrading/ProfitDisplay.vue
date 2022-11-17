@@ -45,11 +45,11 @@
         </th>
       </tr>
       <tr class="information-table-row">
-        <td>${{ numberWithCommas(money) }}</td>
-        <td>${{ numberWithCommas(Math.round((1000000 - money) * 100) / 100) }}</td>
-        <td>$1,000,000</td>
-        <td>$1,000,000</td>
-        <td>$1,000,000</td>
+        <td>${{ numberWithCommas(1000000) }}</td>
+        <td>${{ numberWithCommas(Math.round(money * 100) / 100) }}</td>
+        <td>${{ numberWithCommas(Math.round(this.totalInvestmentValue * 100) / 100) }}</td>
+        <td>${{ numberWithCommas(Math.round((money + this.totalInvestmentValue) * 100) / 100) }}</td>
+        <td>${{ numberWithCommas(Math.round((money + this.totalInvestmentValue - 1000000) * 100) / 100) }}</td>
       </tr>
     </table>
   </div>
@@ -73,88 +73,106 @@ export default {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
+  data() {
+    return {
+      totalInvestmentValue: 0
+    }
+  },
   async mounted() {
 
-    async function display(uid) {
+    const display = async (uid) => {
       const docRef = query(collection(db, "portfolio", uid, "stocks"));
       const querySnapshot = await getDocs(docRef);
 
       let idx = 1;
       // let tp = 0;
+      let investmentValue = 0;
+      let index = 0;
+      var loopThroughData = new Promise((resolve) => {
+        querySnapshot.forEach(async (docs) => {
+          let stock = docs.data();
+          var table = document.getElementById("stocksTable");
+          var row = table.insertRow(idx);
 
-      querySnapshot.forEach(async (docs) => {
-        let stock = docs.data();
-        var table = document.getElementById("stocksTable");
-        var row = table.insertRow(idx);
+          var stockName = stock.stock;
+          var price = Math.round(stock.price * 100) / 100;
+          var quantity = stock.quantity;
+          var ticker = stock.ticker;
 
-        var stockName = stock.stock;
-        var price = Math.round(stock.price * 100) / 100;
-        var quantity = stock.quantity;
-        var ticker = stock.ticker;
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          var cell6 = row.insertCell(5);
+          var cell7 = row.insertCell(6);
+          var cell8 = row.insertCell(7);
 
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
+          const stockInfo = await fetch(`http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()).then((res) => res.json()).catch(() => []);
+          const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
+          const profit = Math.round((price - currentPrice) * 100) / 100
+          investmentValue += (stockInfo.last_quote * quantity)
+          console.log(investmentValue);
+          cell1.innerHTML = idx;
+          cell2.innerHTML = stockName;
+          cell3.innerHTML = ticker;
+          cell4.innerHTML = "$" + price;
+          cell5.innerHTML = quantity;
+          //currentPrice
+          cell6.innerHTML = '$' + currentPrice;
+          //profit
+          cell7.innerHTML = '$' + profit;
+          cell7.className = "profits";
 
-        const stockInfo = await fetch(`http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()).then((res) => res.json()).catch(() => []);
-        const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
-        const profit = Math.round((price - currentPrice) * 100) / 100
-        cell1.innerHTML = idx;
-        cell2.innerHTML = stockName;
-        cell3.innerHTML = ticker;
-        cell4.innerHTML = "$" + price;
-        cell5.innerHTML = quantity;
-        //currentPrice
-        cell6.innerHTML = '$' + currentPrice;
-        //profit
-        cell7.innerHTML = '$' + profit;
-        cell7.className = "profits";
+          var btn = document.createElement("button");
+          btn.className = "sellButton";
+          btn.id = String(stockName);
+          btn.innerHTML = "Sell";
+          btn.onclick = function () {
+            deleteInstrument2(docs.id);
+          };
+          cell8.appendChild(btn);
+          console.log(querySnapshot.size)
+          console.log(index);
+          if (index === querySnapshot.size - 1) {
+            resolve();
+          }
+          index += 1
 
-        var btn = document.createElement("button");
-        btn.className = "sellButton";
-        btn.id = String(stockName);
-        btn.innerHTML = "Sell";
-        btn.onclick = function () {
-          deleteInstrument2(docs.id);
-        };
-        cell8.appendChild(btn);
+          // val(ticker);
 
-        // val(ticker);
+          // async function val(ticker) {
+          //   let stockSymbol = ref(ticker);
+          //   let AlphaVantageApi_URL_LINK = computed(() => {
+          //     return (
+          //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
+          //       stockSymbol.value +
+          //       "&interval=5min&apikey=T8KDAAX3DMF90GU8"
+          //     );
+          //   });
+          //   await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
+          //     console.log(response.data["Time Series (5min)"]);
 
-        // async function val(ticker) {
-        //   let stockSymbol = ref(ticker);
-        //   let AlphaVantageApi_URL_LINK = computed(() => {
-        //     return (
-        //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-        //       stockSymbol.value +
-        //       "&interval=5min&apikey=T8KDAAX3DMF90GU8"
-        //     );
-        //   });
-        //   await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
-        //     console.log(response.data["Time Series (5min)"]);
-
-        //     for (const property in response.data["Time Series (5min)"]) {
-        //       let price =
-        //         response.data["Time Series (5min)"][property]["4. close"];
-        //       cell6.innerHTML = price;
-        //       cell7.innerHTML = Math.round(
-        //         quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
-        //       );
-        //       tp = tp + parseFloat(cell7.innerHTML);
-        //       document.getElementById("totalProfit").innerHTML =
-        //         " Total Profit is " + String(tp);
-        //       console.log(price);
-        //       break;
-        //     }
-        //     idx += 1;
-        //   });
-        // }
+          //     for (const property in response.data["Time Series (5min)"]) {
+          //       let price =
+          //         response.data["Time Series (5min)"][property]["4. close"];
+          //       cell6.innerHTML = price;
+          //       cell7.innerHTML = Math.round(
+          //         quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
+          //       );
+          //       tp = tp + parseFloat(cell7.innerHTML);
+          //       document.getElementById("totalProfit").innerHTML =
+          //         " Total Profit is " + String(tp);
+          //       console.log(price);
+          //       break;
+          //     }
+          //     idx += 1;
+          //   });
+          // }
+        })
       });
+      this.totalInvestmentValue = await loopThroughData.then(() => investmentValue);
+      console.log(this.totalInvestmentValue)
     }
 
     display(this.myUid);
