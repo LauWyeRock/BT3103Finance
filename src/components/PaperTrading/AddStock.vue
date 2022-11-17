@@ -248,7 +248,7 @@ export default {
       });
 
       console.log(
-        "saved transaction to history! " + this.stockInfot.name + " " + docref2
+        "saved transaction to history! " + this.stockInfo.name + " " + docref2
       );
 
       //3. deduct money.
