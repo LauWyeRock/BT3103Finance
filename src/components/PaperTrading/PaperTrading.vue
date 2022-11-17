@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <AddStock :myUid="portfolio.userId" :money="portfolio.money" />
-    <ProfitDisplay />
+    <ProfitDisplay :myUid="portfolio.userId" />
     <TransactionHistory :myUid="portfolio.userId" />
   </div>
 </template>
@@ -85,11 +85,11 @@ async function getPortfolio() {
 </script>
 
 <style scoped>
-.hello {
+/* .hello {
   background-image: repeating-linear-gradient(
     rgba(240, 235, 244, 1),
     rgba(161, 195, 209, 0.75),
     rgba(241, 114, 161, 0.5)
   );
-}
+} */
 </style>

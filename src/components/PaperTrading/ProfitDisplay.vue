@@ -1,5 +1,6 @@
 <template>
-  <h1 id="Current">Current Portfolio</h1>
+  <h2 class="subtitle">Current Portfolio</h2>
+  <!-- <h1 id="Current">Current Portfolio</h1> -->
   <table id="table" class="auto-index">
     <tr>
       <th>S.No</th>
@@ -13,50 +14,64 @@
     </tr>
   </table>
   <br /><br />
-  <h2 id="totalProfit">TP</h2>
+  <h2 class="subtitle">Information</h2>
+  <div style="text-align: center">
+    <table role="table">
+      <tr role="row">
+        <th role="columnheader">
+          <ToolTip text="How much money trader started off with">
+            <span class="header-text">Initial Amount</span>
+          </ToolTip>
+        </th>
+        <th>
+          <ToolTip text="Amount of money in portfolio that is not spent">
+            <span class="header-text">Liquid Amount</span>
+          </ToolTip>
+        </th>
+        <th>
+          <ToolTip text="Value of investment">
+            <span class="header-text">Investment Value</span>
+          </ToolTip>
+        </th>
+      </tr>
+      <tr class="information-table-row">
+        <td>$1,000,000</td>
+        <td>$1,000,000</td>
+        <td>$1,000,000</td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
 import { db } from "../../firebase/firebase";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, getDocs, doc, deleteDoc, query } from "firebase/firestore";
 import { computed, ref } from "vue";
 import axios from "axios";
+import ToolTip from "../ToolTip.vue";
 
 export default {
-  data() {
-    return {
-      // user: false,
-      stockprice: "",
-      myUid: "",
-      loading: false,
-    };
+  components: { ToolTip },
+  props: {
+    myUid: String,
   },
-  props: ["user"],
-  beforeUpdate() {
-    // const auth = getAuth();
+  async mounted() {
+    async function display(uid) {
+      const docRef = query(collection(db, "portfolio", uid, "stocks"));
+      const querySnapshot = await getDocs(docRef);
 
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     this.user = user;
-    //   }
-    // });
+      let idx = 1;
+      let tp = 0;
 
-    async function display(user) {
-      let z = await getDocs(collection(db, "stocks", user.uid, "allStocks"));
+      querySnapshot.forEach((docs) => {
+        let stock = docs.data();
+        var table = document.getElementById("stocksTable");
+        var row = table.insertRow(idx);
 
-      let ind = 1;
-      var tp = 0;
-
-      z.forEach((docs) => {
-        let yy = docs.data();
-        var table = document.getElementById("table");
-        var row = table.insertRow(ind);
-
-        var stock = yy.Stock;
-        var price = yy.Buy_Price;
-        var quantity = yy.Buy_Quantity;
-        var ticker = yy.Ticker;
+        var stockName = stock.stock;
+        var price = "$" + Math.round(stock.price * 100) / 100;
+        var quantity = stock.quantity;
+        var ticker = stock.ticker;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -67,24 +82,26 @@ export default {
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
 
-        cell1.innerHTML = ind;
-        cell2.innerHTML = stock;
+        cell1.innerHTML = idx;
+        cell2.innerHTML = stockName;
         cell3.innerHTML = ticker;
         cell4.innerHTML = price;
         cell5.innerHTML = quantity;
+        //currentPrice
         cell6.innerHTML = 0;
+        //profit
         cell7.innerHTML = 0;
 
         cell7.className = "profits";
 
-        var bu = document.createElement("button");
-        bu.className = "bwt";
-        bu.id = String(stock);
-        bu.innerHTML = "Delete";
-        bu.onclick = function () {
-          deleteInstrument2(stock);
+        var btn = document.createElement("button");
+        btn.className = "sellButton";
+        btn.id = String(stockName);
+        btn.innerHTML = "Sell";
+        btn.onclick = function () {
+          deleteInstrument2(docs.id);
         };
-        cell8.appendChild(bu);
+        cell8.appendChild(btn);
 
         val(ticker);
 
@@ -113,13 +130,13 @@ export default {
               console.log(price);
               break;
             }
-            ind += 1;
+            idx += 1;
           });
         }
       });
     }
 
-    display(this.user);
+    display(this.myUid);
 
     async function deleteInstrument2(stock) {
       var x = stock;
@@ -140,7 +157,7 @@ export default {
 </script>
 
 <style scoped>
-h1,
+/* h1,
 h2 {
   text-align: center;
   background-color: rgba(241, 114, 161, 0.5);
@@ -152,12 +169,23 @@ h2 {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+} */
+
+.subtitle {
+  font-family: serif;
+  letter-spacing: -1px;
+  font-weight: bold;
+  margin-left: 1vw;
+  font-size: 250%;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-table {
+/* table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
 }
 
 tr:nth-child(even) {
@@ -169,10 +197,44 @@ td {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
-}
+} */
 
 .bwt {
   color: rgb(243, 236, 236);
   background-color: rgb(255, 94, 0);
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2vh;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+td,
+th {
+  text-align: left;
+  padding: 2vh;
+  /* border-bottom-left-radius: 20px; */
+  /* border-bottom-right-radius: 20px; */
+}
+
+.information-table-row td:nth-child(1) {
+  border-bottom-left-radius: 20px;
+}
+
+.information-table-row :nth-child(3) {
+  border-bottom-right-radius: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.header-text {
+  border-bottom: 1px dotted black;
 }
 </style>
