@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <Navigation v-if="!navigation" />
+      <Navigation />
       <router-view />
       <Footer v-if="!navigation" />
     </div>
@@ -40,7 +40,7 @@ export default {
     mounted() { },
     methods: {
       checkRoute() {
-        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword" || this.$route.name === "Home") {
+        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword" ) {
           this.navigation = true;
           return ;
         }
@@ -49,7 +49,7 @@ export default {
     },
     watch: {
       $route () {
-        this.checkRoute;
+        this.checkRoute();
       }
     },
     components: { Navigation, Footer }
