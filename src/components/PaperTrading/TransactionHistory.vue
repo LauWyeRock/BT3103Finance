@@ -66,6 +66,8 @@ export default {
         cell5.innerHTML = transactionType;
         cell6.innerHTML = quantity;
         cell7.innerHTML = price;
+
+        idx++
       }
       console.log("display complete.");
     }

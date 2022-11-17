@@ -34,12 +34,12 @@
           </ToolTip>
         </th>
         <th>
-          <ToolTip text="Value of investment">
-            <span class="header-text">Current Value</span>
+          <ToolTip text="Sum of liquid amount and investment value">
+            <span class="header-text">Total Assets</span>
           </ToolTip>
         </th>
         <th>
-          <ToolTip text="Value of investment">
+          <ToolTip text="Profits of investment">
             <span class="header-text">Profit</span>
           </ToolTip>
         </th>
