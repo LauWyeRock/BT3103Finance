@@ -274,7 +274,7 @@ export default {
     async onEnter(ticker) {
       this.isLoading = true;
       this.stockInfo = await fetch(
-        `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
+        `https://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
           ticker.toUpperCase()
       )
         .then((res) => res.json())

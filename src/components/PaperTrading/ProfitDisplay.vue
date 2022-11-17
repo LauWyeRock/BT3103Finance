@@ -132,7 +132,7 @@ export default {
           // cell7.className = "profits";
 
           const stockInfo = await fetch(
-            `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
+            `https://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
             ticker.toUpperCase()
           )
             .then((res) => res.json())
