@@ -1,7 +1,7 @@
 <template>
   <h2 class="subtitle">Current Portfolio</h2>
   <!-- <h1 id="Current">Current Portfolio</h1> -->
-  <table id="table" class="auto-index">
+  <table id="stocksTable" class="auto-index">
     <tr>
       <th>S.No</th>
       <th>Stock</th>
