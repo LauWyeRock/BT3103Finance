@@ -85,7 +85,15 @@
 
 <script>
 import { db } from "@/firebase/firebase";
-import { addDoc, collection } from "firebase/firestore";
+// import { addDoc, collection, getDoc, docref } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AddStockCard from "./AddStockCard.vue";
 
@@ -93,7 +101,7 @@ export default {
   components: { AddStockCard },
   props: {
     myUid: String,
-    portfolio: Object,
+    money: Number,
   },
   data() {
     return {
@@ -120,26 +128,71 @@ export default {
       // console.log("Price: " + this.stockInfo.last_quote);
       // console.log("Quantity: " + this.stockQuantity);
 
+      //verify if you can afford to buy.
+
+      let totalPrice = this.calculateTotalPrice();
+      console.log("money : " + this.money);
+      if (this.money < totalPrice) {
+        alert("You cannot afford to buy this!");
+        return;
+      }
+
       //when adding need to
       //1. add stocks to user
       //stock, ticker, buy price, quantity
 
-      // let totalPrice = this.calculateTotalPrice();
+      let stocksArr = [];
+      let stockExistsInDb = false;
+      let existingStockId = "";
+      let existingStockQty = 0;
 
-      console.log("ADD STUFF:");
-      console.log(this.myUid);
-      console.log(this.portfolio);
-      // console.log(this.portfolio.money + " vs " + totalPrice);
-
-      const database = collection(db, "portfolio", this.myUid, "stocks");
-      const docref = await addDoc(database, {
-        stock: this.stockInfo.name,
-        ticker: this.stockInfo.symbol,
-        price: this.stockInfo.last_quote,
-        quantity: this.stockQuantity,
+      // check if we have stocks of the same name & price already.
+      const docRefStocks = query(
+        collection(db, "portfolio", this.myUid, "stocks")
+      );
+      const querySnapShot = await getDocs(docRefStocks);
+      querySnapShot.forEach(async (doc) => {
+        stocksArr.push([doc.data(), doc.id]);
       });
+      for (let i = 0; i < stocksArr.length; i++) {
+        if (stocksArr[i][0].stock == this.stockInfo.name) {
+          if (stocksArr[i][0].price == this.stockInfo.last_quote) {
+            //same price & same name.
+            stockExistsInDb = true;
+            existingStockId = stocksArr[i][1];
+            existingStockQty = stocksArr[i][0].quantity;
+            break;
+          }
+        }
+      }
 
-      console.log("added stock!" + this.stockInfo.name + " " + docref);
+      //this is a new stock/price.
+      if (!stockExistsInDb) {
+        const database = collection(db, "portfolio", this.myUid, "stocks");
+        const docref = await addDoc(database, {
+          stock: this.stockInfo.name,
+          ticker: this.stockInfo.symbol,
+          price: this.stockInfo.last_quote,
+          quantity: this.stockQuantity,
+        });
+        console.log("added stock!" + this.stockInfo.name + " " + docref);
+      } //existing stock & price, exists, overwrite.
+      else {
+        setDoc(
+          doc(db, "portfolio", this.myUid, "stocks", existingStockId),
+          {
+            quantity: existingStockQty + this.stockQuantity,
+          },
+          { merge: true }
+        ).then(() => {
+          console.log(
+            "merged stock with existing stock." +
+              existingStockQty +
+              " + " +
+              this.stockQuantity
+          );
+        });
+      }
 
       //2. add a transaction into history.
       //date, stock, ticker, trasaction type, quantity, price
