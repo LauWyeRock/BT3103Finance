@@ -38,7 +38,7 @@ export default {
     mounted() { },
     methods: {
       checkRoute() {
-        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword" ) {
+        if (this.$route.name==="SignIn" || this.$route.name==="Register" || this.$route.name === "ForgotPassword") {
           this.navigation = true;
           return ;
         }
