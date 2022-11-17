@@ -1,6 +1,7 @@
 <template>
   <div class="main-box">
     <h1 class="stock-title">Stock Screener</h1>
+    <p style="text-align: center">*You may need <a href="https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=en">Cors Unblock</a> to view the stocks.</p>
     <div class="trending-stocks-box">
       <h2 class="title">Trending Stocks</h2>
       <h3 class="subtitle">By Volume</h3>
