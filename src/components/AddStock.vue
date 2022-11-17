@@ -2,20 +2,33 @@
   <div class="container">
     <form id="myform">
       <h2>Add Stocks</h2>
-      <div class="center">
-        <div class="search">
-          <input type="text" class="search" placeholder="Search for stock" v-model="ticker"
-            @keyup.enter="onEnter(ticker)" />
+      <div class="search">
+        <input type="text" class="search" placeholder="Search for stock" v-model="ticker"
+          @keyup.enter="onEnter(ticker)" />
+        <div class="close-button" @click="resetTicker(); onEnter(ticker)" v-show="ticker.length !== 0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" width="24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+        <div class="search-button" @click="onEnter(ticker)"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" width="20">
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
         </div>
       </div>
       <h1 v-if="isLoading">LOADING...</h1>
       <div class="formli">
         <AddStockCard :stockInfo="stockInfo" v-show="!isLoading && stockInfo.length !== 0"
           @updateQuantity="updateQuantity($event)" />
-        <h1 style="text-align: center" v-show="!isLoading && stockInfo.length !== 0">Total Price:
-          ${{ calculateTotalPrice() }}</h1>
-        <div class="save">
-          <button id="savebutton" type="button" v-on:click="savetofs()">
+        <h1 style="text-align: center; font-family: serif;letter-spacing: -1px; font-weight: bold;"
+          v-show="!isLoading && stockInfo.length !== 0">Total Price:
+          <span style="font-family: serif;letter-spacing: -1px; font-weight: 100;">
+            ${{ calculateTotalPrice() }}
+          </span>
+        </h1>
+        <div class="save" v-show="!isLoading && stockInfo.length !== 0">
+          <button id="savebutton" type="button" @click="savetofs()">
             Add
           </button>
         </div>
@@ -37,7 +50,8 @@ export default {
       user: false,
       stockInfo: [],
       isLoading: false,
-      stockQuantity: 0
+      stockQuantity: 0,
+      ticker: ""
     }
   },
   mounted() {
@@ -73,9 +87,12 @@ export default {
     async onEnter(ticker) {
       this.isLoading = true;
       this.stockInfo = await fetch(
-        `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker
+        `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()
       ).then((res) => res.json()).catch(() => []);
       this.isLoading = false;
+    },
+    resetTicker() {
+      this.ticker = "";
     },
     updateQuantity(quantity) {
       this.stockQuantity = quantity;
@@ -91,20 +108,81 @@ export default {
 </script>
   
 <style scoped>
+.search {
+  display: flex;
+  width: 60%;
+  margin: auto;
+}
+
 .search input {
   flex: 1 1 auto;
   height: 44px;
-  width: 25vw;
+  width: 75%;
   padding-left: 16px;
   padding-right: 60px;
   font-size: 16px;
-  border: 1px solid #dddddd;
-  border-radius: 22px;
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 0px;
+  border-bottom: 1px solid #dddddd;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
   background: #ffffff;
   color: inherit;
   font-family: inherit;
   font-weight: 400;
-  margin-top: 10px
+  margin-top: 10px;
+  outline: none;
+}
+
+.search input:focus {
+  border: 1px solid #F172A1;
+  border-right: 0px;
+}
+
+.search input:focus+.close-button {
+  border: 1px solid #F172A1;
+  border-left: 0px;
+}
+
+.close-button {
+  height: 44px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-left: 0px;
+  border-right: 0px;
+  width: 5%;
+}
+
+.search-button {
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
+  height: 44px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #dddddd;
+  width: 20%;
+}
+
+.search-button:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.close-button:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
 }
 
 h2 {
@@ -121,11 +199,6 @@ form {
   align-items: center;
   margin: auto;
 }
-
-/* input:hover {
-  box-shadow: 3px 3px purple;
-  border-radius: 2px;
-} */
 
 .save {
   text-align: center;
