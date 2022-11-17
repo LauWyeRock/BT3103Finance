@@ -45,8 +45,8 @@
         </th>
       </tr>
       <tr class="information-table-row">
-        <td>$1,000,000</td>
-        <td>$1,000,000</td>
+        <td>${{ numberWithCommas(money) }}</td>
+        <td>${{ numberWithCommas(Math.round((1000000 - money) * 100) / 100) }}</td>
         <td>$1,000,000</td>
         <td>$1,000,000</td>
         <td>$1,000,000</td>
@@ -58,30 +58,37 @@
 <script>
 import { db } from "../../firebase/firebase";
 import { collection, getDocs, doc, deleteDoc, query } from "firebase/firestore";
-import { computed, ref } from "vue";
-import axios from "axios";
+// import { computed, ref } from "vue";
+// import axios from "axios";
 import ToolTip from "../ToolTip.vue";
 
 export default {
   components: { ToolTip },
   props: {
     myUid: String,
+    money: Number
+  },
+  methods: {
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
   async mounted() {
+
     async function display(uid) {
       const docRef = query(collection(db, "portfolio", uid, "stocks"));
       const querySnapshot = await getDocs(docRef);
 
       let idx = 1;
-      let tp = 0;
+      // let tp = 0;
 
-      querySnapshot.forEach((docs) => {
+      querySnapshot.forEach(async (docs) => {
         let stock = docs.data();
         var table = document.getElementById("stocksTable");
         var row = table.insertRow(idx);
 
         var stockName = stock.stock;
-        var price = "$" + Math.round(stock.price * 100) / 100;
+        var price = Math.round(stock.price * 100) / 100;
         var quantity = stock.quantity;
         var ticker = stock.ticker;
 
@@ -94,16 +101,18 @@ export default {
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
 
+        const stockInfo = await fetch(`http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()).then((res) => res.json()).catch(() => []);
+        const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
+        const profit = Math.round((price - currentPrice) * 100) / 100
         cell1.innerHTML = idx;
         cell2.innerHTML = stockName;
         cell3.innerHTML = ticker;
-        cell4.innerHTML = price;
+        cell4.innerHTML = "$" + price;
         cell5.innerHTML = quantity;
         //currentPrice
-        cell6.innerHTML = 0;
+        cell6.innerHTML = '$' + currentPrice;
         //profit
-        cell7.innerHTML = 0;
-
+        cell7.innerHTML = '$' + profit;
         cell7.className = "profits";
 
         var btn = document.createElement("button");
@@ -115,36 +124,36 @@ export default {
         };
         cell8.appendChild(btn);
 
-        val(ticker);
+        // val(ticker);
 
-        async function val(ticker) {
-          let stockSymbol = ref(ticker);
-          let AlphaVantageApi_URL_LINK = computed(() => {
-            return (
-              "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-              stockSymbol.value +
-              "&interval=5min&apikey=T8KDAAX3DMF90GU8"
-            );
-          });
-          await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
-            console.log(response.data["Time Series (5min)"]);
+        // async function val(ticker) {
+        //   let stockSymbol = ref(ticker);
+        //   let AlphaVantageApi_URL_LINK = computed(() => {
+        //     return (
+        //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
+        //       stockSymbol.value +
+        //       "&interval=5min&apikey=T8KDAAX3DMF90GU8"
+        //     );
+        //   });
+        //   await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
+        //     console.log(response.data["Time Series (5min)"]);
 
-            for (const property in response.data["Time Series (5min)"]) {
-              let price =
-                response.data["Time Series (5min)"][property]["4. close"];
-              cell6.innerHTML = price;
-              cell7.innerHTML = Math.round(
-                quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
-              );
-              tp = tp + parseFloat(cell7.innerHTML);
-              document.getElementById("totalProfit").innerHTML =
-                " Total Profit is " + String(tp);
-              console.log(price);
-              break;
-            }
-            idx += 1;
-          });
-        }
+        //     for (const property in response.data["Time Series (5min)"]) {
+        //       let price =
+        //         response.data["Time Series (5min)"][property]["4. close"];
+        //       cell6.innerHTML = price;
+        //       cell7.innerHTML = Math.round(
+        //         quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
+        //       );
+        //       tp = tp + parseFloat(cell7.innerHTML);
+        //       document.getElementById("totalProfit").innerHTML =
+        //         " Total Profit is " + String(tp);
+        //       console.log(price);
+        //       break;
+        //     }
+        //     idx += 1;
+        //   });
+        // }
       });
     }
 
@@ -164,6 +173,9 @@ export default {
       document.getElementById("totalProfit").innerHTML = "";
       display();
     }
+
+
+
   },
 };
 </script>
