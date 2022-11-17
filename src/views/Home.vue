@@ -28,6 +28,7 @@
           </video-background>
         </div>
 
+
         <div class="personcontainer">
           <div class="person">
             <svg
@@ -650,29 +651,7 @@ export default defineComponent({
 .body {
   scroll-behavior: smooth;
 }
-.button {
-  border-radius: 20px;
-  padding: 8px;
-  position: absolute;
-  left: 50%;
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  position: fixed;
-  bottom: 8%;
-  background: #ccc;
-}
 
-.button__arrow {
-  background-color: transparent;
-  height: 12px;
-  width: 12px;
-}
-
-.button__arrow--down {
-  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
-  border-right: 3px solid rgba(0, 0, 0, 0.3);
-  transform: translateY(-25%) rotate(45deg);
-}
 .hello {
   background: repeating-linear-gradient(
     rgba(240, 235, 244, 1),
@@ -693,6 +672,8 @@ export default defineComponent({
 
 p {
   text-align: center;
+  /* text-justify: auto; */
+  font-family: serif;
 }
 
 .paragraph {
@@ -700,6 +681,7 @@ p {
   width: 60%;
   font-size: 22px;
   letter-spacing: 0px;
+  text-justify: auto;
 }
 
 .header {
@@ -813,6 +795,7 @@ p {
 
 .trdgstockscontainer {
   background-image: url(../assets/stocks.jpg);
+  background-attachment: fixed;
   background-color: grey;
   background-blend-mode: multiply;
   background-size: cover;
@@ -957,76 +940,4 @@ p {
   color: rgb(77, 109, 98);
   font-family: serif;
 }
-
-/* input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px; 
-  border: 1px solid #ccc; 
-  border-radius: 4px;
-  box-sizing: border-box; 
-  margin-top: 6px; 
-  margin-bottom: 16px; 
-  resize: vertical
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-} */
-/* .formcontainer {
-  border-radius: 5px;
-  background-color: transparent;
-  padding: 20px;
-  width: 60%;
-  margin-top: 100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
-}
-
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-.popup .show {
-  visibility: visible;
-} */
 </style>
