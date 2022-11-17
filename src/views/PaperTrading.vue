@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
   <AddStock @added="change" />
-  <ProfitDisplay :key="refreshComp" v-bind:user="user"/>
+  <ProfitDisplay :key="refreshComp" :user="user" />
 </div>
 </template>
 

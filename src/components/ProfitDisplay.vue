@@ -1,6 +1,5 @@
 <template>
   <h1 id="Current">Current Portfolio</h1>
-
   <table id="table" class="auto-index">
     <tr>
       <th>S.No</th>
@@ -27,17 +26,25 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      // user: false,
       stockprice: "",
       myUid: "",
       loading: false,
     };
   },
   props: ["user"],
-  async mounted() {
-    async function display() {
+  beforeUpdate() {
+    // const auth = getAuth();
 
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     this.user = user;
+    //   }
+    // });
+
+    async function display(user) {
       let z = await getDocs(
-        collection(db, "stocks", this.user.uid, "allStocks")
+        collection(db, "stocks", user.uid, "allStocks")
       );
 
       let ind = 1;
@@ -110,7 +117,7 @@ export default {
       });
     }
 
-    display();
+    display(this.user);
 
     async function deleteInstrument2(stock) {
       var x = stock;
