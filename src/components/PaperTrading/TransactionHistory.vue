@@ -1,6 +1,6 @@
 <template>
-  <h1 id="Current">Transaction History</h1>
-
+  <!-- <h1 id="Current">Transaction History</h1> -->
+  <h2 class="subtitle">Transaction History</h2>
   <table id="table" class="auto-index">
     <tr>
       <th>S.No</th>
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style scoped>
-h1,
+/* h1,
 h2 {
   text-align: center;
   background-color: rgba(241, 114, 161, 0.5);
@@ -107,9 +107,19 @@ h2 {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+} */
+
+.subtitle {
+  font-family: serif;
+  letter-spacing: -1px;
+  font-weight: bold;
+  margin-left: 1vw;
+  font-size: 250%;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-table {
+/* table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -124,6 +134,40 @@ td {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
+} */
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2vh;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+td,
+th {
+  text-align: left;
+  padding: 2vh;
+  /* border-bottom-left-radius: 20px; */
+  /* border-bottom-right-radius: 20px; */
+}
+
+.information-table-row td:nth-child(1) {
+  border-bottom-left-radius: 20px;
+}
+
+.information-table-row :nth-child(3) {
+  border-bottom-right-radius: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.header-text {
+  border-bottom: 1px dotted black;
 }
 
 .bwt {

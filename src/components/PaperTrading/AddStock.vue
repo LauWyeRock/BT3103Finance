@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <form id="myform">
-      <h2>Add Stocks</h2>
+      <h2 class="subtitle">Add Stocks</h2>
       <div class="search">
         <input type="text" class="search" placeholder="Search for stock" v-model="ticker"
           @keyup.enter="onEnter(ticker)" />
@@ -313,9 +313,17 @@ export default {
   background-color: #f0f0f0;
 }
 
+.subtitle {
+  font-family: serif;
+  letter-spacing: -1px;
+  font-weight: bold;
+  margin-left: 1vw;
+  font-size: 250%;
+}
+/* 
 h2 {
   background-color: rgba(161, 195, 209, 0.75);
-}
+} */
 
 .formli {
   display: inline-block;
