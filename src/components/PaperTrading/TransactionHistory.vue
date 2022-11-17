@@ -1,7 +1,7 @@
 <template>
   <!-- <h1 id="Current">Transaction History</h1> -->
   <h2 class="subtitle">Transaction History</h2>
-  <table id="table" class="auto-index">
+  <table id="transcationHistoryTable" class="auto-index">
     <tr>
       <th>S.No</th>
       <th>Date</th>
