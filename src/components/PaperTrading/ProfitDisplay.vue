@@ -57,7 +57,15 @@
 
 <script>
 import { db } from "../../firebase/firebase";
-import { collection, getDocs, doc, deleteDoc, query } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  query,
+  setDoc,
+  addDoc,
+} from "firebase/firestore";
 // import { computed, ref } from "vue";
 // import axios from "axios";
 import ToolTip from "../ToolTip.vue";
@@ -66,7 +74,7 @@ export default {
   components: { ToolTip },
   props: {
     myUid: String,
-    money: Number
+    money: Number,
   },
   methods: {
     numberWithCommas(x) {
@@ -80,7 +88,7 @@ export default {
   },
   async mounted() {
 
-    const display = async (uid) => {
+    const display = async (uid, money) => {
       const docRef = query(collection(db, "portfolio", uid, "stocks"));
       const querySnapshot = await getDocs(docRef);
 
@@ -107,29 +115,56 @@ export default {
           var cell6 = row.insertCell(5);
           var cell7 = row.insertCell(6);
           var cell8 = row.insertCell(7);
+          // const stockInfo = await fetch(`http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()).then((res) => res.json()).catch(() => []);
+          // const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
+          // const profit = Math.round((price - currentPrice) * 100) / 100
+          // investmentValue += (stockInfo.last_quote * quantity)
+          // console.log(investmentValue);
+          // cell1.innerHTML = idx;
+          // cell2.innerHTML = stockName;
+          // cell3.innerHTML = ticker;
+          // cell4.innerHTML = "$" + price;
+          // cell5.innerHTML = quantity;
+          // //currentPrice
+          // cell6.innerHTML = '$' + currentPrice;
+          // //profit
+          // cell7.innerHTML = '$' + profit;
+          // cell7.className = "profits";
 
-          const stockInfo = await fetch(`http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` + ticker.toUpperCase()).then((res) => res.json()).catch(() => []);
-          const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
-          const profit = Math.round((price - currentPrice) * 100) / 100
+          const stockInfo = await fetch(
+            `http://timcheng112.pythonanywhere.com/get_stock_price?ticker=` +
+            ticker.toUpperCase()
+          )
+            .then((res) => res.json())
+            .catch(() => []);
           investmentValue += (stockInfo.last_quote * quantity)
-          console.log(investmentValue);
+          const currentPrice = Math.round(stockInfo.last_quote * 100) / 100;
+          const profit = Math.round((price - currentPrice) * 100) / 100;
           cell1.innerHTML = idx;
+          idx++;
           cell2.innerHTML = stockName;
           cell3.innerHTML = ticker;
           cell4.innerHTML = "$" + price;
           cell5.innerHTML = quantity;
           //currentPrice
-          cell6.innerHTML = '$' + currentPrice;
+          cell6.innerHTML = "$" + currentPrice;
           //profit
-          cell7.innerHTML = '$' + profit;
+          cell7.innerHTML = "$" + profit;
           cell7.className = "profits";
+
+          var input = document.createElement("input");
+          input.type = "number";
+          input.className = "sellInput";
+          input.id = String(stockName) + "input";
+          input.placeholder = "#stocks to sell...";
+          cell8.appendChild(input);
 
           var btn = document.createElement("button");
           btn.className = "sellButton";
           btn.id = String(stockName);
           btn.innerHTML = "Sell";
           btn.onclick = function () {
-            deleteInstrument2(docs.id);
+            sellStock(docs.id, String(stockName) + "input", stock, uid, money);
           };
           cell8.appendChild(btn);
           console.log(querySnapshot.size)
@@ -138,62 +173,97 @@ export default {
             resolve();
           }
           index += 1
-
-          // val(ticker);
-
-          // async function val(ticker) {
-          //   let stockSymbol = ref(ticker);
-          //   let AlphaVantageApi_URL_LINK = computed(() => {
-          //     return (
-          //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-          //       stockSymbol.value +
-          //       "&interval=5min&apikey=T8KDAAX3DMF90GU8"
-          //     );
-          //   });
-          //   await axios.get(AlphaVantageApi_URL_LINK).then((response) => {
-          //     console.log(response.data["Time Series (5min)"]);
-
-          //     for (const property in response.data["Time Series (5min)"]) {
-          //       let price =
-          //         response.data["Time Series (5min)"][property]["4. close"];
-          //       cell6.innerHTML = price;
-          //       cell7.innerHTML = Math.round(
-          //         quantity * (-parseFloat() + parseFloat(cell6.innerHTML))
-          //       );
-          //       tp = tp + parseFloat(cell7.innerHTML);
-          //       document.getElementById("totalProfit").innerHTML =
-          //         " Total Profit is " + String(tp);
-          //       console.log(price);
-          //       break;
-          //     }
-          //     idx += 1;
-          //   });
-          // }
         })
       });
       this.totalInvestmentValue = await loopThroughData.then(() => investmentValue);
       console.log(this.totalInvestmentValue)
     }
 
-    display(this.myUid);
+    display(this.myUid, this.money);
 
-    async function deleteInstrument2(stock) {
-      var x = stock;
-      alert("You are going to delete " + x);
-      await deleteDoc(
-        doc(db, "stocks", "Hi3Tx6xdc2OvBG1EeAfBYIz2P2c2", "allStocks", x)
-      );
-      console.log("Document successfully created", x);
-      let tb = document.getElementById("table");
-      while (tb.rows.length > 1) {
-        tb.deleteRow(1);
+    async function sellStock(stockId, inputId, stock, uid, money) {
+      var qty;
+      try {
+        qty = Number(document.getElementById(inputId).value);
+      } catch {
+        alert("Quantity has to be a number!")
       }
-      document.getElementById("totalProfit").innerHTML = "";
-      display();
+      if (qty === 0) {
+        alert("You cannot sell 0 stocks!")
+        return;
+      }
+      if (qty > stock.quantity) {
+        alert("You do not have enough stocks to sell!");
+        return;
+      }
+      //to sell stocks...
+      else if (qty == stock.quantity) {
+        //1. case 1: sell ALL stocks.
+        // remove stock from db
+        await deleteDoc(doc(db, "portfolio", uid, "stocks", stockId)).then(
+          () => {
+            console.log("successfully deleted stock.");
+          }
+        );
+      } else {
+        //2. case 2: sell a portion of the stocks.
+        // modify qty in db.
+        let remainingQty = stock.quantity - qty;
+        await setDoc(
+          doc(db, "portfolio", uid, "stocks", stockId),
+          {
+            quantity: remainingQty,
+          },
+          { merge: true }
+        ).then(() => {
+          console.log(
+            "merged stock with existing stock." +
+            stock.quantity +
+            " => " +
+            remainingQty
+          );
+        });
+      }
+      //3. push to history.
+      const timestamp = Date.now();
+      const databaseHist = collection(db, "portfolio", uid, "history");
+      const docref2 = await addDoc(databaseHist, {
+        date: timestamp,
+        stock: stock.stock,
+        ticker: stock.ticker,
+        trasactionType: "SELL",
+        price: stock.price,
+        quantity: qty,
+      });
+      console.log(
+        "saved transaction to history! " + stock.name + " " + docref2
+      );
+
+      //3. add money to your account.
+      const newMoneyBalance = money + stock.quantity * stock.price;
+      await setDoc(
+        doc(db, "portfolio", uid),
+        {
+          money: newMoneyBalance,
+        },
+        { merge: true }
+      ).then(() => {
+        console.log("money added: " + money + " => " + newMoneyBalance);
+      });
+      alert(
+        "Sold " +
+        qty +
+        " " +
+        stock.stock +
+        " stocks. New Balance: " +
+        newMoneyBalance
+      );
+      location.reload();
+
+      //re-render table
+      //might need location.reload.
+      // display(this.myUid);
     }
-
-
-
   },
 };
 </script>
