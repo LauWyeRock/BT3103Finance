@@ -54,6 +54,7 @@
     data() {
         return {
           user:false,
+          myUid: "",
         }
       },
     mounted() {
@@ -61,6 +62,7 @@
         onAuthStateChanged(auth, (user) => {
           if (user) {
             this.user = user;
+            this.myUid = auth.currentUser.uid;
           }
         })
       },
@@ -74,7 +76,7 @@
         alert(" Saving Stock: " + a);
   
         try {
-          const docRef = await addDoc(collection(db,"stocks",String(this.fbuser), "allStocks"), {Stock:a, Ticker: b, Buy_Price: c, Buy_Quantity: d})
+          const docRef = await addDoc(collection(db,"stocks",this.myUid, "allStocks"), {Stock:a, Ticker: b, Buy_Price: c, Buy_Quantity: d})
           console.log(docRef)
           document.getElementById('myform').reset();
           this.$emit("added")
