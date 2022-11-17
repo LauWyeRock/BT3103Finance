@@ -263,7 +263,7 @@ export default {
 .table-head div {
   padding: 5px;
   margin: 2px;
-  background-color: #c2c2c2;
+  background-color: #deb2b2;
   font-weight: bold;
 }
 

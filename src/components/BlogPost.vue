@@ -4,9 +4,9 @@
     <div style="background-color:transparent" class="blog-content">
       <div>
         <h2 style="color:black" v-if="post.welcomeScreen">{{ post.title }}</h2>
-        <h2 style="color:white" v-else>{{ post.blogTitle }}</h2>
+        <h2 style="color:black" v-else>{{ post.blogTitle }}</h2>
         <p style="color:black" v-if="post.welcomeScreen">{{ post.blogPost }}</p>
-        <p style="color:white" class="content-preview" v-else v-html="post.blogHTML"></p>
+        <p style="color:black" class="content-preview" v-else v-html="post.blogHTML"></p>
 
         <router-link style="color: black" class="link link-right" v-if="post.welcomeScreen" to="/blogs" >
 
