@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <AddStock :myUid="portfolio.userId" :money="portfolio.money" />
-    <ProfitDisplay />
+    <ProfitDisplay :myUid="portfolio.userId" />
     <TransactionHistory :myUid="portfolio.userId" />
   </div>
 </template>

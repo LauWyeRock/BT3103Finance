@@ -29,10 +29,18 @@ export default {
 
       let idx = 1;
 
-      console.log("mounted in add docs:");
-
+      let transcationArray = [];
       querySnapshot.forEach((docs) => {
         let transaction = docs.data();
+        transcationArray.push(transaction);
+      });
+
+      transcationArray.sort(function (a, b) {
+        return a.date - b.date;
+      });
+
+      for (let i = 0; i < transcationArray.length; i++) {
+        let transaction = transcationArray[i];
         var table = document.getElementById("transcationHistoryTable");
         var row = table.insertRow(idx);
 
@@ -58,7 +66,7 @@ export default {
         cell5.innerHTML = transactionType;
         cell6.innerHTML = quantity;
         cell7.innerHTML = price;
-      });
+      }
       console.log("display complete.");
     }
 
