@@ -45,39 +45,33 @@
 
 <script>
 import { db } from "../../firebase/firebase";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { collection, getDocs, doc, deleteDoc, query } from "firebase/firestore";
 import { computed, ref } from "vue";
 import axios from "axios";
 import ToolTip from "../ToolTip.vue";
 
 export default {
   components: { ToolTip },
-  data() {
-    return {
-      // user: false,
-      stockprice: "",
-      myUid: "",
-      loading: false,
-    };
+  props: {
+    myUid: String,
   },
-  props: ["user"],
-  beforeUpdate() {
-    async function display(user) {
-      let z = await getDocs(collection(db, "stocks", user.uid, "allStocks"));
+  async mounted() {
+    async function display(uid) {
+      const docRef = query(collection(db, "portfolio", uid, "stocks"));
+      const querySnapshot = await getDocs(docRef);
 
-      let ind = 1;
-      var tp = 0;
+      let idx = 1;
+      let tp = 0;
 
-      z.forEach((docs) => {
-        let yy = docs.data();
-        var table = document.getElementById("table");
-        var row = table.insertRow(ind);
+      querySnapshot.forEach((docs) => {
+        let stock = docs.data();
+        var table = document.getElementById("stocksTable");
+        var row = table.insertRow(idx);
 
-        var stock = yy.Stock;
-        var price = yy.Buy_Price;
-        var quantity = yy.Buy_Quantity;
-        var ticker = yy.Ticker;
+        var stockName = stock.stock;
+        var price = "$" + Math.round(stock.price * 100) / 100;
+        var quantity = stock.quantity;
+        var ticker = stock.ticker;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -88,24 +82,26 @@ export default {
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
 
-        cell1.innerHTML = ind;
-        cell2.innerHTML = stock;
+        cell1.innerHTML = idx;
+        cell2.innerHTML = stockName;
         cell3.innerHTML = ticker;
         cell4.innerHTML = price;
         cell5.innerHTML = quantity;
+        //currentPrice
         cell6.innerHTML = 0;
+        //profit
         cell7.innerHTML = 0;
 
         cell7.className = "profits";
 
-        var bu = document.createElement("button");
-        bu.className = "bwt";
-        bu.id = String(stock);
-        bu.innerHTML = "Delete";
-        bu.onclick = function () {
-          deleteInstrument2(stock);
+        var btn = document.createElement("button");
+        btn.className = "sellButton";
+        btn.id = String(stockName);
+        btn.innerHTML = "Sell";
+        btn.onclick = function () {
+          deleteInstrument2(docs.id);
         };
-        cell8.appendChild(bu);
+        cell8.appendChild(btn);
 
         val(ticker);
 
@@ -134,13 +130,13 @@ export default {
               console.log(price);
               break;
             }
-            ind += 1;
+            idx += 1;
           });
         }
       });
     }
 
-    display(this.user);
+    display(this.myUid);
 
     async function deleteInstrument2(stock) {
       var x = stock;
@@ -189,6 +185,7 @@ h2 {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
 }
 
 tr:nth-child(even) {

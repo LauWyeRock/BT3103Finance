@@ -8,8 +8,8 @@
       <th>Stock</th>
       <th>Ticker</th>
       <th>Transaction Type</th>
-      <th>Price</th>
       <th>Quantity</th>
+      <th>Price (USD)</th>
     </tr>
   </table>
 </template>
@@ -29,17 +29,27 @@ export default {
 
       let idx = 1;
 
+      let transcationArray = [];
       querySnapshot.forEach((docs) => {
         let transaction = docs.data();
-        var table = document.getElementById("table");
+        transcationArray.push(transaction);
+      });
+
+      transcationArray.sort(function (a, b) {
+        return a.date - b.date;
+      });
+
+      for (let i = 0; i < transcationArray.length; i++) {
+        let transaction = transcationArray[i];
+        var table = document.getElementById("transcationHistoryTable");
         var row = table.insertRow(idx);
 
-        var date = this.timeConverter(transaction.date);
+        var date = timeConverter(transaction.date);
         var stockName = transaction.stock;
         var ticker = transaction.ticker;
-        var transactionType = transaction.transactionType;
+        var transactionType = transaction.trasactionType;
         var quantity = transaction.quantity;
-        var price = transaction.price;
+        var price = "$" + Math.round(transaction.price * 100) / 100;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -56,42 +66,40 @@ export default {
         cell5.innerHTML = transactionType;
         cell6.innerHTML = quantity;
         cell7.innerHTML = price;
-      });
+      }
       console.log("display complete.");
     }
 
     console.log("myuid:" + this.myUid);
     display(this.myUid);
   },
-  methods: {
-    timeConverter(timestamp) {
-      var a = new Date(timestamp);
-      var months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      var year = a.getFullYear();
-      var month = months[a.getMonth()];
-      var date = a.getDate();
-      var hour = a.getHours();
-      var min = a.getMinutes();
-      var sec = a.getSeconds();
-      var time =
-        date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
-      return time;
-    },
-  },
 };
+function timeConverter(timestamp) {
+  var a = new Date(timestamp);
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time =
+    date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
+  return time;
+}
 </script>
 
 <style scoped>
@@ -123,6 +131,7 @@ h2 {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
 }
 
 tr:nth-child(even) {
