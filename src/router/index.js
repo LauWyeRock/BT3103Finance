@@ -127,7 +127,7 @@ const router = createRouter({
     },
     {
       path: "/papertrading",
-      component: () => import("../views/PaperTrading.vue"),
+      component: () => import("../views/PaperTrader.vue"),
       name: "PaperTrading",
       meta: {
         requiresAuth: true,
